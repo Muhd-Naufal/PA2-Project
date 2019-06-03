@@ -1,8 +1,17 @@
-#Testing
 
-a <- 1
-b <- 2
+library("rjson")
 
-#Test2
+json_file <-"https://developers.onemap.sg/privateapi/themesvc/getAllThemesInfo?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MjksInVzZXJfaWQiOjI3MjksImVtYWlsIjoiMTk5OG5hdWZhbEBnbWFpbC5jb20iLCJmb3JldmVyIjpmYWxzZSwiaXNzIjoiaHR0cDpcL1wvb20yLmRmZS5vbmVtYXAuc2dcL2FwaVwvdjJcL3VzZXJcL3Nlc3Npb24iLCJpYXQiOjE1NTk1Nzk5OTksImV4cCI6MTU2MDAxMTk5OSwibmJmIjoxNTU5NTc5OTk5LCJqdGkiOiJkOTEyZjQ1MDNhNWM3Y2I3NzdhYTg3OTZiMzI0MDhmMiJ9.eL4sAuZ5lBUtmSVlnWScvcDNc0WT7txz60l7pzoDPt8&moreInfo=Y"
+json_data <- fromJSON(file=json_file)
+json_data
 
-#Test 3
+
+
+library(jsonlite)
+
+data <- fromJSON("https://developers.onemap.sg/privateapi/themesvc/getAllThemesInfo?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MjksInVzZXJfaWQiOjI3MjksImVtYWlsIjoiMTk5OG5hdWZhbEBnbWFpbC5jb20iLCJmb3JldmVyIjpmYWxzZSwiaXNzIjoiaHR0cDpcL1wvb20yLmRmZS5vbmVtYXAuc2dcL2FwaVwvdjJcL3VzZXJcL3Nlc3Npb24iLCJpYXQiOjE1NTk1Nzk5OTksImV4cCI6MTU2MDAxMTk5OSwibmJmIjoxNTU5NTc5OTk5LCJqdGkiOiJkOTEyZjQ1MDNhNWM3Y2I3NzdhYTg3OTZiMzI0MDhmMiJ9.eL4sAuZ5lBUtmSVlnWScvcDNc0WT7txz60l7pzoDPt8&moreInfo=Y")
+data
+
+View(data)
+
+write.csv(data, file="data.csv")
