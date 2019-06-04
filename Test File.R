@@ -20,8 +20,5 @@ write.csv(data, file="data.csv")
 
 #Change 1
 #Change 2
-<<<<<<< HEAD
 #Change 3
-=======
-#Change 3
->>>>>>> f9625466bd6a8542a5d65dfea0874c0860793bc2
+#Change 4
