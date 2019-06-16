@@ -1,7 +1,7 @@
 # HELLO THERE!
 This is a Read Me note inside every repository or a 'server'. This repository will assist in out CA2 project as it allows for real-time collaboration. And this is a just a note to inform anyone who comes by this page of what's this repository is about and contain.
 
-# FILES
+## FILES
 
 - .gitignore
 - PA2 R Markdown.Rmd
