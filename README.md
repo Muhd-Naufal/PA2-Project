@@ -43,3 +43,9 @@ If there's ever an unfortunate incident that you simply lost your ability to Git
 First, download Git and install it. Click next and leave everything on default until you've reached this page:
 
 ![1](https://user-images.githubusercontent.com/51323038/59566775-4eeb0f80-9097-11e9-8ba0-912aed2250d4.PNG)
+
+Click on the top box because you only need Git Bash and nothing else. Afterwards, click next until you've reached this page:
+
+![1](https://user-images.githubusercontent.com/51323038/59566818-b739f100-9097-11e9-995a-0fdb34ab32eb.PNG)
+
+Just ignore it and proceed to install Git
