@@ -85,6 +85,8 @@ Leave it there first and head to the GitHub repository which looks something lik
 
 ![7](https://user-images.githubusercontent.com/51323038/59567158-7b555a80-909c-11e9-8823-abb815879beb.PNG)
 
+(If you don't have, I think you need permission from the owner of the repository. That person needs to share it by sending an invite link. It's under Settings > Collaborators)
+
 You see on the right hand side of the screen where there is a green button called 'Clone or download'. Click on it and copy the URL and then paste it on RStudio with the Git version control window open. 
 
 ![8](https://user-images.githubusercontent.com/51323038/59567189-13ebda80-909d-11e9-8697-89b99159b4a1.PNG)
@@ -97,7 +99,19 @@ Click create project and after a bit of loading, Git/GitHub/RStudio should all n
 ## How it works
 I'll keep this short because it's hard to demonstrate how the real-time collaboration works without a second person to view the changes.
 
-Basically, you need to know three things:
+Basically, you need to know this three things:
 - Commit
 - Pull
 - Push
+
+## Commit
+Commit is just saving the action that you've done. If you added couple line of code and satisfied that it works, you commit those changes. You deleted some lines of redundant codes, you commit those changes. It's like a save button but this time you're saving those changes before Pushing those changes. 
+
+There will always be a text box telling you to type the commit text. The text is usually short and simple. It's just a way to inform others what changes you made to the file. So when others update their own file to the latest version and saw something different, they can refer to the commit text to see what changes has been applied by the latest user and why that user made those changes. Try to make it a habbit to comment. 
+
+## Pull
+Pull, like the name implies, pull any updates from the repository. If someone has added additional codes to the file and pushed it to the repository, you want to be able to see it on your computer too. So all you do is to press the Pull button and it'll pull any updates and apply on your file. 
+
+# Push
+
+Push is the opposit of Pull. Instead of Pulling any updates from the repository, you are the one now making changes to the file and want to share it with others. 
