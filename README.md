@@ -1,7 +1,7 @@
 # HELLO THERE!
 This is a Read Me note inside every repository or a 'server'. This repository will assist in out CA2 project as it allows for real-time collaboration. And this is a just a note to inform anyone who comes by this page of what's this repository is about and contain.
 
-## FILES
+## Files
 
 - .gitignore
 - PA2 R Markdown.Rmd
@@ -29,4 +29,12 @@ This file is the one you're reading now. Feel free to edit it and do whatever yo
 
 > Test File.R
 
-Now this is a file you are familiar with. Its a normal R file but it's used to test out if the real-time collaboration of Git works after installation. You can ignore this or use this as a file to test whether your code works and whatnot.  
+Now this is a file you are familiar with. Its a normal R file but it's used to test out if the real-time collaboration of Git works after installation. You can ignore this or use this as a file to test whether your code works and whatnot.
+
+## Git installation and GitHub synchronization
+If there's ever an unfortunate incident that you simply lost your ability to Git or you had to hard reset your computer or whatever, this section will help in installing the whole thing again so we can all code together and be happily ever after!
+
+**Links**
+- [Git](https://git-scm.com/downloads) - A Version Control System 
+- [
+-
