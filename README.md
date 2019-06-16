@@ -114,3 +114,15 @@ Pull, like the name implies, pull any updates from the repository. If someone ha
 
 ## Push
 Push is the opposit of Pull. Instead of Pulling any updates from the repository, you are the one now making changes to the R file and want to share it with others. But before you Push, remember that you have to commit those changes to inform others what have you added on the R file. Then you can proceed to Push. If it's your first time Pushing, a window will appear to input your GitHub particulars. After you're done you can now Push. 
+
+# Important things to take note of
+## Save before committing
+Before you commit, remember to save your file. It's the normal save (Ctrl + S). You'll find that you cannot commit because Git found nothing to commit even though you made changes to the R file. It's just normal save and commit is not the same thing. To know if you haven't save, the file name should appear red
+
+![11](https://user-images.githubusercontent.com/51323038/59567725-e8b8b980-90a3-11e9-87eb-5b17c9df441d.PNG)
+
+## Choose the file that you want to commit and make sure it's tick
+
+In the commit window, on the top left hand side contains the box where it'll show what kind of files has been changed. For this case, since I made changes to Test File only, only that file appears and I must click on it to tell Git/Github that this is the file I want  to commit/update/Push. If I made changes to multiple files, those multiple files will appear there and just click on the files you want to commit/update/Push.
+
+![12](https://user-images.githubusercontent.com/51323038/59567788-dd19c280-90a4-11e9-9b88-669910f98c15.PNG)
