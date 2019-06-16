@@ -96,7 +96,7 @@ Click create project and after a bit of loading, Git/GitHub/RStudio should all n
 ![9](https://user-images.githubusercontent.com/51323038/59567224-73e28100-909d-11e9-96de-01baf97245de.PNG)
 ![10](https://user-images.githubusercontent.com/51323038/59567281-30d4dd80-909e-11e9-9994-d841b9edc762.PNG)
 
-## How it works
+# How it works
 I'll keep this short because it's hard to demonstrate how the real-time collaboration works without a second person to view the changes.
 
 Basically, you need to know this three things:
@@ -110,8 +110,7 @@ Commit is just saving the action that you've done. If you added couple line of c
 There will always be a text box telling you to type the commit text. The text is usually short and simple. It's just a way to inform others what changes you made to the file. So when others update their own file to the latest version and saw something different, they can refer to the commit text to see what changes has been applied by the latest user and why that user made those changes. Try to make it a habbit to comment. 
 
 ## Pull
-Pull, like the name implies, pull any updates from the repository. If someone has added additional codes to the file and pushed it to the repository, you want to be able to see it on your computer too. So all you do is to press the Pull button and it'll pull any updates and apply on your file. 
+Pull, like the name implies, pull any updates from the repository. If someone has added additional codes to the R file and pushed it to the repository, you want to be able to see it on your computer too. So all you do is to press the Pull button and it'll pull any updates and it'll apply on your file. 
 
-# Push
-
-Push is the opposit of Pull. Instead of Pulling any updates from the repository, you are the one now making changes to the file and want to share it with others. 
+## Push
+Push is the opposit of Pull. Instead of Pulling any updates from the repository, you are the one now making changes to the R file and want to share it with others. But before you Push, remember that you have to commit those changes to inform others what have you added on the R file. Then you can proceed to Push. If it's your first time Pushing, a window will appear to input your GitHub particulars. After you're done you can now Push. 
