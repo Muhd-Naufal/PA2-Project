@@ -10,3 +10,4 @@ This is a just a note to inform anyone who comes by this page of what's this rep
 - README.md
 - Test File.R
 
+> .gitignore
