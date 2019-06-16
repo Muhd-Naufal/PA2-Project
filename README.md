@@ -123,6 +123,6 @@ Before you commit, remember to save your file. It's the normal save (Ctrl + S). 
 
 ## Choose the file that you want to commit and make sure it's tick
 
-In the commit window, on the top left hand side contains the box where it'll show what kind of files has been changed. For this case, since I made changes to Test File only, only that file appears and I must click on it to tell Git/Github that this is the file I want  to commit/update/Push. If I made changes to multiple files, those multiple files will appear there and just click on the files you want to commit/update/Push.
+In the commit window, on the top left hand side contains the box where it'll show what kind of files has been changed. For this case, since I made changes to Test File only, so only that file appears and I must click on it to tell Git/Github that this is the file I want  to commit/update/Push. If I made changes to multiple files, those multiple files will appear there and just click on the files you want to commit/update/Push.
 
 ![12](https://user-images.githubusercontent.com/51323038/59567788-dd19c280-90a4-11e9-9b88-669910f98c15.PNG)
