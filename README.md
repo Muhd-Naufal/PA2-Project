@@ -48,4 +48,25 @@ Click on the top box because you only need Git Bash and nothing else. Afterwards
 
 ![1](https://user-images.githubusercontent.com/51323038/59566818-b739f100-9097-11e9-995a-0fdb34ab32eb.PNG)
 
-Just ignore it and proceed to install Git
+Just ignore it and proceed to install Git. After you're done. Git Bash should be installed on your computer. Now don't touch it, we'll get back to it later. 
+
+### Create GitHub account
+
+Head to GitHub and create an account. Make sure to choose the free account option and you can bullshit your personal preferences. Now, its important to remember your account name and password because you're going to need it on Git Bash and R Studio to push an update to the server. Don't worry you only need to do this once. 
+
+## Git Bash
+
+Alright once you've created a GitHub account, open up Git Bash and it should look something like this:
+
+![3](https://user-images.githubusercontent.com/51323038/59566941-4eec0f00-9099-11e9-97d6-899a4d2858c2.PNG)
+
+Ooo scary colour codey stuff. Nah don't fret because it's not gonna hack into your computer or anything. All it's going to do is to communicate to GitHub servers and authenticate your account from Github with Git something like that.
+
+For communication to happen you need to input your GitHub particulars. That's where your account name and password comes in. After the $ sign, type in this line of code: 
+
+> git config --global user.name "Your Name"
+
+Inside the quotation marks you put in your account name from GitHub and then press enter. Nothing should happen and another line of code identital to the first one appears. Now type in this line of code but instead of your account name, type in your email address you linked with GitHub and press enter.
+
+> git config --global user.email "Your Email"
+
