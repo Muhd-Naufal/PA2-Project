@@ -34,7 +34,7 @@ Now this is a file you are familiar with. Its a normal R file but it's used to t
 ## Git installation and GitHub synchronization
 If there's ever an unfortunate incident that you simply lost your ability to Git or you had to hard reset your computer or whatever, this section will help in installing the whole thing again so we can all code together and be happily ever after!
 
-**Links**
+### Links
 - [Git](https://git-scm.com/downloads) - A Version Control System 
 - [
 -
