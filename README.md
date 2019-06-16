@@ -130,5 +130,5 @@ In the commit window, on the top left hand side contains the box where it'll sho
 ## Dark Square box ≠ tick box
 ![13](https://user-images.githubusercontent.com/51323038/59567846-a7290e00-90a5-11e9-857f-a903fca3e5cc.PNG)
 
-Don't be deceived. That dark box doesn't mean that the file is selected. You must make sure that the file has a tick before proceeding. 
+Don't be deceived. That dark box doesn't mean that the file is selected. You must make sure that the file has a tick before proceeding. Just click on the box again or twice then the tick should appear. 
 
