@@ -70,3 +70,6 @@ Inside the quotation marks you put in your account name from GitHub and then pre
 
 > git config --global user.email "Your Email"
 
+Another same line of code should appear and you're done. You can close Git Bash now. Just in case, tt should look like this at the end:
+
+![4](https://user-images.githubusercontent.com/51323038/59567065-22d18d80-909b-11e9-949b-35e8e6d89d7e.PNG)
