@@ -1,6 +1,5 @@
 # HELLO THERE
-This is a Read Me note inside every repository or a 'server'.
-This is a just a note to inform anyone who comes by this page of what's this repository is about.
+This is a Read Me note inside every repository or a 'server'. This repository will assist in out CA2 project as it allows for real-time collaboration. And this is a just a note to inform anyone who comes by this page of what's this repository is about and contain.
 
 # FILES
 
@@ -18,3 +17,16 @@ To be honest, I don't know what this file does but its name is a sequence of .gi
 
 > PA2 R Markdown.Rmd
 
+This is a R Markdown file. This is different from a normal R file that we've been doing for the past couple of months. The formatting and output of the code is all different. Basically, think of this file as our 'report' that we will be submitting. So, most of the coding and work will be done in this file.
+
+> PA2-Project.Rproj
+
+This is the second file I can proudly say that I don't know what it does. *shrugs* 
+
+> README.md
+
+This file is the one you're reading now. Feel free to edit it and do whatever you want.
+
+> Test File.R
+
+Now this is a file you are familiar with. Its a normal R file but it's used to test out if the real-time collaboration of Git works after installation. You can ignore this or use this as a file to test whether your code works and whatnot.  
