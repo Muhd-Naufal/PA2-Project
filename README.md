@@ -87,7 +87,7 @@ Leave it there first and head to the GitHub repository which looks something lik
 
 (If you don't have, I think you need permission from the owner of the repository. That person needs to share it by sending an invite link. It's under Settings > Collaborators)
 
-You see on the right hand side of the screen where there is a green button called 'Clone or download'. Click on it and copy the URL and then paste it on RStudio with the Git version control window open. 
+You see on the right hand side of the screen where there is a green button called 'Clone or download'. Click on it and copy the URL and then paste it on RStudio with the open Git version control window. 
 
 ![8](https://user-images.githubusercontent.com/51323038/59567189-13ebda80-909d-11e9-8697-89b99159b4a1.PNG)
 
