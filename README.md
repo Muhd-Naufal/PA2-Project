@@ -89,7 +89,7 @@ You see on the right hand side of the screen where there is a green button calle
 
 ![8](https://user-images.githubusercontent.com/51323038/59567189-13ebda80-909d-11e9-8697-89b99159b4a1.PNG)
 
-Click create project and after a bit of loading, Git/GitHub/RStudio should all now be synchronized. If everything goes well, your toolbar should now have a Git button. And if you noticed, your files are changed to match this repository. The same files on GitHub are now on your computer. This means whatever changes you do will now be reflected the same thing on the repository or server.
+Click create project and after a bit of loading, Git/GitHub/RStudio should all now be synchronized. If everything goes well, your toolbar should now have a Git button. And if you noticed, your files are changed to match this repository. The same files on GitHub are now on your computer. This means whatever changes you do will now be reflected on the repository or server.
 
 ![9](https://user-images.githubusercontent.com/51323038/59567224-73e28100-909d-11e9-96de-01baf97245de.PNG)
 ![10](https://user-images.githubusercontent.com/51323038/59567281-30d4dd80-909e-11e9-9994-d841b9edc762.PNG)
