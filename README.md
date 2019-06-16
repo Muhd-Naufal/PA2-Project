@@ -37,9 +37,9 @@ If there's ever an unfortunate incident that you simply lost your ability to Git
 ### Links
 - [Git](https://git-scm.com/downloads) - A Version Control System 
 - [GitHub](https://github.com/) - Code hosting platform for collaboration 
+- [GitHub Repository](https://github.com/Muhd-Naufal/PA2-Project) - Link to Repository
 
 ### Install Git
-
 First, download Git and install it. Click next and leave everything on default until you've reached this page:
 
 ![1](https://user-images.githubusercontent.com/51323038/59566775-4eeb0f80-9097-11e9-8ba0-912aed2250d4.PNG)
@@ -51,11 +51,9 @@ Click on the top box because you only need Git Bash and nothing else. Afterwards
 Just ignore it and proceed to install Git. After you're done. Git Bash should be installed on your computer. Now don't touch it, we'll get back to it later. 
 
 ### Create GitHub account
-
 Head to GitHub and create an account. Make sure to choose the free account option and you can bullshit your personal preferences. Now, its important to remember your account name and password because you're going to need it on Git Bash and R Studio to push an update to the server. Don't worry you only need to do this once. 
 
-## Git Bash
-
+### Git Bash
 Alright once you've created a GitHub account, open up Git Bash and it should look something like this:
 
 ![3](https://user-images.githubusercontent.com/51323038/59566941-4eec0f00-9099-11e9-97d6-899a4d2858c2.PNG)
@@ -73,3 +71,26 @@ Inside the quotation marks you put in your account name from GitHub and then pre
 Another same line of code should appear and you're done. You can close Git Bash now. Just in case, tt should look like this at the end:
 
 ![4](https://user-images.githubusercontent.com/51323038/59567065-22d18d80-909b-11e9-949b-35e8e6d89d7e.PNG)
+
+### GitHub synchronization
+Now for the important bit. Open up RStudio and click on File > New Project > Version Control
+
+![5](https://user-images.githubusercontent.com/51323038/59567120-f5d1aa80-909b-11e9-9086-356d265968f5.PNG)
+
+Click on Git and it should bring you to this window:
+
+![6](https://user-images.githubusercontent.com/51323038/59567143-38938280-909c-11e9-8ed9-30c4d28449fb.PNG)
+
+Leave it there first and head to the GitHub repository which looks something like this:
+
+![7](https://user-images.githubusercontent.com/51323038/59567158-7b555a80-909c-11e9-8823-abb815879beb.PNG)
+
+You see on the right hand side of the screen where there is a green button called 'Clone or download'. Click on it and copy the URL and then paste it on RStudio with the Git version control window open. 
+
+![8](https://user-images.githubusercontent.com/51323038/59567189-13ebda80-909d-11e9-8697-89b99159b4a1.PNG)
+
+Click create project and after a bit of loading, Git/GitHub/RStudio should all now be synchronized. If everything goes well, your toolbar should now have a Git button.
+
+![9](https://user-images.githubusercontent.com/51323038/59567224-73e28100-909d-11e9-96de-01baf97245de.PNG)
+
+
