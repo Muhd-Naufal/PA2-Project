@@ -94,3 +94,10 @@ Click create project and after a bit of loading, Git/GitHub/RStudio should all n
 ![9](https://user-images.githubusercontent.com/51323038/59567224-73e28100-909d-11e9-96de-01baf97245de.PNG)
 ![10](https://user-images.githubusercontent.com/51323038/59567281-30d4dd80-909e-11e9-9994-d841b9edc762.PNG)
 
+## How it works
+I'll keep this short because it's hard to demonstrate how the real-time collaboration works without a second person to view the changes.
+
+Basically, you need to know three things:
+- Commit
+- Pull
+- Push
