@@ -13,7 +13,7 @@ As of 16/6/2019, there a a total of 5 files. I'll try to explain what each of th
 
 > .gitignore
 
-To be honest, I don't know what this file does but its name is a sequence of .git + ignore. This file was created while installing git I believe and I guess you should ignore it since Git itself is telling you to ignore the file. 
+To be honest, I don't know what this file does but its name is a sequence of .git + ignore. This file was created while installing Git I believe and I guess you should ignore it since Git itself is telling you to ignore the file. 
 
 > PA2 R Markdown.Rmd
 
