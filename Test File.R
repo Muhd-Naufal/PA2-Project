@@ -16,25 +16,3 @@ View(data)
 
 write.csv(data, file="data.csv")
 
-#ABC
-
-#Change 1
-#Change 2
-#Change 3
-#Change 4
-#Change 5yuuhu
-#Change 6
-#fpdxs
-
-#Your mum gay
-#Test 1 Elynn
-#Test 2 Javier
-#ok
-#fk
-#testelynn
-#ok
-#Test 3 Ashraf
-#test
-#Change
-#ashraf
-#fafasfe
