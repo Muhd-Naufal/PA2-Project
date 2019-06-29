@@ -34,3 +34,22 @@ mymap = setView(mymap, lat=1.3110390, lng =103.7767958, zoom= 17)
 mymap = addMarkers(mymap, lat=1.3110390, lng =103.7767958, popup = "Singapore Polytechic")
 mymap
 
+mrt<-read.csv("mrtsg.csv")
+mrt<- as.data.frame(mrt)
+mrt
+str(mrt)
+str(quakes)
+View(mrt)
+
+leaflet() %>%
+  addTiles() %>%
+  #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+
+pal <- colorFactor(levels = c("RED", "BLUE", "GREEN","YELLOW","PURPLE","BROWN","GREY"),
+                   palette = c("red", "blue", "green","yellow","purple","brown","grey"))
+
+leaflet() %>%
+  addTiles() %>%
+  #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(data = mrt, radius = 5, color = ~pal(COLOR), lat = ~Latitude, lng = ~Longitude)
