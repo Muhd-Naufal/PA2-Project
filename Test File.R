@@ -19,7 +19,10 @@ write.csv(data, file="data.csv")
 #Leaflet Stuff
 
 #install.packages("leaflet")
+library(dplyr)
+library(RColorBrewer)
 library(leaflet)
+library(geojsonio)
 
 mymap = leaflet()
 mymap
@@ -52,7 +55,12 @@ pal <- colorFactor(levels = c("RED", "BLUE", "GREEN","YELLOW","PURPLE","BROWN","
 leaflet() %>%
   addTiles() %>%
   #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
-  addCircleMarkers(data = mrt, radius = 5, color = ~pal(COLOR), lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(data = mrt, 
+                   radius = 8, 
+                   color = ~pal(COLOR),
+                   stroke = FALSE, 
+                   fillOpacity = 0.7, 
+                   lat = ~Latitude, lng = ~Longitude)
 
 install.packages("geojsonio")
 library(geojsonio)

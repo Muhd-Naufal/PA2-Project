@@ -33,7 +33,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-```{r map, echo=FALSE}
+```{r map stuff, echo=FALSE, include= FALSE}
 mymap = leaflet()
 mymap
 
@@ -54,7 +54,11 @@ labels <- sprintf(
   "<strong>%s</strong><br/>%s",
   town$Name, town$Region.Name
 ) %>% lapply(htmltools::HTML)
+```
 
+## Map of Singapore
+This is an interactive map showing the different towns and their regions.
+```{r map, echo=FALSE}
 m <- m %>% addPolygons(
   fillColor = ~factpal(town$Name),
   weight = 2,
@@ -75,3 +79,33 @@ m <- m %>% addPolygons(
     direction = "auto"))
 m
 ```
+
+```{r mrt stuff, echo=FALSE, include = FALSE}
+mrt<-read.csv("mrtsg.csv")
+mrt<- as.data.frame(mrt)
+mrt
+
+leaflet() %>%
+  addTiles() %>%
+  #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+
+pal <- colorFactor(levels = c("RED", "BLUE", "GREEN","YELLOW","PURPLE","BROWN","GREY"),
+                   palette = c("red", "blue", "green","yellow","purple","brown","grey"))
+```
+
+
+```{r mrt , echo=FALSE}
+
+leaflet() %>%
+  addTiles() %>%
+  #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(data = mrt, 
+                   radius = 8, 
+                   color = ~pal(COLOR),
+                   stroke = FALSE, 
+                   fillOpacity = 0.7, 
+                   lat = ~Latitude, lng = ~Longitude)
+```
+maybe can add white polygon behind layer so it's clearer
+and add mrt station names when highlight above marker
