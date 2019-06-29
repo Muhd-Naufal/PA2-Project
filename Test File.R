@@ -16,3 +16,21 @@ View(data)
 
 write.csv(data, file="data.csv")
 
+#Leaflet Stuff
+
+#install.packages("leaflet")
+library(leaflet)
+
+mymap = leaflet()
+mymap
+
+mymap = leaflet()
+mymap = addTiles(mymap)
+mymap
+
+mymap = leaflet()
+mymap = addTiles(mymap)
+mymap = setView(mymap, lat=1.3110390, lng =103.7767958, zoom= 17)
+mymap = addMarkers(mymap, lat=1.3110390, lng =103.7767958, popup = "Singapore Polytechic")
+mymap
+
