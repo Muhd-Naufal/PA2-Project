@@ -44,10 +44,16 @@ str(mrt)
 str(quakes)
 View(mrt)
 
+primaryschool <- read.csv("primaryschoolsg.csv")
+primaryschool <- as.data.frame(primaryschool)
+primaryschool
+View(primaryschool)
+
 leaflet() %>%
   addTiles() %>%
   #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
-  addCircleMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude) %>%
+  addMarkers(data = primaryschool,lat =~Latitude, lng = ~Longitude)
 
 pal <- colorFactor(levels = c("RED", "BLUE", "GREEN","YELLOW","PURPLE","BROWN","GREY"),
                    palette = c("red", "blue", "green","yellow","purple","brown","grey"))
