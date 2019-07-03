@@ -5,7 +5,6 @@ json_data <- fromJSON(file=json_file)
 json_data
 
 
-
 library(jsonlite)
 
 data <- fromJSON("https://developers.onemap.sg/privateapi/popapi/getOccupation?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MjksInVzZXJfaWQiOjI3MjksImVtYWlsIjoiMTk5OG5hdWZhbEBnbWFpbC5jb20iLCJmb3JldmVyIjpmYWxzZSwiaXNzIjoiaHR0cDpcL1wvb20yLmRmZS5vbmVtYXAuc2dcL2FwaVwvdjJcL3VzZXJcL3Nlc3Npb24iLCJpYXQiOjE1NjA0MDk3MjIsImV4cCI6MTU2MDg0MTcyMiwibmJmIjoxNTYwNDA5NzIyLCJqdGkiOiI0NjUzN2YzZmE4YjEyZTMwZTMzODdlZDZmMzgwZTEzMiJ9.0WQUOPl_s0n9TxNaLondpmVamvAvt0PLFSYzCQlkhpU&planningArea=Bedok&year=2010")
@@ -38,21 +37,25 @@ mymap
 
 mrt<-read.csv("mrtsg.csv")
 mrt<- as.data.frame(mrt)
-mrt
-str(mrt)
-str(quakes)
-View(mrt)
+stationname<-mrt$STN_NAME
+stationname
 
 primaryschool <- read.csv("primaryschoolsg.csv")
 primaryschool <- as.data.frame(primaryschool)
-primaryschool
-View(primaryschool)
 
 leaflet() %>%
   addTiles() %>%
-  #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
-  addCircleMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude) %>%
-  addMarkers(data = primaryschool,lat =~Latitude, lng = ~Longitude)
+  addCircleMarkers(
+    data = mrt, 
+    radius = 7, 
+    color = ~pal(COLOR),
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    lat = ~Latitude, lng = ~Longitude,
+    popup = stationname) %>%
+  addMarkers(data = primaryschool,
+             lat =~Latitude, lng = ~Longitude, 
+             clusterOptions = markerClusterOptions())
 
 pal <- colorFactor(levels = c("RED", "BLUE", "GREEN","YELLOW","PURPLE","BROWN","GREY"),
                    palette = c("red", "blue", "green","yellow","purple","brown","grey"))
@@ -61,11 +64,12 @@ leaflet() %>%
   addTiles() %>%
   #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
   addCircleMarkers(data = mrt, 
-                   radius = 8, 
+                   radius = 5, 
                    color = ~pal(COLOR),
                    stroke = FALSE, 
                    fillOpacity = 0.7, 
-                   lat = ~Latitude, lng = ~Longitude)
+                   lat = ~Latitude, lng = ~Longitude,
+                   popup = stationname)
 
 install.packages("geojsonio")
 library(geojsonio)
