@@ -1,10 +1,8 @@
-
 library("rjson")
 
 json_file <-"https://developers.onemap.sg/privateapi/popapi/getOccupation?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MjksInVzZXJfaWQiOjI3MjksImVtYWlsIjoiMTk5OG5hdWZhbEBnbWFpbC5jb20iLCJmb3JldmVyIjpmYWxzZSwiaXNzIjoiaHR0cDpcL1wvb20yLmRmZS5vbmVtYXAuc2dcL2FwaVwvdjJcL3VzZXJcL3Nlc3Npb24iLCJpYXQiOjE1NjA0MDk3MjIsImV4cCI6MTU2MDg0MTcyMiwibmJmIjoxNTYwNDA5NzIyLCJqdGkiOiI0NjUzN2YzZmE4YjEyZTMwZTMzODdlZDZmMzgwZTEzMiJ9.0WQUOPl_s0n9TxNaLondpmVamvAvt0PLFSYzCQlkhpU&planningArea=Bedok&year=2010"
 json_data <- fromJSON(file=json_file)
 json_data
-
 
 
 library(jsonlite)
@@ -39,15 +37,25 @@ mymap
 
 mrt<-read.csv("mrtsg.csv")
 mrt<- as.data.frame(mrt)
-mrt
-str(mrt)
-str(quakes)
-View(mrt)
+stationname<-mrt$STN_NAME
+stationname
+
+primaryschool <- read.csv("primaryschoolsg.csv")
+primaryschool <- as.data.frame(primaryschool)
 
 leaflet() %>%
   addTiles() %>%
-  #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
-  addCircleMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
+  addCircleMarkers(
+    data = mrt, 
+    radius = 7, 
+    color = ~pal(COLOR),
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    lat = ~Latitude, lng = ~Longitude,
+    popup = stationname) %>%
+  addMarkers(data = primaryschool,
+             lat =~Latitude, lng = ~Longitude, 
+             clusterOptions = markerClusterOptions())
 
 pal <- colorFactor(levels = c("RED", "BLUE", "GREEN","YELLOW","PURPLE","BROWN","GREY"),
                    palette = c("red", "blue", "green","yellow","purple","brown","grey"))
@@ -56,11 +64,12 @@ leaflet() %>%
   addTiles() %>%
   #addMarkers(data = mrt, lat = ~Latitude, lng = ~Longitude)
   addCircleMarkers(data = mrt, 
-                   radius = 8, 
+                   radius = 5, 
                    color = ~pal(COLOR),
                    stroke = FALSE, 
                    fillOpacity = 0.7, 
-                   lat = ~Latitude, lng = ~Longitude)
+                   lat = ~Latitude, lng = ~Longitude,
+                   popup = stationname)
 
 install.packages("geojsonio")
 library(geojsonio)
@@ -172,12 +181,34 @@ m <- m %>% addPolygons(
     direction = "auto"))
 m
 
-install.packages("turfR")
-\itemize{
-  #' \item turf: \code{\link{turf}} runs a TURF analysis 
-  #' \item autoplot: \code{\link{turfplot}} plots a TURF object 
-  #' }
+#install.packages("rgeos")
+library(rgeos)
 
-  data(turf_ex_data)
-  ex2 <- turf(turf_ex_data, 10, 3:6, depth=2, keep=20, mc=TRUE, nsims=100)
-  
+mrt<-read.csv("mrtsg.csv")
+mrt<- as.data.frame(mrt)
+stationname<-mrt$STN_NAME
+stationname
+#CCK lat long example point
+#1.385361693	103.744367
+
+
+mrtsg <- mrt
+coordinates(mrtsg) <- ~Longitude + Latitude
+
+leaflet(mrtsg) %>% 
+  addTiles() %>% 
+  addCircleMarkers(radius=4, stroke=2, fillColor = "Red", color="Red")
+
+example_points <- data.frame(lat=numeric(), long= numeric()) 
+example_points[1,] <- c(1.385361693,103.744367)
+
+#add coordinates to make it spatial data
+coordinates(example_points) <- ~long + lat
+
+pointsBuffer <- gBuffer(example_points, width=.05, byid = TRUE)
+
+leaflet(mrtsg) %>% addTiles() %>% addCircleMarkers(radius=4, stroke=2, fillColor = "Red", color="Red") %>%
+  addMarkers(data=example_points) %>%
+  addPolygons(data=pointsBuffer)
+
+over(pointsBuffer, mrtsg, fn=length)
