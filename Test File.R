@@ -172,3 +172,12 @@ m <- m %>% addPolygons(
     direction = "auto"))
 m
 
+install.packages("turfR")
+\itemize{
+  #' \item turf: \code{\link{turf}} runs a TURF analysis 
+  #' \item autoplot: \code{\link{turfplot}} plots a TURF object 
+  #' }
+
+  data(turf_ex_data)
+  ex2 <- turf(turf_ex_data, 10, 3:6, depth=2, keep=20, mc=TRUE, nsims=100)
+  
