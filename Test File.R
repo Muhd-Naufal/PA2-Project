@@ -200,7 +200,7 @@ leaflet(mrtsg) %>%
   addCircleMarkers(radius=4, stroke=2, fillColor = "Red", color="Red")
 
 example_points <- data.frame(lat=numeric(), long= numeric()) 
-example_points[1,] <- c(1.385361693,103.744367)
+example_points[1,] <- c(1.385361693,103.74436,7)
 
 #add coordinates to make it spatial data
 coordinates(example_points) <- ~long + lat
