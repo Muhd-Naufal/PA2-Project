@@ -212,4 +212,3 @@ leaflet(mrtsg) %>% addTiles() %>% addCircleMarkers(radius=4, stroke=2, fillColor
   addPolygons(data=pointsBuffer)
 
 over(pointsBuffer, mrtsg, fn=length)
-
