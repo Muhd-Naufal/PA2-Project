@@ -23,7 +23,6 @@ example_points <- data.frame(lat=numeric(), long= numeric())
 #Add test coordinates into dataframe
 example_points[1,] <- c(1.385361693,103.744367)
 
-
 #add coordinates to make it spatial data
 #reason why lat and long is because the dataframe that was created before this was named lat and long
 coordinates(example_points) <- ~long + lat
