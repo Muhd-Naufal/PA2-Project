@@ -7,19 +7,20 @@ library(geojsonio)
 library(RColorBrewer)
 library(rgeos)
 
+#Test with only 1 dataset
 
+#Read CSV and put into dataframe+
 mrt<-read.csv("./Datasets/mrtsg.csv")
 mrt<- as.data.frame(mrt)
 
+#add coordinates to make it spatial data
 mrtsg <- mrt
 coordinates(mrtsg) <- ~Longitude + Latitude
 
-leaflet(mrtsg) %>% 
-  addTiles() %>% 
-  addCircleMarkers(radius=4, stroke=2, fillColor = "Red", color="Red")
-
 #Create a new dataframe with lat and long being column names and as numeric
 example_points <- data.frame(lat=numeric(), long= numeric())
+
+#Add test coordinates into dataframe
 example_points[1,] <- c(1.385361693,103.744367)
 
 
@@ -27,37 +28,88 @@ example_points[1,] <- c(1.385361693,103.744367)
 #reason why lat and long is because the dataframe that was created before this was named lat and long
 coordinates(example_points) <- ~long + lat
 
+#Identify buffer radius
 pointsBuffer <- gBuffer(example_points, width=.05, byid = TRUE)
 
+#Plot map 
 leaflet(mrtsg) %>% 
   addTiles() %>% 
   addCircleMarkers(radius=4, stroke=2, fillColor = "Red", color="Red") %>%
   addMarkers(data=example_points) %>%
   addPolygons(data=pointsBuffer)
 
+#Count or list points within the buffer radius
 over(pointsBuffer, mrtsg, fn=length)
 over(pointsBuffer, mrtsg, returnList = TRUE)
 
 #############################################################################################
 
+#Test with multiple dataset
 
+#Load datasets
 mrt <- read.csv("./Datasets/mrtsg.csv")
-primaryschool <-read.csv("./Datasets/primaryschoolsg.csv")
+primaryschool <- read.csv("./Datasets/primaryschoolsg.csv")
+attractions <- read.csv("./Datasets/Attractions.csv")
+cc <- read.csv("./Datasets/communityclubs.csv")
+hawkers <- read.csv("./Datasets/hawkercentre.csv")
+institutes <- read.csv("./Datasets/HigherEducationInstitutions.csv")
+hospitals <- read.csv("./Datasets/Hospitals.csv")
+kindergartens <- read.csv("./Datasets/kindergartens.csv")
+parks <- read.csv("./Datasets/Parks.csv")
+polyclinics <- read.csv("./Datasets/Polyclinics.csv")
+secondaryschool <- read.csv("./Datasets/secondaryschoolsg.csv")
+shoppingmall <- read.csv("./Datasets/ShoppingMall.csv")
+supermarket <- read.csv("./Datasets/supermarkets.csv")
 
+#Convert to dataframe
 mrt <- as.data.frame(mrt)
 primaryschool <- as.data.frame(primaryschool)
+attractions <- as.data.frame(attractions)
+cc <- as.data.frame(cc)
+hawkers <- as.data.frame(hawkers)
+institutes <- as.data.frame(institutes)
+hospitals <- as.data.frame(hospitals)
+kindergartens <- as.data.frame(kindergartens)
+parks <- as.data.frame(parks)
+polyclinics <- as.data.frame(polyclinics)
+secondaryschool <- as.data.frame(secondaryschool)
+shoppingmall <- as.data.frame(shoppingmall)
+supermarket <- as.data.frame(supermarket)
 
+#Identify names
 stationname<-mrt$STN_NAME
 primaryschoolname <- primaryschool$Name
+attractionname <- attractions$Attractions
+ccname <- cc$Name
+hawkername <- hawkers$Name
+institutename <- institutes$Tertiary.Institutions
+hospitalname <- hospitals$Hospitals
+kindergartenname <- kindergartens$Name
+parkname <- parks$Nature.Parks.Gardens
+polyclinicname <- polyclinics$Polyclinics
+secondaryschoolname <- secondaryschool$SCHNAME
+shoppingmallname <- shoppingmall$Shopping.malls
+supermarketname <- supermarket$LIC_NAME
 
+
+#Identify their latitite and longitude
 coordinates(mrt) <- ~Longitude + Latitude
 coordinates(primaryschool) <- ~Longitude + Latitude
+coordinates(attractions) <- ~Longitude + Latitude
+coordinates(cc) <-
+coordinates(hawkers) <-
+coordinates(institutes) <-
+coordinates(hospitals) <-
+coordinates(kindergartens) <-
+coordinates(parks) <-
+coordinates(polyclinics) <-
+coordinates(secondaryschool) <-
+coordinates(shoppingmall) <-
+coordinates(supermarket) <-
 
-#Combined test 
-combined <- read.csv("./Datasets/CombinedTest.csv")
-combined <- as.data.frame(combined)
-coordinates(combined) <- ~Longitude + Latitude
+  
 
+#Add markers to map
 leaflet() %>%
   addTiles() %>%
   addCircleMarkers(data=mrt,
@@ -76,25 +128,37 @@ coordinates(example_points2) <- ~long + lat
 
 pointsBuffer2 <- gBuffer(example_points2, width=.01, byid = TRUE)
 
+#MRT Colours
+pal <- colorFactor(levels = c("RED","BLUE","GREEN","YELLOW","PURPLE","BROWN","GREY"),
+                   palette = c("red","blue","green","yellow","purple","brown","grey"))
+
 leaflet() %>%
   addTiles() %>%
   addCircleMarkers(data=mrt,
-                   radius=4, 
-                   stroke=2, 
-                   fillColor = "Red", 
-                   color="Red",
+                   radius=6, 
+                   stroke=1, 
+                   color=~pal(COLOR),
                    popup = stationname) %>%
   addMarkers(data=primaryschool,
-             popup = primaryschoolname) %>%
+             popup = primaryschoolname,
+             clusterOptions = markerClusterOptions()) %>%
   addMarkers(data=example_points2) %>%
   addPolygons(data=pointsBuffer2)
   
 over(pointsBuffer2, mrt, fn=length)
 over(pointsBuffer2, mrt, returnList = TRUE)
 
+
+
+#Combined test 
+combined <- read.csv("./Datasets/CombinedTest.csv")
+combined <- as.data.frame(combined)
+coordinates(combined) <- ~Longitude + Latitude
+
+#Combined test map 
 leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
   addTiles() %>%
-  addMarkers(data=combined) %>%
+  addMarkers(data=combined,clusterOptions = markerClusterOptions()) %>%
   addMarkers(data=example_points2) %>%
   addPolygons(data=pointsBuffer2)
 
