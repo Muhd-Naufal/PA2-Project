@@ -96,18 +96,17 @@ supermarketname <- supermarket$LIC_NAME
 coordinates(mrt) <- ~Longitude + Latitude
 coordinates(primaryschool) <- ~Longitude + Latitude
 coordinates(attractions) <- ~Longitude + Latitude
-coordinates(cc) <-
-coordinates(hawkers) <-
-coordinates(institutes) <-
-coordinates(hospitals) <-
-coordinates(kindergartens) <-
-coordinates(parks) <-
-coordinates(polyclinics) <-
-coordinates(secondaryschool) <-
-coordinates(shoppingmall) <-
-coordinates(supermarket) <-
+coordinates(cc) <- ~X + Y
+coordinates(hawkers) <- ~X + Y
+coordinates(institutes) <- ~Longitude + Latitude
+coordinates(hospitals) <- ~Longitude + Latitude
+coordinates(kindergartens) <- ~X + Y
+coordinates(parks) <- ~Longitude + Latitude
+coordinates(polyclinics) <- ~Longitude + Latitude
+coordinates(secondaryschool) <- ~longitude + latitude
+coordinates(shoppingmall) <- ~Longitude + Latitude
+coordinates(supermarket) <- ~X + Y
 
-  
 
 #Add markers to map
 leaflet() %>%
