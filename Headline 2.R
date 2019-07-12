@@ -42,7 +42,8 @@ leaflet(mrtsg) %>%
 over(pointsBuffer, mrtsg, fn=length)
 over(pointsBuffer, mrtsg, returnList = TRUE)
 
-#############################################################################################
+####################################################################################################################################
+
 
 #Test with multiple dataset
 
@@ -107,14 +108,6 @@ coordinates(secondaryschool) <- ~longitude + latitude
 coordinates(shoppingmall) <- ~Longitude + Latitude
 coordinates(supermarket) <- ~X + Y
 
-#Choose point in map
-example_points2 <- data.frame(lat=numeric(), long= numeric())
-example_points2[1,] <- c(1.385361693,103.744367)
-
-coordinates(example_points2) <- ~long + lat
-
-pointsBuffer2 <- gBuffer(example_points2, width=.01, byid = TRUE)
-
 #MRT Colours
 pal <- colorFactor(levels = c("RED","BLUE","GREEN","YELLOW","PURPLE","BROWN","GREY"),
                    palette = c("red","blue","green","yellow","purple","brown","grey"))
@@ -165,19 +158,28 @@ leaflet() %>%
   addMarkers(data = supermarket, popup = supermarketname,
              clusterOptions = markerClusterOptions(),
              group = "Supermarket") %>%
-  addMarkers(data=example_points2) %>%
-  addPolygons(data=pointsBuffer2) %>%
   
 #Add Layer Control
 addLayersControl(
   overlayGroups = c("MRT","Primary School","Attractions","Community Club","Hawker Centre","Education Institution","Hospital","Kindergarden","Parks","Polyclinic","Secondary School","Shopping Mall","Supermarket")
 )
 
+####################################################################################################################################
+
 
 #Combined test 
-combined <- read.csv("./Datasets/CombinedTest.csv")
+combined <- read.csv("./Datasets/CombinedDataset.csv")
 combined <- as.data.frame(combined)
 coordinates(combined) <- ~Longitude + Latitude
+
+#Choose point in map
+example_points2 <- data.frame(lat=numeric(), long= numeric())
+example_points2[1,] <- c(1.385361693,103.744367)
+
+coordinates(example_points2) <- ~long + lat
+
+#Buffer range
+pointsBuffer2 <- gBuffer(example_points2, width=.005, byid = TRUE)
 
 #Combined test map 
 leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
