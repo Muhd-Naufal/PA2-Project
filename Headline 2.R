@@ -107,19 +107,7 @@ coordinates(secondaryschool) <- ~longitude + latitude
 coordinates(shoppingmall) <- ~Longitude + Latitude
 coordinates(supermarket) <- ~X + Y
 
-
-#Add markers to map
-leaflet() %>%
-  addTiles() %>%
-  addCircleMarkers(data=mrt,
-                   radius=4, 
-                   stroke=2, 
-                   fillColor = "Red", 
-                   color="Red",
-                   popup = stationname) %>%
-  addMarkers(data=primaryschool,
-             popup = primaryschoolname)
-
+#Choose point in map
 example_points2 <- data.frame(lat=numeric(), long= numeric())
 example_points2[1,] <- c(1.385361693,103.744367)
 
@@ -131,22 +119,59 @@ pointsBuffer2 <- gBuffer(example_points2, width=.01, byid = TRUE)
 pal <- colorFactor(levels = c("RED","BLUE","GREEN","YELLOW","PURPLE","BROWN","GREY"),
                    palette = c("red","blue","green","yellow","purple","brown","grey"))
 
+#Add markers to map
 leaflet() %>%
   addTiles() %>%
   addCircleMarkers(data=mrt,
-                   radius=6, 
+                   radius=8, 
                    stroke=1, 
                    color=~pal(COLOR),
-                   popup = stationname) %>%
-  addMarkers(data=primaryschool,
-             popup = primaryschoolname,
-             clusterOptions = markerClusterOptions()) %>%
+                   fillColor = ~pal(COLOR),
+                   popup = stationname,
+                   group = "MRT") %>%
+  addMarkers(data=primaryschool, popup = primaryschoolname,
+             clusterOptions = markerClusterOptions(),
+             group = "Primary School") %>%
+  addMarkers(data = attractions, popup = attractionname,
+             clusterOptions = markerClusterOptions(),
+             group = "Attractions") %>%
+  addMarkers(data = cc, popup = ccname,
+             clusterOptions = markerClusterOptions(),
+             group = "Community Club") %>%
+  addMarkers(data = hawkers, popup = hawkername,
+             clusterOptions = markerClusterOptions(),
+             group = "Hawker Centre") %>%
+  addMarkers(data = institutes, popup = institutename,
+             clusterOptions = markerClusterOptions(),
+             group = "Education Institution") %>%
+  addMarkers(data = hospitals, popup = hospitalname,
+             clusterOptions = markerClusterOptions(),
+             group = "Hospital") %>%
+  addMarkers(data = kindergartens, popup = kindergartenname,
+             clusterOptions = markerClusterOptions(),
+             group = "Kindergarden") %>%
+  addMarkers(data = parks, popup = parkname,
+             clusterOptions = markerClusterOptions(),
+             group = "Parks") %>%
+  addMarkers(data = polyclinics, popup = polyclinicname,
+             clusterOptions = markerClusterOptions(),
+             group = "Polyclinic") %>%
+  addMarkers(data = secondaryschool, popup = secondaryschoolname,
+             clusterOptions = markerClusterOptions(),
+             group = "Secondary School") %>%
+  addMarkers(data = shoppingmall, popup = shoppingmallname,
+             clusterOptions = markerClusterOptions(),
+             group = "Shopping Mall") %>%
+  addMarkers(data = supermarket, popup = supermarketname,
+             clusterOptions = markerClusterOptions(),
+             group = "Supermarket") %>%
   addMarkers(data=example_points2) %>%
-  addPolygons(data=pointsBuffer2)
+  addPolygons(data=pointsBuffer2) %>%
   
-over(pointsBuffer2, mrt, fn=length)
-over(pointsBuffer2, mrt, returnList = TRUE)
-
+#Add Layer Control
+addLayersControl(
+  overlayGroups = c("MRT","Primary School","Attractions","Community Club","Hawker Centre","Education Institution","Hospital","Kindergarden","Parks","Polyclinic","Secondary School","Shopping Mall","Supermarket")
+)
 
 
 #Combined test 
