@@ -1,10 +1,10 @@
 #Relationship between POI and Resale Value
 
-install.packages("dplyr")
-install.packages("leaflet")
-install.packages("geojsonio")
-install.packages("RColorBrewer")
-install.packages("rgeos")
+#install.packages("dplyr")
+#install.packages("leaflet")
+#install.packages("geojsonio")
+#install.packages("RColorBrewer")
+#install.packages("rgeos")
 
 sessionInfo()
 
@@ -209,3 +209,6 @@ final <- cbind(count,resale)
 final
 
 library(ggplot2)
+
+plot(count,resale)
+  
