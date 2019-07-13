@@ -208,4 +208,8 @@ resale
 final <- cbind(count,resale)
 final
 
+#scatterplot
 library(ggplot2)
+ggplot(final,aes(x=count,y=resale)) +
+  geom_point(stat="identity",color ="red") +
+  geom_line(stat="identity", color = "red")
