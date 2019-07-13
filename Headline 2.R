@@ -199,4 +199,13 @@ count <-count[,-2:-3]
 count <- as.data.frame(count)
 count
 
+resale <- onehundredhdb$Resale.Value
+resale
 
+resale <- as.data.frame(resale)
+resale
+
+final <- cbind(count,resale)
+final
+
+library(ggplot2)
