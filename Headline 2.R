@@ -211,5 +211,8 @@ final
 #scatterplot
 library(ggplot2)
 ggplot(final,aes(x=count,y=resale)) +
-  geom_point(stat="identity",color ="red") +
-  geom_line(stat="identity", color = "red")
+  geom_point(stat="identity",color ="red")
+
+ggplot(final,aes(x=count,y=resale)) +
+  geom_smooth( fill = "pink", colour = "red",se=FALSE)+
+  geom_smooth(method="lm",se=FALSE)
