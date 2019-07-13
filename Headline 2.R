@@ -1,5 +1,13 @@
 #Relationship between POI and Resale Value
 
+install.packages("dplyr")
+install.packages("leaflet")
+install.packages("geojsonio")
+install.packages("RColorBrewer")
+install.packages("rgeos")
+
+sessionInfo()
+
 #Libraries
 library(dplyr)
 library(leaflet)
@@ -171,21 +179,33 @@ combined <- read.csv("./Datasets/CombinedDataset.csv")
 combined <- as.data.frame(combined)
 coordinates(combined) <- ~Longitude + Latitude
 
-#Choose point in map
-example_points2 <- data.frame(lat=numeric(), long= numeric())
-example_points2[1,] <- c(1.385361693,103.744367)
-
-coordinates(example_points2) <- ~long + lat
+#Choose points in map
+onehundredhdb <- read.csv("./Datasets/100HDBAddress.csv")
+coordinates(onehundredhdb) <- ~Longitude + Latitude
 
 #Buffer range
-pointsBuffer2 <- gBuffer(example_points2, width=.005, byid = TRUE)
+pointsBuffer3 <- gBuffer(onehundredhdb, width=.005, byid = TRUE)
 
 #Combined test map 
 leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
   addTiles() %>%
   addMarkers(data=combined,clusterOptions = markerClusterOptions()) %>%
-  addMarkers(data=example_points2) %>%
-  addPolygons(data=pointsBuffer2)
+  addMarkers(data=onehundredhdb) %>%
+  addPolygons(data=pointsBuffer3)
 
-over(pointsBuffer2, combined, fn=length)
-over(pointsBuffer2, combined, returnList = TRUE)
+count<- over(pointsBuffer3, combined, fn=length)
+count <- as.data.frame(count)
+count <-count[,-2:-3]
+count <- as.data.frame(count)
+count
+
+resale <- onehundredhdb$Resale.Value
+resale
+
+resale <- as.data.frame(resale)
+resale
+
+final <- cbind(count,resale)
+final
+
+library(ggplot2)
