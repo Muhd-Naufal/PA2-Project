@@ -215,7 +215,8 @@ ggplot(final,aes(x=count,y=resale)) +
   geom_point(stat="identity",color ="red")
 
 ggplot(final,aes(x=count,y=resale)) +
-  geom_smooth( fill = "pink", colour = "red",se=FALSE)+
-  geom_smooth(method="lm",se=FALSE)
+  geom_smooth( fill = "pink", colour = "red",se=FALSE) +
+  geom_smooth(method="lm",se=FALSE) +
+  ggtitle("Relationship between Number of Points of Interest and Resale Value")
 
 
