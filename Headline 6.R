@@ -10,9 +10,13 @@ library(rgeos)
 #install.packages("geojsonio")
 library(geojsonio)
 
-town <- geojsonio::geojson_read("MP14_PLNG_AREA_NO_SEA_PL.geojson", what = "sp")
+town <- geojsonio::geojson_read("map.geojson", what = "sp")
 class(town)
 names(town)
+
+mymap = leaflet()
+mymap
+
 
 m <- leaflet(town) %>%
   setView(mymap, lat=1.290270, lng =103.851959, zoom = 11) %>%
@@ -93,8 +97,8 @@ m
 #html %s = text, %g = numeric
 
 labels <- sprintf(
-  "<strong>%s</strong><br/>%s",
-  town$Name, town$Region.Name
+  "<strong>%s</strong><br/>%s" ,
+  town$Name, town$Median
 ) %>% lapply(htmltools::HTML)
 
 m <- m %>% addPolygons(
@@ -116,3 +120,4 @@ m <- m %>% addPolygons(
     textsize = "15px",
     direction = "auto"))
 m
+
