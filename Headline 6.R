@@ -97,8 +97,8 @@ m
 #html %s = text, %g = numeric
 
 labels <- sprintf(
-  "<strong>%s</strong><br/>%s" ,
-  town$Name, town$Median
+  "<strong>%s</strong><br/>2017: %s<br/>2012: %s<br/>2007: %s" ,
+  town$Name, town$Median2017, town$Median2012, town$Median2007
 ) %>% lapply(htmltools::HTML)
 
 m <- m %>% addPolygons(
