@@ -31,7 +31,7 @@ min <- c(b,d)
 town <- data.frame(max,min)
 town
  
-id <- c(1,2)
+id <- c(1,2,3,4)
 town2 <-cbind(id,town)
 town2
  
