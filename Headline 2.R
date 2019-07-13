@@ -1,10 +1,10 @@
 #Relationship between POI and Resale Value
 
-install.packages("dplyr")
-install.packages("leaflet")
-install.packages("geojsonio")
-install.packages("RColorBrewer")
-install.packages("rgeos")
+#install.packages("dplyr")
+#install.packages("leaflet")
+#install.packages("geojsonio")
+#install.packages("RColorBrewer")
+#install.packages("rgeos")
 
 sessionInfo()
 
@@ -210,9 +210,12 @@ final
 
 #scatterplot
 library(ggplot2)
+
 ggplot(final,aes(x=count,y=resale)) +
   geom_point(stat="identity",color ="red")
 
 ggplot(final,aes(x=count,y=resale)) +
   geom_smooth( fill = "pink", colour = "red",se=FALSE)+
   geom_smooth(method="lm",se=FALSE)
+
+
