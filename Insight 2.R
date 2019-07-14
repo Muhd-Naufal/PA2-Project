@@ -23,5 +23,4 @@ data<-data.frame(cbind(flatmodel,count))
 data
 
 ggplot(data=data, aes(x=flatmodel,y=count)) +
-  geom_bar(stat = "identity")
-
+  geom_bar(stat="identity")
