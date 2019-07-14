@@ -26,8 +26,9 @@ min <- c(b,d)
 
 town <- data.frame(max,min)
 town
- 
-id <- c(1,2,3,4)
+
+#id <- c(1,2,3,4)
+id <- c("Mature-Max","Non-Mature-Max","Mature-Min","Non-Mature-Min")
 town2 <-cbind(id,town)
 town2
 
@@ -35,4 +36,6 @@ town3 <- melt(town)
 town3
 
 ggplot(data = town3, aes(x=id, y=value, fill=variable)) +
-  geom_bar(stat = 'identity',position = 'dodge')
+  geom_bar(stat = 'identity',position = 'dodge') +
+  geom_smooth(method = "lm")
+
