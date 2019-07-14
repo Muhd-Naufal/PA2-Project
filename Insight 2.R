@@ -16,16 +16,12 @@ Terrace <- nrow(filter(hdb, hdb$flat_model=="Terrace"))
 Improved <- nrow(filter(hdb, hdb$flat_model=="Improved"))
 Apartment <- nrow(filter(hdb, hdb$flat_model=="Apartment"))
 
-table <- rbind(DBSS,Maisonette,Type_S2,Terrace,Improved,Apartment)
-table <- data.frame(table)
+flatmodel<-c("DBSS","Maisonette","Type_S2","Terrace","Improved","Apartment")
+count<-c(DBSS,Maisonette,Type_S2,Terrace,Improved,Apartment)  
 
-c <- "Count"
-col.names(table) <- c
-table
+data<-data.frame(cbind(flatmodel,count))
+data
 
-table2 <- t(table)
-table2
-
-ggplot(data=table, x=Count) +
+ggplot(data=data, x=flatmodel,y=count) +
   geom_bar()
 
