@@ -44,10 +44,11 @@ a<- ggplot(data1,aes(x=data1$ï..Year,y=data1$Units.completed)) +
   geom_bar(stat="identity",fill= "blue") +
   ggtitle("Units completed by Year") +
   xlab("Year") + ylab("Units Completed")
-
+a
 
 b <- ggplot(data2, aes(x=data2$ï..Quarter,y=data2$Resale.Price.Index..1Q.2009...100.)) +
   geom_point(stat="identity",color ="red") +
   geom_line(stat="identity", color = "red") +
   ggtitle("Units completed by Year") +
   xlab("Year") + ylab("Resale Price")
+b
