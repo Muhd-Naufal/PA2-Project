@@ -1,6 +1,6 @@
 #High Resale Prices
 
-hdb<-read.csv("insight 2.csv")
+hdb<-read.csv("./Datasets/insight 2.csv")
 hdb
 
 library(ggplot2)
