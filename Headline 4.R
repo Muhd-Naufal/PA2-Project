@@ -39,6 +39,7 @@ ggplot(data = town3, aes(x=id, y=value, fill=variable)) +
   geom_bar(stat = 'identity',position = 'dodge') +
   geom_smooth(method = "lm")
 
+<<<<<<< HEAD
 mean(mature[,10])
 
 mean(nonmature[,10])
@@ -48,3 +49,22 @@ ggplot(mature, aes(x=town, y=mature$resale_price))+
 
 ggplot(nonmature, aes(x=town, y=nonmature$resale_price))+ 
   geom_boxplot()
+
+#New HDBs built (2010+)	
+#install.packages("zoo")
+library(zoo) 
+
+#convert to yearmonth
+mature$month <- as.yearmon(mature$month, "%Y-%m")
+nonmature$month <- as.yearmon(nonmature$month, "%Y-%m")
+
+#filter to >=2010
+newmature <- filter(mature, month >= "2010-01")
+newmature
+newnonmature <- filter(nonmature, month >= "2010-01")
+newnonmature
+
+#Find avg resale price & difference
+matureavg <- mean(newmature$resale_price)
+nonmatureavg <- mean(newnonmature$resale_price)
+difference <- matureavg - nonmatureavg
