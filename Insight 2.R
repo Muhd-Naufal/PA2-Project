@@ -17,10 +17,15 @@ Improved <- nrow(filter(hdb, hdb$flat_model=="Improved"))
 Apartment <- nrow(filter(hdb, hdb$flat_model=="Apartment"))
 
 flatmodel<-c("DBSS","Maisonette","Type_S2","Terrace","Improved","Apartment")
-count<-c(DBSS,Maisonette,Type_S2,Terrace,Improved,Apartment)  
+count<-as.numeric(c(DBSS,Maisonette,Type_S2,Terrace,Improved,Apartment))
 
 data<-data.frame(cbind(flatmodel,count))
 data
 
 ggplot(data=data, aes(x=flatmodel,y=count)) +
   geom_bar(stat="identity")
+
+data$count <- as.numeric(as.character(data$count))
+
+ggplot(data=data, aes(x=reorder(flatmodel,-count),y=count)) +
+  geom_bar(stat = "identity")
