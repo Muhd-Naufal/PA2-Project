@@ -46,7 +46,7 @@ mean(nonmature[,10])
 ggplot(boxmature, aes(y=mature$resale_price))+ 
   geom_boxplot()
 
-ggplot(nonmature, aes(x=town, y=nonmature$resale_price))+ 
+ggplot(nonmature, aes(y=nonmature$resale_price))+ 
   geom_boxplot()
 
 #New HDBs built (2010+)	
@@ -54,7 +54,9 @@ ggplot(nonmature, aes(x=town, y=nonmature$resale_price))+
 library(zoo) 
 
 #convert to yearmonth
-mature$month <- as.yearmon(mature$month, "%Y-%m")hf
+
+mature$month <- as.yearmon(mature$month, "%Y-%m")
+mature
 nonmature$month <- as.yearmon(nonmature$month, "%Y-%m")
 
 #filter to >=2010
@@ -67,3 +69,9 @@ newnonmature
 matureavg <- mean(newmature$resale_price)
 nonmatureavg <- mean(newnonmature$resale_price)
 difference <- matureavg - nonmatureavg
+difference
+
+
+month<-mature[,1]
+mature$month<-substr(month,1,4)
+mature$month
