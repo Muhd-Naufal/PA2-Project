@@ -1,6 +1,6 @@
 #Level 1
 
-data <- read.csv("PopulationData.csv")
+data <- read.csv("./Datasets/PopulationData.csv")
 library(dplyr)
 str(data)
 #data$Population <- as.numeric(levels(data$Population))[data$Population]
@@ -34,7 +34,7 @@ no_population/no_housing
 
 
 #Level 2
-data1 <- read.csv("YearsUnits.csv")
+data1 <- read.csv("./Datasets/YearsUnits.csv")
 
 library(ggplot2)
 
