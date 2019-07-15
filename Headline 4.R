@@ -38,4 +38,3 @@ town3
 ggplot(data = town3, aes(x=id, y=value, fill=variable)) +
   geom_bar(stat = 'identity',position = 'dodge') +
   geom_smooth(method = "lm")
-
