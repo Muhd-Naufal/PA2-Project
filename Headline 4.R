@@ -38,3 +38,13 @@ town3
 ggplot(data = town3, aes(x=id, y=value, fill=variable)) +
   geom_bar(stat = 'identity',position = 'dodge') +
   geom_smooth(method = "lm")
+
+mean(mature[,10])
+
+mean(nonmature[,10])
+
+ggplot(mature, aes(x=town, y=mature$resale_price))+ 
+  geom_boxplot()
+
+ggplot(nonmature, aes(x=town, y=nonmature$resale_price))+ 
+  geom_boxplot()
