@@ -26,5 +26,5 @@ data$count <- as.numeric(as.character(data$count))
 
 ggplot(data=data, aes(x=reorder(flatmodel,-count),y=count)) +
   geom_bar(stat = "identity")
-
+n
 
