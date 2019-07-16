@@ -99,3 +99,25 @@ hdb4R2017 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2017'))
 hdb5R2017 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2017'))
 hdbEX2017 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2017'))
 hdbMG2017 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2017'))
+
+Volume <- c(hdb4R2012,hdb4R2013,hdb4R2014,hdb4R2015,hdb4R2016,hdb4R2017,
+            hdb5R2012,hdb5R2013,hdb5R2014,hdb5R2015,hdb5R2016,hdb5R2017,
+            hdbEX2012,hdbEX2013,hdbEX2014,hdbEX2015,hdbEX2016,hdbEX2017,
+            hdbMG2012,hdbMG2013,hdbMG2014,hdbMG2015,hdbMG2016,hdbMG2017)
+
+
+Flat_Type <- c("4 Room","4 Room","4 Room","4 Room","4 Room","4 Room",
+               "5 Room","5 Room","5 Room","5 Room","5 Room","5 Room",
+               "Executive","Executive","Executive","Executive","Executive","Executive",
+               "Multi-Generation","Multi-Generation","Multi-Generation","Multi-Generation","Multi-Generation","Multi-Generation")
+
+Year <- c("2012","2013","2014","2015","2016","2017",
+          "2012","2013","2014","2015","2016","2017",
+          "2012","2013","2014","2015","2016","2017",
+          "2012","2013","2014","2015","2016","2017")
+
+finalhdb <- data.frame(Volume,Year,Flat_Type)
+finalhdb
+
+
+
