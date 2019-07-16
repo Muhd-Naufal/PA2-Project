@@ -82,3 +82,56 @@ ggplot(dat2, aes(x = variable, y = value, fill = row)) +
   ylab("Time\n") +
   theme_bw()
 
+#install.packages("data.table")
+library(data.table)
+library(ggplot2)
+
+a <- c(rep("A", 25), rep("B", 25))
+b <- rep(as.Date(c("2007-01-01")) + seq(60,1500,60),2)
+c <- runif(50, 0, 1000)
+d <- data.frame(a,b,c)
+
+setDT(d)[,b := as.IDate(b)]
+ggplot(d[,sum(c), by=.(a, year(b))], aes(x=year, y=V1, fill=a)) +
+  geom_bar(stat = "identity")
+
+
+
+########## useless
+library(tidyr)
+hdb7 <- spread(hdb6, key = hdb5.flat_type, value = hdb5.resale_price)
+hdb7
+
+#Remove NAs
+#install.packages("data.table")
+library(data.table)
+
+result <- data.table(hdb7)[, lapply(.SD, function(x) x[order(is.na(x))])]
+hdb8 <- zoo::na.trim(result, is.na = "all")
+hdb8
+
+#try stack plot now
+library(reshape2)
+hdb9 <- melt(hdb8, id.vars = "row")
+hdb9
+
+
+library(ggplot2)
+ggplot(hdb9, aes(x = variable, y = value, fill = row)) + 
+  geom_bar(stat = "identity") +
+  xlab("\nType") +
+  ylab("Time\n") +
+  guides(fill = FALSE) +
+  theme_bw()
+########useless
+#Add Year to column
+hdb2$year <- format(as.Date(hdb2$month, format="%Y-%m-%d"),"%Y")
+
+#Add Quarter column
+hdb2$quarter <- quarters(hdb2$month)
+
+#Combine Year and Quarter column
+hdb2$quarters <- paste(hdb2$year,hdb2$quarter)
+
+#Add id ros
+hdb7$row <- seq_len(nrow(hdb5))
