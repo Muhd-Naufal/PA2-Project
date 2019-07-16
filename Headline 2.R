@@ -70,23 +70,21 @@ hdb6 <- count(hdb5, "flat_type")
 hdb7 <- data.frame(hdb5$flat_type, hdb5$resale_price, hdb5$month)
 hdb7
 
+hdb7$hdb5.resale_price <- 1
+hdb7
+
+sum(hdb7$hdb5.resale_price)
 
 library(data.table)
 library(ggplot2)
+#install.packages("ggrepel")
+library(ggrepel)
 
-# a = flat type
-# b = year
 
-a <- c(rep("A", 25), rep("B", 25))
-a
-b <- rep(as.Date(c("2007-01-01")) + seq(60,1500,60),2)
-b
-c <- runif(50, 0, 1000)
-c
-d <- data.frame(a,b,c)
-d
-
-setDT(d)[,b := as.IDate(b)]
-ggplot(d[,sum(c), by=.(a, year(b))], aes(x=year, y=V1, fill=a)) +
-  geom_bar(stat = "identity")
-
+setDT(hdb7)[,hdb5.month := as.IDate(hdb5.month)]
+ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], aes(x=year, y=V1, fill=hdb5.flat_type)) +
+  geom_bar(stat = "identity") +
+  geom_label_repel(aes(label=V1), vjust=0) +
+  ggtitle("Resale flats above $900K by Year") +
+  xlab("Year") + ylab("Transaction Volume") +
+  labs(fill='Flat Type') 

@@ -135,3 +135,18 @@ hdb2$quarters <- paste(hdb2$year,hdb2$quarter)
 
 #Add id ros
 hdb7$row <- seq_len(nrow(hdb5))
+
+##########
+
+a <- c(rep("A", 25), rep("B", 25))
+a
+b <- rep(as.Date(c("2007-01-01")) + seq(60,1500,60),2)
+b
+c <- runif(50, 0, 1000)
+c
+d <- data.frame(a,b,c)
+d
+
+setDT(d)[,b := as.IDate(b)]
+ggplot(d[,sum(c), by=.(a, year(b))], aes(x=year, y=V1, fill=a)) +
+  geom_bar(stat = "identity")
