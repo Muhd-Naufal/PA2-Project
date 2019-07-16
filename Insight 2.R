@@ -47,11 +47,11 @@ hdb2
 
 hdb2$month <- as.Date(paste0(hdb2$month, "-01"), "%Y-%m-%d")
 
+#Add Year to column
+hdb2$year <- format(as.Date(hdb2$month, format="%Y-%m-%d"),"%Y")
+
 #Add Quarter column
 hdb2$quarter <- quarters(hdb2$month)
-
-
-str(hdb2)
 
 #Choose only those 2012 and above
 hdb3 <- filter(hdb2, month >= "2012-01-01")
@@ -59,15 +59,32 @@ hdb3
 
 #Choose specific flat type only
 hdb4 <- filter(hdb3, flat_type == "4 ROOM" | 
-                      flat_type == "5 ROOM" | 
-                      flat_type =="EXECUTIVE" | 
-                      flat_type =="MULTI GENERATION")
+                     flat_type == "5 ROOM" | 
+                     flat_type == "EXECUTIVE" | 
+                     flat_type == "MULTI GENERATION"|
+                     flat_type == "MULTI-GENERATION")
 hdb4
-
-
 
 #Resale value above $900,000 
 hdb5 <- filter(hdb4, resale_price >= 900000)
 hdb5
 
+#Select specific columns
 
+hdb6 <- data.frame(hdb5$flat_type, hdb5$resale_price)
+hdb6
+
+#Add id ros
+hdb6$row <- seq_len(nrow(hdb6))
+
+library(tidyr)
+hdb7 <- spread(hdb6, key = hdb5.flat_type, value = hdb5.resale_price)
+hdb7
+
+#Remove NAs
+#install.packages("data.table")
+library(data.table)
+
+result <- data.table(hdb7)[, lapply(.SD, function(x) x[order(is.na(x))])]
+hdb8 <- zoo::na.trim(result, is.na = "all")
+hdb8
