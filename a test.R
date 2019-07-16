@@ -127,12 +127,14 @@ str(finalhdb)
 
 p <- ggplot(
   finalhdb,
-  aes(Year,Volume, group = Flat_Type, color = factor(Flat_Type))
+  aes(Year,Volume, group = Flat_Type, color = factor(Flat_Type), label = Flat_Type)
 ) +
   geom_line() +
   scale_color_viridis_d() +
   labs(x = "Years", y = "Transaction Volume") +
-  theme(legend.position = "top")
+  theme(legend.position = "top") +
+  geom_label()
+p
 
 p + 
   geom_point(aes(group = seq_along(Year)), size = 7) +
