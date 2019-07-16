@@ -88,3 +88,17 @@ library(data.table)
 result <- data.table(hdb7)[, lapply(.SD, function(x) x[order(is.na(x))])]
 hdb8 <- zoo::na.trim(result, is.na = "all")
 hdb8
+
+#try stack plot now
+library(reshape2)
+hdb9 <- melt(hdb8, id.vars = "row")
+hdb9
+
+
+library(ggplot2)
+ggplot(hdb9, aes(x = variable, y = value, fill = row)) + 
+  geom_bar(stat = "identity") +
+  xlab("\nType") +
+  ylab("Time\n") +
+  guides(fill = FALSE) +
+  theme_bw()
