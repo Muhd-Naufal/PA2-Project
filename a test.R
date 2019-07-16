@@ -116,8 +116,28 @@ Year <- c("2012","2013","2014","2015","2016","2017",
           "2012","2013","2014","2015","2016","2017",
           "2012","2013","2014","2015","2016","2017")
 
+
 finalhdb <- data.frame(Volume,Year,Flat_Type)
 finalhdb
+
+finalhdb$Year <- as.numeric(as.character(finalhdb$Year))
+
+View(finalhdb)
+str(finalhdb)
+
+p <- ggplot(
+  finalhdb,
+  aes(Year,Volume, group = Flat_Type, color = factor(Flat_Type))
+) +
+  geom_line() +
+  scale_color_viridis_d() +
+  labs(x = "Years", y = "Transaction Volume") +
+  theme(legend.position = "top")
+
+p + 
+  geom_point(aes(group = seq_along(Year)), size = 7) +
+  transition_reveal(Year)
+
 
 
 
