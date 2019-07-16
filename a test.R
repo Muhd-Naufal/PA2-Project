@@ -25,7 +25,7 @@ housing_data3 <- filter(housing_data2 ,flat_type == "4 ROOM" |
 housing_data3
 str(housing_data3)
 
-housing_data4 <- housing_data3[,c(1,2,10)]
+housing_data4 <- housing_data3[,c(1,3,10)]
 housing_data4
 str(housing_data4)
 
@@ -36,6 +36,14 @@ str(housing_data4)
 housing_data4$month <- as.numeric(as.character(housing_data4$month))
 housing_data4
 str(housing_data4)
+
+
+housing_data4$number <- 1
+housing_data4$number[housing_data4$flat_type == "5 ROOM"] <- 2
+housing_data4$number[housing_data4$flat_type == "EXECUTIVE"] <- 3
+housing_data4$number[housing_data4$flat_type == "MULTI-GENERATION"] <- 4
+housing_data4
+
 
 View(airquality)
 str(airquality)
@@ -61,7 +69,7 @@ View(housing_data4)
 
 p <- ggplot(
   housing_data4,
-  aes(month, resale_price,group = town, color = factor(town))
+  aes(month, resale_price,group = flat_type, color = factor(flat_type))
 ) +
   geom_line() +
   scale_color_viridis_d() +
@@ -71,8 +79,8 @@ p
 
 
 p + 
-  geom_point(aes(group = seq_along(month))) +
-  transition_reveal(month)
+  geom_point(aes(group = seq_along(flat_type))) +
+  transition_reveal(flat_type)
 
 
 
