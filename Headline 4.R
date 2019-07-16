@@ -6,6 +6,7 @@ library(leaflet)
 library(geojsonio)
 library(RColorBrewer)
 library(rgeos)
+library(zoo) 
 
 mature<-read.csv("./Datasets/maturetowns.csv")
 mature
@@ -71,7 +72,12 @@ nonmatureavg <- mean(newnonmature$resale_price)
 difference <- matureavg - nonmatureavg
 difference
 
+mature2 <- substr(mature$month,4,8)
+mature2
 
-month<-mature[,1]
-mature$month<-substr(month,1,4)
-mature$month
+mature$month2 <- format(as.Date(mature$month, format="%Y-%m"),"%Y")
+mature
+
+str(mature)
+
+
