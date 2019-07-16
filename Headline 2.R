@@ -77,6 +77,9 @@ hdb7
 hdb7$hdb5.resale_price <- 1
 hdb7
 
+str(hdb7)
+View(hdb7)
+
 sum(hdb7$hdb5.resale_price)
 
 library(data.table)

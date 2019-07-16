@@ -1,104 +1,73 @@
-#Anime test
-library(ggplot2)
-library(gganimate)
+hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
+
+str(hdb2)
+
+#Convert Factor to Date (Year-Month)
+#It'll assume first day of each month
+
+hdb2$month <- as.Date(paste0(hdb2$month, "-01"), "%Y-%m-%d")
+hdb2
+
+#Choose only those 2012 and above
+library(dplyr)
+hdb3 <- filter(hdb2, month >= "2012-01-01")
+hdb3
+
+#Choose specific flat type only
+hdb4 <- filter(hdb3, flat_type == "4 ROOM" | 
+                 flat_type == "5 ROOM" | 
+                 flat_type == "EXECUTIVE" | 
+                 flat_type == "MULTI-GENERATION")
+
+#Resale value above $900,000 
+hdb5 <- filter(hdb4, resale_price >= 900000)
+hdb5
+
+#Count flat types
+library(plyr)
 library(dplyr)
 
-housing_data <- read.csv("./Datasets/HDB Resale Prices.csv")
-housing_data
+hdb6 <- count(hdb5, "flat_type")
+hdb6
+#Select specific columns
 
-housing_data$month <- as.Date(paste0(housing_data$month, "-01"), "%Y-%m-%d")
-housing_data
-str(housing_data)
+hdb7 <- data.frame(hdb5$flat_type, hdb5$resale_price, hdb5$month)
+hdb7
 
-housing_data$month <- format(as.Date(housing_data$month, format="%Y-%m-%d"),"%Y")
-housing_data
-str(housing_data)
+hdb7$hdb5.resale_price <- 1
+hdb7
 
-housing_data2 <- filter(housing_data, month >= "2012")
-housing_data2
-str(housing_data2)
+str(hdb7)
 
-housing_data3 <- filter(housing_data2 ,flat_type == "4 ROOM" | 
-                          flat_type == "5 ROOM" | 
-                          flat_type == "EXECUTIVE" | 
-                          flat_type == "MULTI-GENERATION")
-housing_data3
-str(housing_data3)
+hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
+                  flat_type == "5 ROOM" | 
+                  flat_type == "EXECUTIVE" | 
+                  flat_type == "MULTI-GENERATION")
 
-housing_data4 <- housing_data3[,c(1,3,10)]
-housing_data4
-str(housing_data4)
+hdb8
 
-i <- sapply(housing_data4, is.factor)
-housing_data4[i] <- lapply(housing_data4[i], as.character)
-str(housing_data4)
+hdb9 <- data.frame(hdb8$flat_type, hdb8$month)
+hdb9
 
-housing_data4$month <- as.numeric(as.character(housing_data4$month))
-housing_data4
-str(housing_data4)
+str(hdb9)
 
+hdb9$year <- substring(hdb9$hdb8.month,1,4)
+hdb9
 
-housing_data4$number <- 1
-housing_data4$number[housing_data4$flat_type == "5 ROOM"] <- 2
-housing_data4$number[housing_data4$flat_type == "EXECUTIVE"] <- 3
-housing_data4$number[housing_data4$flat_type == "MULTI-GENERATION"] <- 4
-housing_data4
+str(hdb9)
 
+i <- sapply(hdb9, is.factor)
+hdb9[i] <- lapply(hdb9[i], as.character)
+str(hdb9)
 
-View(airquality)
-str(airquality)
+hdb9$year <- as.numeric(as.character(hdb9$year))
+hdb9
+str(hdb9)
 
-p <- ggplot(
-  airquality,
-  aes(Day, Temp, group = Month, color = factor(Month))
-) +
-  geom_line() +
-  scale_color_viridis_d() +
-  labs(x = "Day of Month", y = "Temperature") +
-  theme(legend.position = "top")
-p + 
-  geom_point(aes(group = seq_along(Day))) +
-  transition_reveal(Day)
+hdb2012 <- sum(which(hdb9$hdb8.flat_type == '4 ROOM' & hdb9$year=='2012'))
+hdb2012
 
-#temp = resale price
-#day = month
-#Month = town
+hdb2012 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2012'))
+hdb2012
 
-
-View(housing_data4)
-
-p <- ggplot(
-  housing_data4,
-  aes(month, resale_price,group = flat_type, color = factor(flat_type))
-) +
-  geom_line() +
-  scale_color_viridis_d() +
-  labs(x = "Year", y = "Resale Price") +
-  theme(legend.position = "top")
-p
-
-
-p + 
-  geom_point(aes(group = seq_along(flat_type))) +
-  transition_reveal(flat_type)
-
-
-
-
-
-
-
-
-#install.packages("gifski")
-library(gifski)
-
-df <- rbind(
-  data.frame(group = c("A","B","C"), values = c(3,2,4), frame = rep('a',3)),
-  data.frame(group = c("A","B","C"), values = c(5,3,7), frame = rep('b',3))
-)
-
-ggplot(df, aes(group, values, fill = group)) + 
-  geom_col(position = "identity") + 
-  transition_states(frame, .02, .001) + 
-  ease_aes('cubic-in-out')
-  
+View(hdb9)
