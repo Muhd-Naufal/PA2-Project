@@ -49,6 +49,7 @@ hdb2$month <- as.Date(paste0(hdb2$month, "-01"), "%Y-%m-%d")
 #Choose only those 2012 and above
 library(dplyr)
 hdb3 <- filter(hdb2, month >= "2012-01-01")
+hdb3
 
 #Choose specific flat type only
 hdb4 <- filter(hdb3, flat_type == "4 ROOM" | 
@@ -82,10 +83,10 @@ library(ggrepel)
 
 
 setDT(hdb7)[,hdb5.month := as.IDate(hdb5.month)]
-
 ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], aes(x=year, y=V1, fill=hdb5.flat_type)) +
   geom_bar(stat = "identity") +
   geom_label_repel(aes(label=V1), vjust=0) +
   ggtitle("Resale flats above $900K by Year") +
   xlab("Year") + ylab("Transaction Volume") +
   labs(fill='Flat Type') 
+
