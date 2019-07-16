@@ -36,8 +36,10 @@ m %>% addPolygons(
   fillColor = ~factpal(town$Name)) %>%
   addTiles()
 
-#Add highlights
+
+#Test 1
 m %>% addPolygons(
+  fillColor = ~factpal(town$Name),
   weight = 2,
   opacity = 1,
   color = "white",
@@ -50,9 +52,8 @@ m %>% addPolygons(
     fillOpacity = 0.7,
     bringToFront = TRUE))
 
-#Test 1
+#Add highlights
 m %>% addPolygons(
-  fillColor = ~factpal(town$Name),
   weight = 2,
   opacity = 1,
   color = "white",

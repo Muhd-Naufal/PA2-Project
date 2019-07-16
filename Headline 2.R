@@ -82,6 +82,7 @@ library(ggrepel)
 
 
 setDT(hdb7)[,hdb5.month := as.IDate(hdb5.month)]
+
 ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], aes(x=year, y=V1, fill=hdb5.flat_type)) +
   geom_bar(stat = "identity") +
   geom_label_repel(aes(label=V1), vjust=0) +
