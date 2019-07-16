@@ -200,3 +200,6 @@ p <- d %>%
     x = 1, xanchor = "right", y = 0, yanchor = "bottom"
   )
 
+housing_data$month <- as.Date(housing_data$month)
+housing_data
+str(housing_data)

@@ -41,10 +41,13 @@ ggplot(data=data, aes(x=reorder(flatmodel,-count),y=count)) +
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
 
+str(hdb2)
+
 #Convert Factor to Date (Year-Month)
 #It'll assume first day of each month
 
 hdb2$month <- as.Date(paste0(hdb2$month, "-01"), "%Y-%m-%d")
+hdb2
 
 #Choose only those 2012 and above
 library(dplyr)
