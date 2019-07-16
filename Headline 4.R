@@ -57,7 +57,7 @@ library(zoo)
 #convert to yearmonth
 
 mature$month <- as.yearmon(mature$month, "%Y-%m")
-mature
+str(mature)
 nonmature$month <- as.yearmon(nonmature$month, "%Y-%m")
 
 #filter to >=2010

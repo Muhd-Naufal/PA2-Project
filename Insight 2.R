@@ -34,3 +34,40 @@ data$count <- as.numeric(as.character(data$count))
 
 ggplot(data=data, aes(x=reorder(flatmodel,-count),y=count)) +
   geom_bar(stat = "identity")
+  
+
+
+###############################################################
+
+hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
+hdb2
+
+#Convert Factor to Date (Year-Month)
+#It'll assume first day of each month
+
+hdb2$month <- as.Date(paste0(hdb2$month, "-01"), "%Y-%m-%d")
+
+#Add Quarter column
+hdb2$quarter <- quarters(hdb2$month)
+
+
+str(hdb2)
+
+#Choose only those 2012 and above
+hdb3 <- filter(hdb2, month >= "2012-01-01")
+hdb3
+
+#Choose specific flat type only
+hdb4 <- filter(hdb3, flat_type == "4 ROOM" | 
+                      flat_type == "5 ROOM" | 
+                      flat_type =="EXECUTIVE" | 
+                      flat_type =="MULTI GENERATION")
+hdb4
+
+
+
+#Resale value above $900,000 
+hdb5 <- filter(hdb4, resale_price >= 900000)
+hdb5
+
+
