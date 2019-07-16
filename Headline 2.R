@@ -40,7 +40,6 @@ ggplot(data=data, aes(x=reorder(flatmodel,-count),y=count)) +
 ###############################################################
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
-hdb2
 
 #Convert Factor to Date (Year-Month)
 #It'll assume first day of each month
@@ -63,6 +62,8 @@ hdb4 <- filter(hdb3, flat_type == "4 ROOM" |
                  flat_type == "EXECUTIVE" | 
                  flat_type == "MULTI GENERATION"|
                  flat_type == "MULTI-GENERATION")
+
+hdb4 <- filter(hdb3, flat_type == "MULTI-GENERATION")
 hdb4
 
 #Resale value above $900,000 
