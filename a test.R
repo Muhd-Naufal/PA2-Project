@@ -124,6 +124,8 @@ finalhdb$Year <- as.numeric(as.character(finalhdb$Year))
 
 View(finalhdb)
 str(finalhdb)
+library(ggplot2)
+library(gganimate)
 
 p <- ggplot(
   finalhdb,

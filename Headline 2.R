@@ -76,9 +76,7 @@ hdb7
 
 hdb7$hdb5.resale_price <- 1
 hdb7
-
 str(hdb7)
-View(hdb7)
 
 sum(hdb7$hdb5.resale_price)
 
@@ -95,4 +93,107 @@ ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], ae
   ggtitle("Resale flats above $900K by Year") +
   xlab("Year") + ylab("Transaction Volume") +
   labs(fill='Flat Type') 
+
+hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
+                 flat_type == "5 ROOM" | 
+                 flat_type == "EXECUTIVE" | 
+                 flat_type == "MULTI-GENERATION")
+
+hdb8
+
+hdb9 <- data.frame(hdb8$flat_type, hdb8$month)
+hdb9
+
+str(hdb9)
+
+hdb9$year <- substring(hdb9$hdb8.month,1,4)
+hdb9
+
+str(hdb9)
+
+i <- sapply(hdb9, is.factor)
+hdb9[i] <- lapply(hdb9[i], as.character)
+str(hdb9)
+
+hdb9$year <- as.numeric(as.character(hdb9$year))
+hdb9
+str(hdb9)
+
+#2012
+hdb4R2012 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2012'))
+hdb5R2012 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2012'))
+hdbEX2012 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2012'))
+hdbMG2012 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2012'))
+
+#2013
+hdb4R2013 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2013'))
+hdb5R2013 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2013'))
+hdbEX2013 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2013'))
+hdbMG2013 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2013'))
+
+#2014
+hdb4R2014 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2014'))
+hdb5R2014 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2014'))
+hdbEX2014 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2014'))
+hdbMG2014 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2014'))
+
+#2015
+hdb4R2015 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2015'))
+hdb5R2015 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2015'))
+hdbEX2015 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2015'))
+hdbMG2015 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2015'))
+
+#2016
+hdb4R2016 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2016'))
+hdb5R2016 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2016'))
+hdbEX2016 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2016'))
+hdbMG2016 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2016'))
+
+#2017
+hdb4R2017 <- nrow(subset(hdb9,hdb8.flat_type == '4 ROOM' & hdb9$year=='2017'))
+hdb5R2017 <- nrow(subset(hdb9,hdb8.flat_type == '5 ROOM' & hdb9$year=='2017'))
+hdbEX2017 <- nrow(subset(hdb9,hdb8.flat_type == 'EXECUTIVE' & hdb9$year=='2017'))
+hdbMG2017 <- nrow(subset(hdb9,hdb8.flat_type == 'MULTI-GENERATION' & hdb9$year=='2017'))
+
+Volume <- c(hdb4R2012,hdb4R2013,hdb4R2014,hdb4R2015,hdb4R2016,hdb4R2017,
+            hdb5R2012,hdb5R2013,hdb5R2014,hdb5R2015,hdb5R2016,hdb5R2017,
+            hdbEX2012,hdbEX2013,hdbEX2014,hdbEX2015,hdbEX2016,hdbEX2017,
+            hdbMG2012,hdbMG2013,hdbMG2014,hdbMG2015,hdbMG2016,hdbMG2017)
+
+
+Flat_Type <- c("4 Room","4 Room","4 Room","4 Room","4 Room","4 Room",
+               "5 Room","5 Room","5 Room","5 Room","5 Room","5 Room",
+               "Executive","Executive","Executive","Executive","Executive","Executive",
+               "Multi-Generation","Multi-Generation","Multi-Generation","Multi-Generation","Multi-Generation","Multi-Generation")
+
+Year <- c("2012","2013","2014","2015","2016","2017",
+          "2012","2013","2014","2015","2016","2017",
+          "2012","2013","2014","2015","2016","2017",
+          "2012","2013","2014","2015","2016","2017")
+
+
+finalhdb <- data.frame(Volume,Year,Flat_Type)
+finalhdb
+
+finalhdb$Year <- as.numeric(as.character(finalhdb$Year))
+
+View(finalhdb)
+str(finalhdb)
+library(ggplot2)
+library(gganimate)
+
+p <- ggplot(
+  finalhdb,
+  aes(Year,Volume, group = Flat_Type, color = factor(Flat_Type), label = Flat_Type)
+) +
+  geom_line() +
+  scale_color_viridis_d() +
+  labs(x = "Years", y = "Transaction Volume") +
+  theme(legend.position = "top") +
+  geom_label()
+p
+
+p + 
+  geom_point(aes(group = seq_along(Year)), size = 7) +
+  transition_reveal(Year)
 
