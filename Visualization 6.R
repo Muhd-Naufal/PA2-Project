@@ -17,10 +17,28 @@ names(town)
 mymap = leaflet()
 mymap
 
+tag.map.title <- tags$style(HTML("
+  .leaflet-control.map-title { 
+    transform: translate(-50%,20%);
+    position: fixed !important;
+    left: 50%;
+    text-align: center;
+    padding-left: 10px; 
+    padding-right: 10px; 
+    background: rgba(255,255,255,0.75);
+    font-weight: bold;
+    font-size: 28px;
+  }
+"))
+
+title <- tags$div(
+  tag.map.title, HTML("Median Resale Price Per Town")
+)  
 
 m <- leaflet(town) %>%
   setView(mymap, lat=1.290270, lng =103.851959, zoom = 11) %>%
-  addTiles()
+  addTiles() %>%
+  addControl(title, position = "topleft", className="map-title")
 
 m %>% addPolygons()
 
@@ -121,4 +139,5 @@ m <- m %>% addPolygons(
     textsize = "15px",
     direction = "auto"))
 m
+
 
