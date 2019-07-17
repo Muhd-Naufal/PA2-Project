@@ -453,6 +453,60 @@ p +
   geom_point(aes(group = seq_along(Year)), size = 7) +
   transition_reveal(Year)
 
+#mature
+
+maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
+maturecsv
+
+
+mature2 <- filter(maturecsv, flat_type == "4 ROOM" | 
+                    flat_type == "5 ROOM" | 
+                    flat_type == "EXECUTIVE" | 
+                    flat_type == "MULTI-GENERATION"|
+                    flat_type == "MULTI GENERATION")
+mature2
+
+mature <-filter(mature2, town =="ANG MO KIO"|
+                  town=="BEDOK"|
+                  town=="BISHAN"|
+                  town=="BUKIT MERAH"|
+                  town=="BUKIT TIMAH"|
+                  town=="CENTRAL AREA"|
+                  town=="CLEMENTI"|
+                  town=="GEYLANG"|
+                  town=="KALLANG/WHAMPOA"|
+                  town=="MARINE PARADE"|
+                  town=="QUEENSTOWN"|
+                  town=="SERANGOON"|
+                  town=="TAMPINES"|
+                  town=="TOA PAYOH"|
+                  town=="PASIR RIS")
+
+#nonmature
+
+nonmaturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
+nonmaturecsv
+
+
+nonmature2 <- filter(nonmaturecsv, flat_type == "4 ROOM" | 
+                       flat_type == "5 ROOM" | 
+                       flat_type == "EXECUTIVE" | 
+                       flat_type == "MULTI-GENERATION"|
+                       flat_type == "MULTI GENERATION")
+nonmature2
+
+nonmature <-filter(nonmature2, town =="BUKIT BATOK"|
+                     town=="CHOA CHU KANG"|
+                     town=="HOUGANG"|
+                     town=="JURONG EAST"|
+                     town=="JURONG WEST"|
+                     town=="SENGKANG"|
+                     town=="WOODLANDS"|
+                     town=="YISHUN"|
+                     town=="LIM CHU KANG"|
+                     town=="SEMBAWANG"|
+                     town=="BUKIT PANJANG"|
+                     town=="PUNGGOL")
 
 
 
