@@ -6,6 +6,8 @@ library(leaflet)
 library(geojsonio)
 library(RColorBrewer)
 library(rgeos)
+library(htmlwidgets)
+library(htmltools)
 
 #install.packages("geojsonio")
 library(geojsonio)
