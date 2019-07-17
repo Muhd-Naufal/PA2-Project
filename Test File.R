@@ -41,7 +41,9 @@ coordinates(combined) <- ~Longitude + Latitude
 
 #Choose point in map
 example_points2 <- data.frame(lat=numeric(), long= numeric())
-example_points2[1,] <- c(1.344179,103.7124931)
+example_points2[1,] <- c(1.440142,103.790508)
+example_points2[2,] <- c(1.420109,103.835187)
+example_points2[3,] <- c(1.3341337,103.9062028)
 
 coordinates(example_points2) <- ~long + lat
 
