@@ -180,6 +180,8 @@ finalhdb$Year <- as.numeric(as.character(finalhdb$Year))
 str(finalhdb)
 library(ggplot2)
 library(gganimate)
+#install.packages("gifski")
+library(gifski)
 
 p <- ggplot(
   finalhdb,
