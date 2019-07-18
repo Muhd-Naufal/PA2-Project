@@ -36,6 +36,7 @@ type22014<-filter(Punggol2, Punggol2$flat_type=="2 ROOM", Punggol2$year=="2014")
 type22015<-filter(Punggol2, Punggol2$flat_type=="2 ROOM", Punggol2$year=="2015")
 type22016<-filter(Punggol2, Punggol2$flat_type=="2 ROOM", Punggol2$year=="2016")
 type22017<-filter(Punggol2, Punggol2$flat_type=="2 ROOM", Punggol2$year=="2017")
+
 a2007<-mean(type22007$resale_price)
 a2008<-mean(type22008$resale_price)
 a2009<-mean(type22009$resale_price)
@@ -72,11 +73,5 @@ b2015<-mean(type32015$resale_price)
 b2016<-mean(type32016$resale_price)
 b2017<-mean(type32017$resale_price)
 
-type4<-filter(Punggol2, Punggol2$flat_type=="4 ROOM")
-c<-mean(type4$resale_price)
-c
 
-type5<-filter(Punggol2, Punggol2$flat_type=="5 ROOM")
-d<-mean(type5$resale_price)
-d
 
