@@ -62,6 +62,8 @@ b2016<-mean(type32016$resale_price)
 type32017<-filter(Punggol2, Punggol2$flat_type=="3 ROOM", Punggol2$year == 2017)
 b2017<-mean(type32017$resale_price)
 
+
+
 type4<-filter(Punggol2, Punggol2$flat_type=="4 ROOM")
 c<-mean(type4$resale_price)
 c
