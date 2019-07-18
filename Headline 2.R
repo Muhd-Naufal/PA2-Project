@@ -192,10 +192,11 @@ p <- ggplot(
   labs(x = "Years", y = "Transaction Volume") +
   ggtitle("Volume of flats sold over the years") +
   theme(legend.position = "top") +
-  geom_label()
+  guides(color=guide_legend(title="Flat Type")) +
+  geom_label() 
 p
 
 p + 
   geom_point(aes(group = seq_along(Year)), size = 7) +
   transition_reveal(Year)
-
+   
