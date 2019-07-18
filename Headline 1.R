@@ -101,8 +101,6 @@ c2015<-mean(type42015$resale_price)
 c2016<-mean(type42016$resale_price)
 c2017<-mean(type42017$resale_price)
 
-
-
 type52007<-filter(Punggol2, Punggol2$flat_type=="5 ROOM", Punggol2$year == 2007)
 type52008<-filter(Punggol2, Punggol2$flat_type=="5 ROOM", Punggol2$year == 2008)
 type52009<-filter(Punggol2, Punggol2$flat_type=="5 ROOM", Punggol2$year == 2009)
@@ -126,3 +124,5 @@ d2014<-mean(type52014$resale_price)
 d2015<-mean(type52015$resale_price)
 d2016<-mean(type52016$resale_price)
 d2017<-mean(type52017$resale_price)
+
+
