@@ -34,7 +34,7 @@ tag.map.title <- tags$style(HTML("
 "))
 
 title <- tags$div(
-  tag.map.title, HTML("Median Resale Price Per Town")
+  tag.map.title, HTML("Median Resale Price Per HDB Town")
 )  
 
 m <- leaflet(town) %>%
