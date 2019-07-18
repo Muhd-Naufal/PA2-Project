@@ -190,6 +190,7 @@ p <- ggplot(
   geom_line() +
   scale_color_viridis_d() +
   labs(x = "Years", y = "Transaction Volume") +
+  ggtitle("Volume of flats sold over the years") +
   theme(legend.position = "top") +
   geom_label()
 p

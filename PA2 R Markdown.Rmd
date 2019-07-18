@@ -28,8 +28,10 @@ knitr::opts_chunk$set(echo = TRUE)
 * **Headlines**
   + Forecasting Tengah Town
   + Is $1m HDB becoming the norm?
-  + Predicting **YOUR MUM** 
+  + Predicting **YOUR MUM**
+  
 <br>
+
 * **Visualizations**
   + Remaking Our Heartland 
   + Relationship Between POI and Resale Price
