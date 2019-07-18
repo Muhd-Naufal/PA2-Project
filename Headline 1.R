@@ -5,7 +5,7 @@ Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
 
 library(dplyr)
 
-
+#Convert month to date format
 
 Punggol$month <- as.Date(paste0(Punggol$month, "-01"), "%Y-%m-%d")
 Punggol
@@ -16,5 +16,3 @@ library(dplyr)
 Punggol2 <- filter(Punggol, month >= "2007-01-01")
 Punggol2
 
-Punggol3 <- filter(Punggol, town == "PUNGGOL")
-str(Punggol3)
