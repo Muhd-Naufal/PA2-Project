@@ -13,8 +13,6 @@ Punggol
 #Choose only those 2007 and above
 
 library(dplyr)
-Punggol2 <- filter(Punggol, month >= "2007-01-01")
+Punggol2 <- filter(Punggol, month >= "2007-01-01",town == "PUNGGOL")
 Punggol2
 
-Punggol3 <- filter(Punggol, town == "PUNGGOL")
-str(Punggol3)
