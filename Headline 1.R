@@ -16,7 +16,7 @@ library(dplyr)
 Punggol2 <- filter(Punggol, month >= "2007-01-01",town == "PUNGGOL")
 Punggol2
 
-type2<-filter(Punggol2, Punggol2$flat_type=="2 ROOM")
+type2<-filter(Punggol2, Punggol2$flat_type=="2 ROOM", Punggol2$year=="2007")
 a<-mean(type2$resale_price)
 a
 
