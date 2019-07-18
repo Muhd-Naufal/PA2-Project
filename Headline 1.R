@@ -4,7 +4,7 @@
 
 
 #Punggol Resale Prices
-Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
+Punggol <- read.csv("HDB Resale Prices.csv")
 
 library(dplyr)
 
@@ -21,6 +21,10 @@ Punggol
 library(dplyr)
 Punggol2 <- filter(Punggol, month >= "2007-01-01",town == "PUNGGOL")
 Punggol2
+
+
+Punggol3 <- filter(Punggol2, year == 2007, flat_type == "4 ROOM")
+Punggol3
 
 
 levels(Punggol2$flat_type)
@@ -72,9 +76,30 @@ b2015<-mean(type32015$resale_price)
 b2016<-mean(type32016$resale_price)
 b2017<-mean(type32017$resale_price)
 
-type4<-filter(Punggol2, Punggol2$flat_type=="4 ROOM")
-c<-mean(type4$resale_price)
-c
+type42007<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2007")
+type42008<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2008")
+type42009<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2009")
+type42010<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2010")
+type42011<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2011")
+type42012<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2012")
+type42013<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2013")
+type42014<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2014")
+type42015<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2015")
+type42016<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2016")
+type42017<-filter(Punggol2, Punggol2$flat_type=="4 ROOM", Punggol2$year=="2017")
+
+c2007<-mean(type42007$resale_price)
+c2008<-mean(type42008$resale_price)
+c2009<-mean(type42009$resale_price)
+c2010<-mean(type42010$resale_price)
+c2011<-mean(type42011$resale_price)
+c2012<-mean(type42012$resale_price)
+c2013<-mean(type42013$resale_price)
+c2014<-mean(type42014$resale_price)
+c2015<-mean(type42015$resale_price)
+c2016<-mean(type42016$resale_price)
+c2017<-mean(type42017$resale_price)
+
 
 
 type52007<-filter(Punggol2, Punggol2$flat_type=="5 ROOM", Punggol2$year == 2007)
