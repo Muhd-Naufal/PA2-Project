@@ -1,4 +1,12 @@
-raw<-read.csv("./Datasets/resale raw.csv")
+#Headline 1: Remaking our Heartland
+
+raw1<-read.csv("HDB Resale Prices.csv")
+
+#regroup data to year
+year<-substr(raw1$month, start = 1, stop = 4)
+df<-as.data.frame(year)
+raw<-cbind(df,raw1)
+
 
 #select towns with ROH
 
@@ -17,6 +25,10 @@ rohvalues<-which(towndata$town=="PUNGGOL"|
                    towndata$town=="PASIR RIS")
 
 rohdf<-towndata[rohvalues,]
+
+#change year from factor to numeric
+rohdf$year <- as.numeric(as.character(rohdf$year))
+str(rohdf)
 
 #prices before ROH
 
@@ -139,19 +151,44 @@ str(melted)
 
 #ggplot graph
 library(ggplot2)
-install.packages(plotly)
-library(plotly)
-a<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
+plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
   geom_bar(stat="identity",position='dodge')+
-  ggtitle("Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount")+
+  ggtitle("Average Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount")+
   theme(
     plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
     axis.title.x = element_text(color="blue",size=12,face="bold"),
     axis.title.y = element_text(color="blue",size=12,face="bold")
     
   )
-a
+plot1
 
 #rescale
 
-a+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
+plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
+plot1
+#Interactive plot
+
+#install plotly
+#install.packages("plotly")
+
+library(plotly)
+ggplotly(plot1)
+
+#Plot 2 - Zoom into Queenstown 
+#(greatest price increase bc of ROH in 2006)
+
+
+library(dplyr)
+top3<-raw%>%
+  select(year,town,resale_price)
+
+top3data<-which(top3$town=="QUEENSTOWN"|top3$town=="MARINE PARADE"|top3$town=="TOA PAYOH")
+top32<-top3[top3data,]
+
+#plot line graph
+library(ggplot2)
+
+#geom_line
+ggplot(top32, aes(x=top32$town, y=top32$year))+
+  geom_line()
+
