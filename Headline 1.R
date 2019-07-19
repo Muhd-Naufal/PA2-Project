@@ -123,10 +123,7 @@ d2015<-mean(type52015$resale_price)
 d2016<-mean(type52016$resale_price)
 d2017<-mean(type52017$resale_price)
 
-Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
-          "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
-          "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
-          "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
+Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
 
 #Mean <- c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,
           b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,
@@ -146,6 +143,10 @@ Punggoldf
 
 
  
-reshape(testhdb2room, idvar = "Year", timevar = "Mean", direction = "wide")
-
-rapply( testhdb2room, f=function(x) ifelse(is.nan(x),0,x), how="replace", round(testhdb2room) = 2 )
+#f<- reshape(testhdb2room, idvar = "Year", timevar = "Mean", direction = "wide")
+duplicated(Punggoldf)
+g<- distinct(Punggoldf)
+rapply( Punggoldf[,c(2,3)], f=function(x) ifelse(is.nan(x),0,x), how="replace")
+Punggoldf
+#Tengah
+Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
