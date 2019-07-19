@@ -138,4 +138,4 @@ Type
  
 reshape(testhdb2room, idvar = "Year", timevar = "Mean", direction = "wide")
 
-)
+rapply( testhdb2room, f=function(x) ifelse(is.nan(x),0,x), how="replace", round(testhdb2room) = 2 )
