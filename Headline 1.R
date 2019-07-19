@@ -120,7 +120,7 @@ d2015<-as.integer(mean(type52015$resale_price))
 d2016<-as.integer(mean(type52016$resale_price))
 d2017<-as.integer(mean(type52017$resale_price))
 
-#Total Average Prices
+#Total Average Prices Per Year
 type4and52007<-filter(Punggol2, Punggol2$year=="2007"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type4and52008<-filter(Punggol2, Punggol2$year=="2008"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type4and52009<-filter(Punggol2, Punggol2$year=="2009"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
