@@ -1,5 +1,11 @@
-resale <- read.csv("HDB Resale Prices.csv")
+resale <- read.csv("./Datasets/HDB Resale Prices.csv")
 library(dplyr)
+
+resale$month <- as.Date(paste0(resale$month, "-01"), "%Y-%m-%d")
+
+#Extract only Year from date
+resale$Year <- format(as.Date(resale$month, format="%Y-%m-%d"),"%Y")
+resale
 
 levels(resale$resale_price)
 resale <- filter(resale, Year >= 2012)
