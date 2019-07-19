@@ -267,7 +267,7 @@ meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
 library(ggplot2)
-ggplot(meandf2,aes(yeartab,meantab))
+
 
 
 
