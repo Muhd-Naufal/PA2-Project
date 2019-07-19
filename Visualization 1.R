@@ -1,6 +1,15 @@
 #Headline 1: Remaking our Heartland
 
-raw1<-read.csv("HDB Resale Prices.csv")
+#Summary 
+
+#Plot 1
+plot1final
+
+#Plot 2
+plot2final
+
+#codes
+raw1<-read.csv("Datasets/HDB Resale Prices.csv")
 
 #regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
@@ -165,6 +174,12 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
 #rescale
 
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
+plot1
+
+install.packages("plotly")
+library(plotly)
+plot1final<-ggplotly(plot1)
+plot1final
 
 #Plot 2 - Line plot
 
@@ -174,7 +189,7 @@ top1<-raw%>%
 
 top3a<-which(towndata$town=="QUEENSTOWN")
 
-top3b<-top3[top3a,]
+top3b<-top1[top3a,]
 
 #average price
 
@@ -266,7 +281,25 @@ meandf2<-as.data.frame(meandf)
 meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
+
 library(ggplot2)
+options(scipen=10000)
+
+secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
+  geom_line(color="red")+
+  
+  ggtitle("Prices in Queenstown from 2000")+xlab("Year")+ylab("Resale Amount ($)")+
+  theme(
+    plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
+    axis.title.x = element_text(color="blue",size=12,face="bold"),
+    axis.title.y = element_text(color="blue",size=12,face="bold")
+    
+  )
+
+library(plotly)
+plot2final<-ggplotly(secondplot)
+plot2final
+
 
 
 
