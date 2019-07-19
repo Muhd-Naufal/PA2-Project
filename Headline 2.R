@@ -192,7 +192,7 @@ p <- ggplot(
   geom_line() +
   scale_color_viridis_d() +
   labs(x = "Years", y = "Transaction Volume") +
-  ggtitle("Volume of flats sold over the years") +
+  ggtitle("Volume of flats above $900k sold over the years") +
   theme(legend.position = "top") +
   guides(color=guide_legend(title="Flat Type")) +
   geom_label() +
