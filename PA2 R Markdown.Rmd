@@ -1,6 +1,6 @@
 ---
 title: "R MARKDOWN REPORT"
-author: "Javier,E Lynn, Zulfikar, Ashraf"
+author: "Javier,E Lynn, ,AJ, Zulfikar, Ashraf, Naufal"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
