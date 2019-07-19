@@ -1,15 +1,25 @@
 #Headline 1: Remaking our Heartland
 
+
 raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
+
+#Summary 
+
+#Plot 1
+plot1final
+
+#Plot 2
+plot2final
+
+#codes
+raw1<-read.csv("Datasets/HDB Resale Prices.csv")
 
 #regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
 df<-as.data.frame(year)
 raw<-cbind(df,raw1)
 
-
 #select towns with ROH
-
 library(dplyr)
 towndata<-raw%>%
   select(year,town,resale_price)
@@ -31,7 +41,6 @@ rohdf$year <- as.numeric(as.character(rohdf$year))
 str(rohdf)
 
 #prices before ROH
-
 pgb1<-which(rohdf$town=="PUNGGOL" & rohdf$year<2007)
 pgb2<-rohdf[pgb1,]
 punggolbef<-mean(pgb2$resale_price)
@@ -67,7 +76,6 @@ woodbef<-mean(wb2$resale_price)
 prb1<-which(rohdf$town=="PASIR RIS" & rohdf$year<2015)
 prb2<-rohdf[prb1,]
 prbef<-mean(prb2$resale_price)
-
 
 #prices after ROH
 
@@ -118,7 +126,6 @@ dtoapayoh<-tpaft-tpbef
 dwoodlands<-woodaft-woodbef
 dpasirris<-praft-prbef
 
-
 #combine as vectors
 Punggol<-c("Punggol",punggolbef,punggolaft,dpunggol)
 Yishun<-c("Yishun",yishunbef,yishunaft,dyishun)
@@ -132,14 +139,11 @@ PasirRis<-c("Pasir Ris",prbef,praft,dpasirris)
 
 #combine
 prices<-data.frame(Punggol,Yishun,Queenstown,MarineParade,Hougang,JurongEast,ToaPayoh,Woodlands,PasirRis)
-
 prices<-t(prices)
 
 #rename column name
 colnames(prices)<-c("Town","Prices before ROH","Prices after ROH","Price Difference due to ROH")
-
 pricesfinal<-data.frame(prices)
-
 
 #melt columns
 library(reshape2)
@@ -161,11 +165,15 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
     
   )
 
-
 #rescale
-
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 plot1
+
+install.packages("plotly")
+library(plotly)
+plot1final<-ggplotly(plot1)
+plot1final
+
 #Plot 2 - Line plot
 
 #top town with highest increase from ROH
@@ -266,7 +274,25 @@ meandf2<-as.data.frame(meandf)
 meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
+
 library(ggplot2)
+options(scipen=10000)
+
+secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
+  geom_line(color="red")+
+  
+  ggtitle("Prices in Queenstown from 2000")+xlab("Year")+ylab("Resale Amount ($)")+
+  theme(
+    plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
+    axis.title.x = element_text(color="blue",size=12,face="bold"),
+    axis.title.y = element_text(color="blue",size=12,face="bold")
+    
+  )
+
+library(plotly)
+plot2final<-ggplotly(secondplot)
+plot2final
+
 
 
 
