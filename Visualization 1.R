@@ -139,6 +139,8 @@ str(melted)
 
 #ggplot graph
 library(ggplot2)
+install.packages(plotly)
+library(plotly)
 a<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
   geom_bar(stat="identity",position='dodge')+
   ggtitle("Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount")+
@@ -148,7 +150,7 @@ a<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
     axis.title.y = element_text(color="blue",size=12,face="bold")
     
   )
-
+a
 
 #rescale
 
