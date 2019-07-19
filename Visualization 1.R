@@ -1,6 +1,6 @@
 #Headline 1: Remaking our Heartland
 
-raw1<-read.csv("HDB Resale Prices.csv")
+raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
 
 #regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
@@ -165,7 +165,7 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
 #rescale
 
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
-
+plot1
 #Plot 2 - Line plot
 
 #top town with highest increase from ROH
@@ -174,7 +174,7 @@ top1<-raw%>%
 
 top3a<-which(towndata$town=="QUEENSTOWN")
 
-top3b<-top3[top3a,]
+top3b<-top1[top3a,]
 
 #average price
 
