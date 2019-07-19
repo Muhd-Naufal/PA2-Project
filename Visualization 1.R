@@ -166,29 +166,123 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
 
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 
-#Interactive plot
+#Plot 2 - Line plot
 
-#install plotly
-#install.packages("plotly")
-
-library(plotly)
-ggplotly(plot1)
-
-#Plot 2 - Zoom into Queenstown 
-#(greatest price increase bc of ROH in 2006)
-
-
-library(dplyr)
-top3<-raw%>%
+#top town with highest increase from ROH
+top1<-raw%>%
   select(year,town,resale_price)
 
-top3data<-which(top3$town=="QUEENSTOWN"|top3$town=="MARINE PARADE"|top3$town=="TOA PAYOH")
-top32<-top3[top3data,]
+top3a<-which(towndata$town=="QUEENSTOWN")
 
-#plot line graph
+top3b<-top3[top3a,]
+
+#average price
+
+y2000w<-which(top3b$year==2000)
+y2000w2<-top3b[y2000w,]
+mean2000<-mean(y2000w2$resale_price)
+
+y2001w<-which(top3b$year==2001)
+y2001w2<-top3b[y2001w,]
+mean2001<-mean(y2001w2$resale_price)
+
+y2002w<-which(top3b$year==2002)
+y2002w2<-top3b[y2002w,]
+mean2002<-mean(y2002w2$resale_price)
+
+y2003w<-which(top3b$year==2003)
+y2003w2<-top3b[y2003w,]
+mean2003<-mean(y2003w2$resale_price)
+
+y2004w<-which(top3b$year==2004)
+y2004w2<-top3b[y2004w,]
+mean2004<-mean(y2004w2$resale_price)
+
+y2005w<-which(top3b$year==2005)
+y2005w2<-top3b[y2005w,]
+mean2005<-mean(y2005w2$resale_price)
+
+y2006w<-which(top3b$year==2006)
+y2006w2<-top3b[y2006w,]
+mean2006<-mean(y2006w2$resale_price)
+
+y2007w<-which(top3b$year==2007)
+y2007w2<-top3b[y2007w,]
+mean2007<-mean(y2007w2$resale_price)
+
+y2008w<-which(top3b$year==2008)
+y2008w2<-top3b[y2008w,]
+mean2008<-mean(y2008w2$resale_price)
+
+y2009w<-which(top3b$year==2009)
+y2009w2<-top3b[y2009w,]
+mean2009<-mean(y2009w2$resale_price)
+
+y2010w<-which(top3b$year==2010)
+y2010w2<-top3b[y2010w,]
+mean2010<-mean(y2010w2$resale_price)
+
+y2011w<-which(top3b$year==2011)
+y2011w2<-top3b[y2011w,]
+mean2011<-mean(y2011w2$resale_price)
+
+y2012w<-which(top3b$year==2012)
+y2012w2<-top3b[y2012w,]
+mean2012<-mean(y2012w2$resale_price)
+
+y2013w<-which(top3b$year==2013)
+y2013w2<-top3b[y2013w,]
+mean2013<-mean(y2013w2$resale_price)
+
+y2014w<-which(top3b$year==2014)
+y2014w2<-top3b[y2014w,]
+mean2014<-mean(y2014w2$resale_price)
+
+y2015w<-which(top3b$year==2015)
+y2015w2<-top3b[y2015w,]
+mean2015<-mean(y2015w2$resale_price)
+
+y2016w<-which(top3b$year==2016)
+y2016w2<-top3b[y2016w,]
+mean2016<-mean(y2016w2$resale_price)
+
+y2017w<-which(top3b$year==2017)
+y2017w2<-top3b[y2017w,]
+mean2017<-mean(y2017w2$resale_price)
+
+#combine mean
+meantab<-c(mean2000,mean2001,mean2002,mean2003,mean2004,mean2005,
+              mean2006,mean2007,mean2008,mean2009,mean2010,mean2011,
+              mean2012,mean2013,mean2014,mean2015,mean2016,mean2017)
+
+yeartab<-c("2000","2001","2002","2003","2004","2005","2006","2007",
+           "2008","2009","2010","2011","2012","2013","2014","2015",
+           "2016","2017")
+
+meandf<-cbind(yeartab,meantab)
+meandf2<-as.data.frame(meandf)
+
+#change values to numeric
+meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
+meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
+
 library(ggplot2)
+ggplot(meandf2,aes(yeartab,meantab))
 
-#geom_linee
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
