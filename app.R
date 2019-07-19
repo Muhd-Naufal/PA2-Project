@@ -24,4 +24,26 @@ server <- function(input, output) {
 }
 shinyApp(ui = ui, server = server)
 
+#############
+
+ibrary(shiny)
+myData <- runif(100)
+plotType <- function(x, type) {
+  switch(type,
+         A = hist(x),
+         B = barplot(x),
+         C = pie(x))
+}
+runApp(list(
+  ui = bootstrapPage(
+    radioButtons("pType", "Choose plot type:",
+                 list("A", "B", "C")),
+    plotOutput('plot')
+  ),
+  server = function(input, output) {
+    output$plot <- renderPlot({ 
+      plotType(myData, input$pType)
+    })
+  }
+))
 
