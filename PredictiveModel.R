@@ -1,7 +1,8 @@
-resale <- read.csv("HDB Resale Prices.csv")
+resale <- read.csv("./Datasets/HDB Resale Prices.csv")
 library(dplyr)
 
-levels(resale$resale_price)
+resale
+
 resale <- filter(resale, Year >= 2012)
 resale <- filter(resale, flat_type == "2 ROOM")
 str(resale)
