@@ -1,10 +1,10 @@
 ---
 title: "R MARKDOWN REPORT"
-<<<<<<< HEAD
+
 author: "Javier,E Lynn, AJ, Ashraf, Zulfikar, Naufal"
-=======
+
 author: "Javier,E Lynn, ,AJ, Zulfikar, Ashraf, Naufal"
->>>>>>> fcac3fb0d2f9327ba87941f6cb5c4bb4a7a42663
+
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
