@@ -1,6 +1,6 @@
 #Level 1
 
-data <- read.csv("PopulationData.csv")
+data <- read.csv("./Datasets/PopulationData.csv")
 library(dplyr)
 str(data)
 #data$Population <- as.numeric(levels(data$Population))[data$Population]
