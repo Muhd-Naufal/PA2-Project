@@ -57,3 +57,4 @@ cor(finaldata)[6,]
 #lm()
 fit1<-lm(resale_price~.,data=finaldata)
 summary(fit1)
+
