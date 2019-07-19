@@ -29,8 +29,8 @@ fit2 = auto.arima(log10(monthly_ts), approximation = F,trace= F)
 summary(fit2)
 
 prediction = predict(fit2, n.ahead=10)
-plot(monthly_ts, type ="l", xlab="", ylab = "Average Price per Square Meter", xlim = c(2012,2019),ylim = c(4500,6500), main="ARIMA prediction")
-lines(10^(prediction$pred),col="blue")
-lines(10^(prediction$pred+2*prediction$se),col="orange")
+plot(monthly_ts, type ="l", xlab="", ylab = "Average Price per Square Meter", xlim = c(2012,2019),ylim = c(4500,6500), main="ARIMA prediction") +
+lines(10^(prediction$pred),col="blue") +
+lines(10^(prediction$pred+2*prediction$se),col="orange") +
 lines(10^(prediction$pred-2*prediction$se),col="orange")
 
