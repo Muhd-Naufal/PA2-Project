@@ -1,6 +1,6 @@
 #Headline 1: Remaking our Heartland
 
-raw1<-read.csv(".Datasets/HDB Resale Prices.csv")
+raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
 
 #regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
