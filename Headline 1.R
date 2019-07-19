@@ -53,6 +53,10 @@ a2015<-mean(type22015$resale_price)
 a2016<-mean(type22016$resale_price)
 a2017<-mean(type22017$resale_price)
 
+flattype2<-c(type22007,type22008,type22009,type22010,type22011,type22012,type22013,type22014,type22015,type22016,type22017)
+average2<-c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017)
+data2<-as.data.frame(flattype2,average2)
+
 type32007<-filter(Punggol2, Punggol2$flat_type=="3 ROOM", Punggol2$year == "2007")
 type32008<-filter(Punggol2, Punggol2$flat_type=="3 ROOM", Punggol2$year == "2008")
 type32009<-filter(Punggol2, Punggol2$flat_type=="3 ROOM", Punggol2$year == "2009")
