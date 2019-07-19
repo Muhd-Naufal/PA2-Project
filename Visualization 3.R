@@ -34,21 +34,16 @@ no_population/no_housing
 
 
 #Level 2
-data1 <- read.csv("./Datasets/YearsUnits.csv")
-data2 <- read.csv("./Datasets/Quarters.csv")
-#data2
-#data1 <- read.csv("QuartersYears.csv")
+data1 <- read.csv("YearsUnits.csv")
 
 library(ggplot2)
-a<- ggplot(data1,aes(x=data1$ï..Year,y=data1$Units.completed)) +
-  geom_bar(stat="identity",fill= "blue") +
-  ggtitle("Units completed by Year") +
-  xlab("Year") + ylab("Units Completed")
-a
 
-b <- ggplot(data2, aes(x=data2$ï..Quarter,y=data2$Resale.Price.Index..1Q.2009...100.)) +
-  geom_point(stat="identity",color ="red") +
-  geom_line(stat="identity", color = "red") +
-  ggtitle("Units completed by Year") +
-  xlab("Year") + ylab("Resale Price")
-b
+ggplot()+
+  geom_bar(mapping = aes(x = data1$ï..Year, y = data1$Units.completed), stat = "identity", color = "black",fill = "blue")+
+  geom_line(mapping = aes(x = data1$ï..Year, y = data1$Price.Index.2009...100 * 40000/160)) +
+  geom_point(mapping = aes(x = data1$ï..Year, y = data1$Price.Index.2009...100 * 40000/160)) +
+  xlab("Year") + ggtitle("Year against Units completed and Index") +
+  scale_y_continuous(
+    name = expression("Units completed"),
+    sec.axis = sec_axis(~. /40000*160,name = "Index"),
+    limits = c(0,40000))
