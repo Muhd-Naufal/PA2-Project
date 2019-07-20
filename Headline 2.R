@@ -94,7 +94,7 @@ ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], ae
   xlab("Year") + ylab("Transaction Volume") +
   labs(fill='Flat Type') 
 
-
+######################################
 
 hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
                  flat_type == "5 ROOM" | 
@@ -192,7 +192,7 @@ p <- ggplot(
   geom_line() +
   scale_color_viridis_d() +
   labs(x = "Years", y = "Transaction Volume") +
-  ggtitle("Volume of flats above $900k sold over the years") +
+  ggtitle("Volume of flats sold over the years") +
   theme(legend.position = "top") +
   guides(color=guide_legend(title="Flat Type")) +
   geom_label() +
