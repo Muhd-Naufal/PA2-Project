@@ -245,11 +245,11 @@ plot_ly(
     line = list(color = '#506784'),
     fill = list(color = 'red'),
     align = c('left','center'),
-    font = list(color = 'white', size = 12)
+    font = list(color = 'white', size = 13)
   ),
   cells = list(
     values = rbind(
-      c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017", '<b>2008 vs 2018</b>'),
+      c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017", '<b>2008 vs 2017</b>'),
       c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,"null"),
       c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,"null"),
       c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"<b>71.4%<b>"),
@@ -259,12 +259,11 @@ plot_ly(
     line = list(color = '#506784'),
     fill = list(color = c('red', 'white')),
     align = c('left', 'center'),
-    font = list(color = c('black'), size = 14)
+    font = list(color = c('black'), size = 13)
   ))
 ```
-Forecasting Tengah Town
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The table above shows the changes in average resale prices of Punggol from 2007 to 2017 and per flat type from 2 Room flats to Executive flats. Due to Punggol's early age, the resale value of 2 Room flats and 3 Room flats is not available until 2015. From the table we can see that **on average, there has been a 50% increase in resale value between 2007 and 2017**. 4 Room HDB has seen an increase of about **71%**, while 5 Room **49%** and Executive flats **41%**.
 
 ```{r H1G2 Code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 
