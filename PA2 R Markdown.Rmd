@@ -38,8 +38,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * **Headlines**
   + Forecasting Tengah Town
-  + Is $1m HDB becoming the norm?
-  + Predicting **YOUR MUM**
+  + Is $1m HDB Becoming Ehe Norm?
+  + Predicting HDB Resale Prices
   
 <br>
 
@@ -53,14 +53,20 @@ knitr::opts_chunk$set(echo = TRUE)
  
 ***
 
-## Headlines
+<center> <h1>Visualizations</h1> </center>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 &nbsp;
 &nbsp;
 
-## Headline 1
+## Will Tengah Property Prices See The Same Rise As Punggol?
+
+When Punggol was first unveiled 1996 by former Prime Minister, Goh Chok Tong, there was a vision to make it the Waterfront Town in the 21st Century. Located in the northeast region of Singapore, bordered by the Singapore shoreline as as well as the Strait of Johor, there was an ambitious plan to transform the old village of Punggol into a waterfront town with residential housing occupying along the rivers and coastal areas.
+
+Subsequently in 2007, Punggol was selected as one of the pilot towns under the Remaking Our Heartland (ROH) programme. It included a master plan to further realise the vision of Punggol as a waterfront town. One of the plan includes a man-made waterway that goes through the town, bringing in opportunities for authentic waterfront living and exciting water-based activities.
+
+Come 2017, just 10 years after the ROH programme was introduced, prices have skyrocketted to nearly $900,000. This mark a new milestone in the HDB resale market for the suburban town in the region.
 
 ``` {r H1G1 Code, echo=FALSE, include=FALSE}
 
@@ -239,23 +245,25 @@ plot_ly(
     line = list(color = '#506784'),
     fill = list(color = 'red'),
     align = c('left','center'),
-    font = list(color = 'black', size = 12)
+    font = list(color = 'white', size = 12)
   ),
   cells = list(
     values = rbind(
       c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017", '<b>2008 vs 2018</b>'),
       c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,"null"),
       c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,"null"),
-      c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"71.4%"),
-      c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017,"48.2%"),
-      c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,"41.6%"),
-      c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017,"50.5%")),
+      c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"<b>71.4%<b>"),
+      c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017,"<b>48.2%<b>"),
+      c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,"<b>41.6%<b>"),
+      c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017,"<b>50.5%<b>")),
     line = list(color = '#506784'),
     fill = list(color = c('red', 'white')),
     align = c('left', 'center'),
-    font = list(color = c('black'), size = 12)
+    font = list(color = c('black'), size = 14)
   ))
 ```
+Forecasting Tengah Town
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ```{r H1G2 Code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
@@ -426,11 +434,14 @@ anim_save("p.gif", p)
 ```
 
 ![](p.gif)
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ## Predictive Model
 
 Still trying to make it work...
+
+<center> <h1>Visualizations</h1> </center>
 
 ## Visualization 1
 
@@ -567,7 +578,6 @@ melted$Town<-factor(melted$Town,levels=c("Marine Parade","Pasir Ris","Toa Payoh"
 
 ```{r V1G1, echo=FALSE}
 
-library(ggplot2)
 plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
   geom_bar(stat="identity",position='dodge')+
   ggtitle("Average Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount")+
@@ -581,6 +591,7 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 
 plot1final<-ggplotly(plot1)
+plot1final
 ```
 "Remaking our Heartland" is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
 
