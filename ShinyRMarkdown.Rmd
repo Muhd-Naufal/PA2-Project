@@ -960,7 +960,9 @@ meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
 ```
+This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
 
+Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
 ```{r V1G2, echo=FALSE}
 options(scipen=10000)
 
@@ -976,10 +978,8 @@ secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
   )
 
 plot2final<-ggplotly(secondplot)
+plot2final 
 ```
-This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
-
-Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
 
 ## Visualization 2
 
