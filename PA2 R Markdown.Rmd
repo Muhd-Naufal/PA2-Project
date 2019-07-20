@@ -358,7 +358,7 @@ All in all, with Punggol featuring a Waterfront Living, Punggol Digital District
 
 Over the years, HDB flats reaching close or at the $1 million mark has dominated the property headlines. Seeing HDB flats sold at that price seems bewildering. Many will wonder whether HDB mean affordable housing anymore? And will we expect to see million dollar HDB becoming the norm, potentially competiting with the Private Property market? 
 
-Below is an interactive map, marking each HDB flat that was transacted with the highest price per town. 
+Below is an interactive map, marking each HDB flat that was transacted with the highest price per town. Click on the HDB icon to see the town and the amount that it was transacted. 
 
 ```{r map Code, echo=FALSE, include=FALSE}
 top <- read.csv("./Datasets/TopTown.csv")
