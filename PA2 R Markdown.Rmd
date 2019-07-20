@@ -9,7 +9,6 @@ output:
 ---
   
 ```{r libraries, include= FALSE}
-#install.packages("prettydoc")
 library(prettydoc)
 library(plyr)
 library(dplyr)
@@ -24,6 +23,9 @@ library(ggrepel)
 library(plotly)
 library(shiny)
 library(rgeos)
+library(zoo)
+library(htmlwidgets)
+library(htmltools)
 ```
 
 
@@ -734,125 +736,292 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ## Visualization 2
 
 ```{r V2G1 Code, echo=FALSE, include=FALSE}
-#Test with multiple dataset
+#Combined test 
+combined <- read.csv("./Datasets/CombinedDataset.csv")
+combined <- as.data.frame(combined)
+coordinates(combined) <- ~Longitude + Latitude
 
-#Load datasets
-mrt <- read.csv("./Datasets/mrtsg.csv")
-primaryschool <- read.csv("./Datasets/primaryschoolsg.csv")
-attractions <- read.csv("./Datasets/Attractions.csv")
-cc <- read.csv("./Datasets/communityclubs.csv")
-hawkers <- read.csv("./Datasets/hawkercentre.csv")
-institutes <- read.csv("./Datasets/HigherEducationInstitutions.csv")
-hospitals <- read.csv("./Datasets/Hospitals.csv")
-kindergartens <- read.csv("./Datasets/kindergartens.csv")
-parks <- read.csv("./Datasets/Parks.csv")
-polyclinics <- read.csv("./Datasets/Polyclinics.csv")
-secondaryschool <- read.csv("./Datasets/secondaryschoolsg.csv")
-shoppingmall <- read.csv("./Datasets/ShoppingMall.csv")
-supermarket <- read.csv("./Datasets/supermarkets.csv")
+#Choose points in map
+onehundredhdb <- read.csv("./Datasets/100HDBAddress.csv")
+coordinates(onehundredhdb) <- ~Longitude + Latitude
 
-#Convert to dataframe
-mrt <- as.data.frame(mrt)
-primaryschool <- as.data.frame(primaryschool)
-attractions <- as.data.frame(attractions)
-cc <- as.data.frame(cc)
-hawkers <- as.data.frame(hawkers)
-institutes <- as.data.frame(institutes)
-hospitals <- as.data.frame(hospitals)
-kindergartens <- as.data.frame(kindergartens)
-parks <- as.data.frame(parks)
-polyclinics <- as.data.frame(polyclinics)
-secondaryschool <- as.data.frame(secondaryschool)
-shoppingmall <- as.data.frame(shoppingmall)
-supermarket <- as.data.frame(supermarket)
-
-#Identify names
-stationname<-mrt$STN_NAME
-primaryschoolname <- primaryschool$Name
-attractionname <- attractions$Attractions
-ccname <- cc$Name
-hawkername <- hawkers$Name
-institutename <- institutes$Tertiary.Institutions
-hospitalname <- hospitals$Hospitals
-kindergartenname <- kindergartens$Name
-parkname <- parks$Nature.Parks.Gardens
-polyclinicname <- polyclinics$Polyclinics
-secondaryschoolname <- secondaryschool$SCHNAME
-shoppingmallname <- shoppingmall$Shopping.malls
-supermarketname <- supermarket$LIC_NAME
-
-
-#Identify their latitite and longitude
-coordinates(mrt) <- ~Longitude + Latitude
-coordinates(primaryschool) <- ~Longitude + Latitude
-coordinates(attractions) <- ~Longitude + Latitude
-coordinates(cc) <- ~X + Y
-coordinates(hawkers) <- ~X + Y
-coordinates(institutes) <- ~Longitude + Latitude
-coordinates(hospitals) <- ~Longitude + Latitude
-coordinates(kindergartens) <- ~X + Y
-coordinates(parks) <- ~Longitude + Latitude
-coordinates(polyclinics) <- ~Longitude + Latitude
-coordinates(secondaryschool) <- ~longitude + latitude
-coordinates(shoppingmall) <- ~Longitude + Latitude
-coordinates(supermarket) <- ~X + Y
-
-#MRT Colours
-pal <- colorFactor(levels = c("RED","BLUE","GREEN","YELLOW","PURPLE","BROWN","GREY"),
-                   palette = c("red","blue","green","yellow","purple","brown","grey"))
+#Buffer range
+pointsBuffer3 <- gBuffer(onehundredhdb, width=.005, byid = TRUE)
 ```
 
 ```{r V2G1, echo=FALSE}
-#Add markers to map
-leaflet() %>%
+#Combined test map 
+leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
   addTiles() %>%
-  addCircleMarkers(data=mrt,
-                   radius=8, 
-                   stroke=1, 
-                   color=~pal(COLOR),
-                   fillColor = ~pal(COLOR),
-                   popup = stationname,
-                   group = "MRT") %>%
-  addMarkers(data=primaryschool, popup = primaryschoolname,
-             clusterOptions = markerClusterOptions(),
-             group = "Primary School") %>%
-  addMarkers(data = attractions, popup = attractionname,
-             clusterOptions = markerClusterOptions(),
-             group = "Attractions") %>%
-  addMarkers(data = cc, popup = ccname,
-             clusterOptions = markerClusterOptions(),
-             group = "Community Club") %>%
-  addMarkers(data = hawkers, popup = hawkername,
-             clusterOptions = markerClusterOptions(),
-             group = "Hawker Centre") %>%
-  addMarkers(data = institutes, popup = institutename,
-             clusterOptions = markerClusterOptions(),
-             group = "Education Institution") %>%
-  addMarkers(data = hospitals, popup = hospitalname,
-             clusterOptions = markerClusterOptions(),
-             group = "Hospital") %>%
-  addMarkers(data = kindergartens, popup = kindergartenname,
-             clusterOptions = markerClusterOptions(),
-             group = "Kindergarden") %>%
-  addMarkers(data = parks, popup = parkname,
-             clusterOptions = markerClusterOptions(),
-             group = "Parks") %>%
-  addMarkers(data = polyclinics, popup = polyclinicname,
-             clusterOptions = markerClusterOptions(),
-             group = "Polyclinic") %>%
-  addMarkers(data = secondaryschool, popup = secondaryschoolname,
-             clusterOptions = markerClusterOptions(),
-             group = "Secondary School") %>%
-  addMarkers(data = shoppingmall, popup = shoppingmallname,
-             clusterOptions = markerClusterOptions(),
-             group = "Shopping Mall") %>%
-  addMarkers(data = supermarket, popup = supermarketname,
-             clusterOptions = markerClusterOptions(),
-             group = "Supermarket") %>%
-  
-#Add Layer Control
-addLayersControl(
-  overlayGroups = c("MRT","Primary School","Attractions","Community Club","Hawker Centre","Education Institution","Hospital","Kindergarden","Parks","Polyclinic","Secondary School","Shopping Mall","Supermarket")
+  addMarkers(data=combined,clusterOptions = markerClusterOptions()) %>%
+  addMarkers(data=onehundredhdb) %>%
+  addPolygons(data=pointsBuffer3)
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```{r V2G2 Code, echo=FALSE, include=FALSE}
+count<- over(pointsBuffer3, combined, fn=length)
+count <- as.data.frame(count)
+count <-count[,-2:-3]
+count <- as.data.frame(count)
+count
+
+resale <- onehundredhdb$Resale.Value
+
+resale <- as.data.frame(resale)
+
+final <- cbind(count,resale)
+```
+
+```{r V2G2, echo=FALSE}
+ggplot(final,aes(x=count,y=resale)) +
+  geom_smooth( fill = "pink", colour = "red",se=FALSE) +
+  geom_smooth(method="lm",se=FALSE) +
+  ggtitle("Relationship between Number of Points of Interest and Resale Value")
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Visualization 3
+
+```{r V3G1 codes, echo=FALSE, include=FALSE}
+data <- read.csv("./Datasets/PopulationData.csv")
+library(dplyr)
+str(data)
+#data$Population <- as.numeric(levels(data$Population))[data$Population]
+
+#Find population change from 2000 to 2015
+#Not sure if should hardcode or not
+population2000 <- data[4,2]
+population2015 <- data[6,2]
+
+class(population2000)
+#Population change
+
+no_population <- population2015-population2000
+no_population
+population_change <- ((population2015-population2000)/population2000)*100
+population_change
+
+#The population change was 37.7894% from 2000 to 2015
+
+#Housing Shortage
+housing2000 <- data[4,3]
+housing2015 <- data[6,3]
+
+no_housing <- housing2015-housing2000
+housing_change <- ((housing2015-housing2000)/housing2000)*100
+housing_change
+
+#Ratio of new population
+no_population/no_housing
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```{r V3G1, echo=FALSE}
+
+```
+
+```{r V3G2 , echo=FALSE}
+data1 <- read.csv("./Datasets/YearsUnits.csv")
+
+ay <- list(
+  tickfont = list(color = "red"),
+  overlaying = "y",
+  side = "right",
+  title = "Index"
 )
+ay
+p <- plot_ly() %>%
+  add_bars(x = ~data1$ï..Year, y = ~data1$Units.completed, name = "Units completed") %>%
+  add_lines(x = ~data1$ï..Year, y = ~data1$Price.Index.2009...100, name = "Index", yaxis = "y2") %>%
+  layout(
+    title = "Year against Units completed and Index", yaxis2 = ay,
+    xaxis = list(title="Year")
+  )
+p
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```{r V4G1 Code, echo=FALSE, include=FALSE}
+#mature
+maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
+
+mature2 <- filter(maturecsv, flat_type == "2 ROOM"|
+                    flat_type == "3 ROOM" |
+                    flat_type == "4 ROOM" | 
+                    flat_type == "5 ROOM" | 
+                    flat_type == "EXECUTIVE" | 
+                    flat_type == "MULTI-GENERATION"|
+                    flat_type == "MULTI GENERATION")
+
+mature <-filter(mature2, town =="ANG MO KIO"|
+                  town=="BEDOK"|
+                  town=="BISHAN"|
+                  town=="BUKIT MERAH"|
+                  town=="BUKIT TIMAH"|
+                  town=="CENTRAL AREA"|
+                  town=="CLEMENTI"|
+                  town=="GEYLANG"|
+                  town=="KALLANG/WHAMPOA"|
+                  town=="MARINE PARADE"|
+                  town=="QUEENSTOWN"|
+                  town=="SERANGOON"|
+                  town=="TAMPINES"|
+                  town=="TOA PAYOH"|
+                  town=="PASIR RIS")
+
+#nonmature
+
+nonmaturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
+
+nonmature2 <- filter(nonmaturecsv, flat_type == "2 ROOM"|
+                       flat_type == "3 ROOM" |
+                       flat_type == "4 ROOM" | 
+                       flat_type == "5 ROOM" | 
+                       flat_type == "EXECUTIVE" | 
+                       flat_type == "MULTI-GENERATION"|
+                       flat_type == "MULTI GENERATION")
+
+nonmature <-filter(nonmature2, town =="BUKIT BATOK"|
+                     town=="CHOA CHU KANG"|
+                     town=="HOUGANG"|
+                     town=="JURONG EAST"|
+                     town=="JURONG WEST"|
+                     town=="SENGKANG"|
+                     town=="WOODLANDS"|
+                     town=="YISHUN"|
+                     town=="LIM CHU KANG"|
+                     town=="SEMBAWANG"|
+                     town=="BUKIT PANJANG"|
+                     town=="PUNGGOL")
+```
+
+```{r V4G1, echo=FALSE}
+k <-  plot_ly(mature, x = ~resale_price, color = ~flat_type, type = "box") %>%
+  
+  layout(title="Mature Town Resale Prices per Flat Type",
+         xaxis=list(title="Mature Resale"),
+         yaxis=list(title="Flat Type"))
+k
+```
+
+```{r V4G11, echo=FALSE}
+o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>%
+  
+  layout(title="Non-Mature Town Resale Prices per Flat Type",
+         xaxis=list(title="Non-Mature Resale"),
+         yaxis=list(title="Flat Type"))
+o
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```{r V4G2 Code, echo=FALSE, include=FALSE}
+mature$month <- as.yearmon(mature$month, "%Y-%m")
+str(mature)
+nonmature$month <- as.yearmon(nonmature$month, "%Y-%m")
+
+#filter to >=2010
+newmature <- filter(mature, month >= "2010-01")
+newmature
+newnonmature <- filter(nonmature, month >= "2010-01")
+newnonmature
+
+#Find avg resale price & difference
+matureavg <- mean(newmature$resale_price)
+nonmatureavg <- mean(newnonmature$resale_price)
+difference <- matureavg - nonmatureavg
+difference
+
+townavg <- c(matureavg,nonmatureavg)
+townname <- c("Mature","Non-Mature")
+townbar <- data.frame(townname,townavg)
+```
+
+```{r V4G2, echo=FALSE}
+d <- plot_ly(townbar, x = ~townname, y = ~townavg, type = 'bar',text = townavg, textposition = 'auto') %>%
+  layout(title = "Average Resale Price Difference Between Mature and Non-Mature Estate",
+         xaxis = list(title = "Estate"),
+         yaxis = list(title = "Average Resale Price"))
+
+d
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Visualization 5
+
+```{r V5G1 Code, echo=FALSE, include=FALSE}
+
+```
+
+```{r V5G1, echo=FALSE}
+
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+# Visualization 6
+
+```{r V6G1 Code, echo=FALSE, include=FALSE}
+town <- geojsonio::geojson_read("map.geojson", what = "sp")
+class(town)
+names(town)
+
+mymap = leaflet()
+
+tag.map.title <- tags$style(HTML("
+  .leaflet-control.map-title { 
+    transform: translate(-50%,20%);
+    left: 50%;
+    text-align: center;
+    padding-left: 10px; 
+    padding-right: 10px; 
+    background: rgba(255,255,255,0.75);
+    font-weight: bold;
+    font-size: 28px;
+  }
+"))
+
+title <- tags$div(
+  tag.map.title, HTML("Median Resale Price Per HDB Town")
+)  
+
+m <- leaflet(town) %>%
+  setView(mymap, lat=1.351616, lng =103.808053, zoom = 11) %>%
+  addTiles() %>%
+  addControl(title, position = "topleft", className="map-title")
+
+m %>% addPolygons()
+
+library(RColorBrewer)
+factpal <- colorFactor(brewer.pal(n = 11, name ="Spectral") , town$Name)
+
+labels <- sprintf(
+  "<strong>%s</strong><br/>2017: %s<br/>2012: %s<br/>2007: %s" ,
+  town$Name, town$Median2017, town$Median2012, town$Median2007
+) %>% lapply(htmltools::HTML)
+
+```
+
+```{r V6G1, echo=FALSE}
+
+m <- m %>% addPolygons(
+  fillColor = ~factpal(town$Name),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto"))
+m
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

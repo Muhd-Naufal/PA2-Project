@@ -38,7 +38,7 @@ title <- tags$div(
 )  
 
 m <- leaflet(town) %>%
-  setView(mymap, lat=1.290270, lng =103.851959, zoom = 11) %>%
+  setView(mymap, lat=1.351616, lng =103.808053, zoom = 11) %>%
   addTiles() %>%
   addControl(title, position = "topleft", className="map-title")
 
