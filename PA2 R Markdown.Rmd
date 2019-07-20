@@ -473,6 +473,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Still trying to make it work...
 
+***
+
 <center> <h1>Visualizations</h1> </center>
 
 ## Visualization 1
