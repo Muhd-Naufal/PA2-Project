@@ -743,6 +743,8 @@ This line graph drills down to show the increase in resale prices of flats in Qu
 
 Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
 
+You may hover your mouse above the line graph to have a look at yearly resale prices of flats in Queenstown, denoted by "meantab".
+
 ## Visualization 2
 
 ```{r V2G1 Code, echo=FALSE, include=FALSE}
