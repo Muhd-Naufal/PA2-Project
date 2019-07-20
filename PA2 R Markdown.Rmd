@@ -616,7 +616,7 @@ The years used to compute Prices before ROH are from 1990 to 1 year before ROH, 
 You may hover your mouse above the bars to see the exact average price of these flats.
 
 All flats that were improved under the ROH program have seen an increase in average resale price over the years and thus appreciated in value due to ROH. Top 3 Towns that show greatest appreciation, from most to least, are Queenstown, Marine Parade and Toa Payoh.  
-
+ 
 ```{r V1G2 Code, echo=FALSE, include=FALSE}
 #Plot 2 - Line plot
 
