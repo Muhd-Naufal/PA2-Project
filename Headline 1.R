@@ -1,7 +1,6 @@
 
 #Will Tengah Property prices be the same rise as Punggol?
 
-
 #Punggol Resale Prices
 Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
 
