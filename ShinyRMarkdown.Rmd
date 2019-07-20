@@ -973,7 +973,7 @@ secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
   )
 
 plot2final<-ggplotly(secondplot)
-plot2final
+plot2final 
 ```
 This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
 
