@@ -263,7 +263,9 @@ plot_ly(
   ))
 ```
 
-The table above shows the changes in average resale prices of Punggol from 2007 to 2017 and per flat type from 2 Room flats to Executive flats. Due to Punggol's early age, the resale value of 2 Room flats and 3 Room flats is not available until 2015. From the table we can see that **on average, there has been a 50% increase in resale value between 2007 and 2017**. 4 Room HDB has seen an increase of about **71%**, while 5 Room **49%** and Executive flats **41%**.
+The table above shows the changes in average resale prices of Punggol from 2007 to 2017 and per flat type from 2 Room flats to Executive flats. Due to Punggol's early age, the resale value of 2 Room flats and 3 Room flats is not available until 2015.
+
+From the table we can see that **on average, there has been a 50% increase in resale value between 2007 and 2017**. 4 Room HDB has seen an increase of about **71%**, while 5 Room **49%** and Executive flats **41%**.
 
 ```{r H1G2 Code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 
@@ -301,22 +303,33 @@ k <- ggplot(
 ) +
   geom_line() +
   scale_color_viridis_d() +
-  labs(x = "Years", y = "Yceffc") +
-  ggtitle("TITLE") +
+  labs(x = "Years", y = "Average Resale Prices") +
+  ggtitle("Average Resale Prices of Punggol between 2007 to 2017") +
   theme(legend.position = "top") +
   guides(color=guide_legend(title="Flat Type")) +
   geom_label() +
   geom_point(aes(group = seq_along(Years)), size = 7) +
   transition_reveal(Years)
 
+k + theme(plot.title = element_text(color="black", size=14, face="bold"),
+          axis.title.x = element_text(color="black", size=14, face="bold"),
+          axis.title.y = element_text(color="black", size=14, face="bold"))
+
 anim_save("k.gif", k)
 ```
 
+
 ![](k.gif)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
-## Headline 2
+The graph shows the resale price per flat type and total average year-to-year. As the town continue to mature, new amenities and points of interest are built and formed. So it is not surprising to see the resale price to gradually rise. It is interesting however, to see ROH play a part from 2007 onwards as it was the year it started. 
+
+
+### Will Tengah experience the same growth?
+
+
+
+## Will million dollar HDB flats be new new norm?
 
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
