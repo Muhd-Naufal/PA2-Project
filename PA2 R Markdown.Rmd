@@ -60,7 +60,7 @@ text-align: justify}
 
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The R Markdown report will comprehensively cover the aspects of HDB Resale Prices from the early 90s to the current year. Through analysis of the dataset, we will produce quality and informative insights, graphs accompanying the insights as well as a predictive model. We hope that through this document, it will aid users in their decision making process and other general purposes. 
 
 &nbsp;
 &nbsp;
