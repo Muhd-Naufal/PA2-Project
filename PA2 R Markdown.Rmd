@@ -845,6 +845,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Visualization 4
 
+In the Singapore market, the maturity of an estate or town refers to its age. Towns that have been around for more than 20 years are deemed mature. Those that have been built more recently are considered non-mature. The main difference between mature estate and a non mature estate two is that generally the mature-estates also have mature neighbourhoods and better amenities. Mature estate tends to be more expensive than their non-mature counterparts.
+
 ```{r V4G1 Code, echo=FALSE, include=FALSE}
 maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
 
@@ -906,6 +908,8 @@ k <-  plot_ly(mature, x = ~resale_price, color = ~flat_type, type = "box") %>%
 k
 ```
 
+The boxplot graph above depicts the resale prices of HDBs in mature towns per flat type. 5-room flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of 1.18 million followed by Executive and 3-room flat types. On the other hand, 3-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 7,500 over 27 years followed by 2-room and 4-room flat types.
+
 ```{r V4G11, echo=FALSE}
 o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>%
   
@@ -915,7 +919,7 @@ o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>
 o
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The boxplot graph above depicts the resale prices of HDBs in non-mature towns per flat type. Executive flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of 938,000 followed by 5-room and 4-room flat types. On the other hand, 2-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 16,800 over 27 years followed by 3-room and 4-room flat types.
 
 ```{r V4G2 Code, echo=FALSE, include=FALSE}
 mature$month <- as.yearmon(mature$month, "%Y-%m")
@@ -943,7 +947,7 @@ d <- plot_ly(townbar, x = ~townname, y = ~townavg, type = 'bar',text = townavg, 
 
 d
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The column bar graph above depicts the difference in average resale prices overall between Mature and Non-Mature Estates over 27 years. HDB flats in mature estates are seen to be the most expensive as they are resold at an average resale price of 454873.76 while non-mature estates are seen to be cheaper as they are resold lower at 413398.32 on average.
 
 ## Visualization 5
 
