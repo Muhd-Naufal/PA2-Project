@@ -93,7 +93,7 @@ p3.base <- recordPlot()
 #FOUR ROOM
 resale <- read.csv("./Datasets/HDB1.csv")
 resale <- filter(resale, Year >= 2012)
-resale <- filter(resale1, flat_type == "4 ROOM")
+resale <- filter(resale, flat_type == "4 ROOM")
 
 resale$resale_price <- as.numeric(levels(resale$resale_price))[resale$resale_price]
 resale$PriceArea <- resale$resale_price/resale$floor_area_sqm
