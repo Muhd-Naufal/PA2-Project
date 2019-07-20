@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * **Headlines**
   + Forecasting Tengah Town
-  + Is $1m HDB Becoming Ehe Norm?
+  + Is $1m HDB Becoming The Norm?
   + Predicting HDB Resale Prices
 
 * **Visualizations**
@@ -64,6 +64,8 @@ The R Markdown report will comprehensively cover the aspects of HDB Resale Price
 
 &nbsp;
 &nbsp;
+
+***
 
 ## Will Tengah Property Prices See The Same Rise As Punggol?
 
@@ -349,6 +351,26 @@ All in all, with Punggol featuring a Waterfront Living, Punggol Digital District
 ![](Images/GV-104-Main.original.jpg) 
 
 Over the years, HDB flats reaching close or at the $1 million mark has dominated the property headlines. Seeing HDB flats sold at that price seems bewildering. Many will wonder whether HDB mean affordable housing anymore? And will we expect to see million dollar HDB becoming the norm, potentially competiting with the Private Property market? 
+
+```{r map Code, echo=FALSE, include=FALSE}
+top <- read.csv("./Datasets/TopTown.csv")
+top <- as.data.frame(top)
+topname<-top$Name
+coordinates(top) <- ~Longitude + Latitude
+
+
+HDBIcon <- makeIcon(
+  iconUrl = "./Images/nDPK2G0I_400x400.jpg",
+  iconWidth = 20, iconHeight = 30,
+  iconAnchorX = 10, iconAnchorY = 30)
+```
+
+```{r map, echo=FALSE}
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data=top, popup = topname, icon=HDBIcon)
+
+```
 
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 

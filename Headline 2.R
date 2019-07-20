@@ -199,4 +199,25 @@ p <- ggplot(
   geom_point(aes(group = seq_along(Year)), size = 7) +
   transition_reveal(Year)
 p
-   
+
+############
+
+
+
+top <- read.csv("./Datasets/TopTown.csv")
+top <- as.data.frame(top)
+topname<-top$Name
+coordinates(top) <- ~Longitude + Latitude
+
+
+HDBIcon <- makeIcon(
+  iconUrl = "./Images/nDPK2G0I_400x400.jpg",
+  iconWidth = 20, iconHeight = 30,
+  iconAnchorX = 10, iconAnchorY = 30)
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data=top, popup = topname, icon=HDBIcon)
+
+
+
