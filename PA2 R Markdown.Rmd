@@ -343,6 +343,7 @@ Tengah, like Punggol started off with a blank state but Punggol town has establi
 
 All in all, with Punggol featuring a Waterfront Living, Punggol Digital District and North East Line MRT Line it is able to command a high resale price. In time with Tengah featuring a Forest Town, Jurong Innovation District and Jurong Region MRT Line, we believe it too can provide a near similar growth or even higher as Jurong East is envisioned to be Singapore's second CBD. 
 
+***
 
 ## Will million dollar HDB flats be new new norm?
 ![](Images/GV-104-Main.original.jpg) 
@@ -465,6 +466,8 @@ anim_save("p.gif", p)
 ![](p.gif)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+***
 
 ## Predictive Model
 
