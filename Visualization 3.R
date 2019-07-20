@@ -1,3 +1,13 @@
+#Headline: Singaporeans' HDB predicament: HDB dilemma for the future
+
+#Findings have shown that prices have skyrocketed from 2008 onwards.
+#On the other hand, the units completed over the years against the population growth faces a mismatch, as there are more Singaporeans than available HDBs.
+#This supply and demand forced the prices to increase drastically.
+#The problem: 
+#A. If HDB prices were to drop back to the early 2000s, home owners would potentially lose half their asset value
+#B. If HDB prices were to keep increasing, will the future generations be able to afford houses?
+
+
 #Level 1
 
 data <- read.csv("./Datasets/PopulationData.csv")
@@ -6,7 +16,6 @@ str(data)
 #data$Population <- as.numeric(levels(data$Population))[data$Population]
 
 #Find population change from 2000 to 2015
-#Not sure if should hardcode or not
 population2000 <- data[4,2]
 population2015 <- data[6,2]
 
@@ -30,7 +39,6 @@ housing_change
 
 #Ratio of new population
 no_population/no_housing
-
 
 
 #Level 2
