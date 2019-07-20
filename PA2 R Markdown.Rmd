@@ -1,6 +1,6 @@
 ---
 title: "R MARKDOWN REPORT"
-author: "Javier, E Lynn,AJ, Zulfikar, Ashraf, Naufal"
+author: "Javier, E Lynn, AJ, Zulfikar, Ashraf, Naufal"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
@@ -607,7 +607,15 @@ plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 plot1final<-ggplotly(plot1)
 plot1final
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+"Remaking our Heartland" is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
+
+This stacked bar graph shows the differences in average prices of flats that have undergone the "Remaking our Heartland" program. A stacked bar chart was chosen to better show the relative difference between the prices.
+
+The years used to compute Prices before ROH are from 1990 to 1 year before ROH, and the years used to compute Prices after ROH are from the year of their respective ROH commencement year to 2017.
+
+You may hover your mouse above the bars to see the exact average price of these flats.
+
+All flats that were improved under the ROH program have seen an increase in average resale price over the years and thus appreciated in value due to ROH. Top 3 Towns that show greatest appreciation, from most to least, are Queenstown, Marine Parade and Toa Payoh.  
 
 ```{r V1G2 Code, echo=FALSE, include=FALSE}
 #Plot 2 - Line plot
@@ -731,7 +739,9 @@ library(plotly)
 plot2final<-ggplotly(secondplot)
 plot2final
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
+
+Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
 
 ## Visualization 2
 
