@@ -850,6 +850,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 In the Singapore market, the maturity of an estate or town refers to its age. Towns that have been around for more than 20 years are deemed mature. Those that have been built more recently are considered non-mature. The main difference between mature estate and a non mature estate two is that generally the mature-estates also have mature neighbourhoods and better amenities. Mature estate tends to be more expensive than their non-mature counterparts.
 
+
 ```{r V4G1 Code, echo=FALSE, include=FALSE}
 maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
 
