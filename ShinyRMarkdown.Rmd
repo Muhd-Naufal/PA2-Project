@@ -965,12 +965,12 @@ meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 options(scipen=10000)
 
 secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
-  geom_line(color="red")+
+  geom_line(color="blue")+
   
   ggtitle("Prices in Queenstown from 2000")+xlab("Year")+ylab("Resale Amount ($)")+
   theme(
     plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
-    axis.title.x = element_text(color="blue",size=12,face="bold"),
+    axis.title.x = element_text(color="black",size=12,face="bold"),
     axis.title.y = element_text(color="blue",size=12,face="bold")
     
   )
