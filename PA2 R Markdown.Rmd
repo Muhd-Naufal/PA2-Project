@@ -7,7 +7,7 @@ output:
     highlight: github
     theme: cayman
 ---
-  
+
 ```{r libraries, include= FALSE}
 library(prettydoc)
 library(plyr)
@@ -54,6 +54,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ***
 
 <center> <h1>Visualizations</h1> </center>
+<style>
+body {
+text-align: justify}
+</style>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -61,6 +65,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 &nbsp;
 
 ## Will Tengah Property Prices See The Same Rise As Punggol?
+
+<style>
+body {
+text-align: justify}
+</style>
 
 When Punggol was first unveiled 1996 by former Prime Minister, Goh Chok Tong, there was a vision to make it the Waterfront Town in the 21st Century. Located in the northeast region of Singapore, bordered by the Singapore shoreline as as well as the Strait of Johor, there was an ambitious plan to transform the old village of Punggol into a waterfront town with residential housing occupying along the rivers and coastal areas.
 
@@ -321,11 +330,11 @@ anim_save("k.gif", k)
 
 ![](k.gif)
 
-
 The graph shows the resale price per flat type and total average year-to-year. As the town continue to mature, new amenities and points of interest are built and formed. So it is not surprising to see the resale price to gradually rise. It is interesting however, to see ROH play a part from 2007 onwards as it was the year it started. 
 
 
 ### Will Tengah experience the same growth?
+
 
 
 
@@ -820,6 +829,8 @@ p <- plot_ly() %>%
 p
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Visualization 4
 
 ```{r V4G1 Code, echo=FALSE, include=FALSE}
 maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
