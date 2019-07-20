@@ -334,12 +334,12 @@ The graph shows the resale price per flat type and total average year-to-year. A
 
 
 ### Will Tengah experience the same growth?
+![](Images/park_district_town_centre.png) 
 
-
-
+HDB's newest town in over 20 years since Punggol, Tengah will no doubt be the new town to conquer the headlines in years to come. Located in the west, it is bounded by Choa Chu Kang and Jurong East. It will be HDB first ever car free and nature centric town. HDB envisioned Tengah to be a **"Forest Town"**, designed to be sustainable, green and full of smart features. There are already sayings that Tengah will be the next Punggol - but is it really?
 
 ## Will million dollar HDB flats be new new norm?
-
+![](Images/GV-104-Main.original.jpg) 
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
