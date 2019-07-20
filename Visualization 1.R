@@ -152,6 +152,9 @@ melted<-melt(pricesfinal,id.vars="Town",measure.vars = c("Prices.before.ROH","Pr
 melted$value <- as.numeric(as.character(melted$value))
 str(melted)
 
+#reorder
+melted$Town<-factor(melted$Town,levels=c("Marine Parade","Pasir Ris","Toa Payoh","Hougang","Punggol","Queenstown","Jurong East","Woodlands","Yishun"),ordered = TRUE)
+
 #ggplot graph
 library(ggplot2)
 plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
