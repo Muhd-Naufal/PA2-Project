@@ -31,6 +31,7 @@ library(htmltools)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
 ```
 
 ***
@@ -313,7 +314,7 @@ kgif$Years <- as.numeric(as.character(kgif$Years))
 
 ```
 
-```{r H1G2, message = FALSE, warning = FALSE, results = FALSE, echo=FALSE}
+```{r H1G2, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 k <- ggplot(
   kgif,
   aes(Years,Price, group = Flat_Type, color = factor(Flat_Type), label = Flat_Type)
@@ -389,11 +390,11 @@ title <- tags$div(
 
 ```
 
-```{r map, fig.align = "center",echo=FALSE}
+```{r map,echo=FALSE}
 leaflet() %>%
   addTiles() %>%
   addMarkers(data=top, popup = topname, icon=HDBIcon) %>%
-  addControl(title, position = "topright ", className="map-title")
+  addControl(title, position = "topright", className="map-title")
 
 ```
 
@@ -1019,7 +1020,7 @@ town <- geojsonio::geojson_read("map.geojson", what = "sp")
 
 mymap = leaflet()
 
-tag.map.title <- tags$style(HTML("
+tag.map.title2 <- tags$style(HTML("
   .leaflet-control.map-title { 
     transform: translate(-50%,20%);
     left: 50%;
@@ -1033,7 +1034,7 @@ tag.map.title <- tags$style(HTML("
 "))
 
 title <- tags$div(
-  tag.map.title, HTML("Median Resale Price Per HDB Town")
+  tag.map.title2, HTML("Median Resale Price Per HDB Town")
 )  
 
 m <- leaflet(town) %>%
