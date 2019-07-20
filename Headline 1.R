@@ -1,7 +1,6 @@
 
 #Will Tengah Property prices be the same rise as Punggol?
 
-
 #Punggol Resale Prices
 Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
 
@@ -252,6 +251,7 @@ library(ggplot2)
 library(gganimate)
 #install.packages("gifski")
 library(gifski)
+library(ggrepel)
 
 k <- ggplot(
   kgif,
@@ -259,12 +259,15 @@ k <- ggplot(
 ) +
   geom_line() +
   scale_color_viridis_d() +
-  labs(x = "Years", y = "Yceffc") +
-  ggtitle("TITLE") +
+  labs(x = "Years", y = "Average Resale Prices") +
+  ggtitle("Average Resale Prices of Punggol between 2007 to 2017") +
   theme(legend.position = "top") +
   guides(color=guide_legend(title="Flat Type")) +
   geom_label() +
   geom_point(aes(group = seq_along(Years)), size = 7) +
   transition_reveal(Years)
-k
+
+k + theme(plot.title = element_text(color="black", size=14, face="bold"),
+          axis.title.x = element_text(color="black", size=14, face="bold"),
+          axis.title.y = element_text(color="black", size=14, face="bold"))
 
