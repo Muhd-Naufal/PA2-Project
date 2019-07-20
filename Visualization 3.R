@@ -35,7 +35,11 @@ no_population/no_housing
 
 #Level 2
 data1 <- read.csv("./Datasets/YearsUnits.csv")
+<<<<<<< HEAD
 
+=======
+data1
+>>>>>>> 2610dcf9d556c9083112a9a6ed9346fbaa767bd4
 library(ggplot2)
 
 ggplot()+
@@ -47,3 +51,25 @@ ggplot()+
     name = expression("Units completed"),
     sec.axis = sec_axis(~. /40000*160,name = "Index"),
     limits = c(0,40000))
+<<<<<<< HEAD
+=======
+
+
+
+ay <- list(
+  tickfont = list(color = "red"),
+  overlaying = "y",
+  side = "right",
+  title = "Index"
+)
+ay
+p <- plot_ly() %>%
+  add_bars(x = ~data1$ï..Year, y = ~data1$Units.completed, name = "Units completed") %>%
+  add_lines(x = ~data1$ï..Year, y = ~data1$Price.Index.2009...100, name = "Index", yaxis = "y2") %>%
+  layout(
+    title = "Year against Units completed and Index", yaxis2 = ay,
+    xaxis = list(title="Year")
+  )
+p
+
+>>>>>>> 2610dcf9d556c9083112a9a6ed9346fbaa767bd4

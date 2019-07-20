@@ -120,6 +120,31 @@ d2015<-as.integer(mean(type52015$resale_price))
 d2016<-as.integer(mean(type52016$resale_price))
 d2017<-as.integer(mean(type52017$resale_price))
 
+#Punggol Executive
+type62007<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2007")
+type62008<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2008")
+type62009<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2009")
+type62010<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2010")
+type62011<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2011")
+type62012<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2012")
+type62013<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2013")
+type62014<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2014")
+type62015<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2015")
+type62016<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2016")
+type62017<-filter(Punggol2, Punggol2$flat_type=="EXECUTIVE", Punggol2$year == "2017")
+
+e2007<-as.integer(mean(type62007$resale_price))
+e2008<-as.integer(mean(type62008$resale_price))
+e2009<-as.integer(mean(type62009$resale_price))
+e2010<-as.integer(mean(type62010$resale_price))
+e2011<-as.integer(mean(type62011$resale_price))
+e2012<-as.integer(mean(type62012$resale_price))
+e2013<-as.integer(mean(type62013$resale_price))
+e2014<-as.integer(mean(type62014$resale_price))
+e2015<-as.integer(mean(type62015$resale_price))
+e2016<-as.integer(mean(type62016$resale_price))
+e2017<-as.integer(mean(type62017$resale_price))
+
 #Total Average Prices Per Year
 type4and52007<-filter(Punggol2, Punggol2$year=="2007"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type4and52008<-filter(Punggol2, Punggol2$year=="2008"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
@@ -129,22 +154,22 @@ type4and52011<-filter(Punggol2, Punggol2$year=="2011"| Punggol2$flat_type=="4 RO
 type4and52012<-filter(Punggol2, Punggol2$year=="2012"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type4and52013<-filter(Punggol2, Punggol2$year=="2013"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type4and52014<-filter(Punggol2, Punggol2$year=="2014"| Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
-
 type23452015<-filter(Punggol2, Punggol2$year=="2015"| Punggol2$flat_type=="2 ROOM"& Punggol2$flat_type=="3 ROOM"&Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type23452016<-filter(Punggol2, Punggol2$year=="2016"| Punggol2$flat_type=="2 ROOM"& Punggol2$flat_type=="3 ROOM"&Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 type23452017<-filter(Punggol2, Punggol2$year=="2017"| Punggol2$flat_type=="2 ROOM"& Punggol2$flat_type=="3 ROOM"&Punggol2$flat_type=="4 ROOM"& Punggol2$flat_type=="5 ROOM")
 
-e2007<-as.integer(mean(type4and52007$resale_price))
-e2008<-as.integer(mean(type4and52008$resale_price))
-e2009<-as.integer(mean(type4and52009$resale_price))
-e2010<-as.integer(mean(type4and52010$resale_price))
-e2011<-as.integer(mean(type4and52011$resale_price))
-e2012<-as.integer(mean(type4and52012$resale_price))
-e2013<-as.integer(mean(type4and52013$resale_price))
-e2014<-as.integer(mean(type4and52014$resale_price))
-e2015<-as.integer(mean(type23452015$resale_price))
-e2016<-as.integer(mean(type23452016$resale_price))
-e2017<-as.integer(mean(type23452017$resale_price))
+f2007<-as.integer(mean(type4and52007$resale_price))
+f2008<-as.integer(mean(type4and52008$resale_price))
+f2009<-as.integer(mean(type4and52009$resale_price))
+f2010<-as.integer(mean(type4and52010$resale_price))
+f2011<-as.integer(mean(type4and52011$resale_price))
+f2012<-as.integer(mean(type4and52012$resale_price))
+f2013<-as.integer(mean(type4and52013$resale_price))
+f2014<-as.integer(mean(type4and52014$resale_price))
+f2015<-as.integer(mean(type23452015$resale_price))
+f2016<-as.integer(mean(type23452016$resale_price))
+f2017<-as.integer(mean(type23452017$resale_price))
+
 
 
 Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
@@ -162,9 +187,10 @@ tworoom <- c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017)
 threeroom <- c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017)
 fourroom <- c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017)
 fiveroom <- c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017)
-average <- c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017)
+executive <- c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017)
+average <- c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017)
 
-Punggoldf <- data.frame(Year,tworoom,threeroom,fourroom,fiveroom,average)
+Punggoldf <- data.frame(Year,tworoom,threeroom,fourroom,fiveroom,executive,average)
 
 <<<<<<< HEAD
  
@@ -182,30 +208,84 @@ is.nan.data.frame <- function(x)
 Punggoldf[is.nan(Punggoldf)] <- 0
 
 str(Punggoldf)
+Punggoldf
 
 library(plotly)
 
 p <- plot_ly(
   type = 'table',
   header = list(
-    values = c('<b>YEAR</b>', '<b>2 Room</b>','<b>3 Room</b>','<b>4 Room</b>','<b>5 Room</b>','<b>Total<b>'),
+    values = c('<b>YEAR</b>', '<b>2 Room</b>','<b>3 Room</b>','<b>4 Room</b>','<b>5 Room</b>','<b>Executive<b>','<b>Total<b>'),
     line = list(color = '#506784'),
-    fill = list(color = '#119DFF'),
+    fill = list(color = 'red'),
     align = c('left','center'),
-    font = list(color = 'white', size = 12)
+    font = list(color = 'black', size = 12)
   ),
   cells = list(
     values = rbind(
       c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017", '<b>2008 vs 2018</b>'),
-      c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017),
-      c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017),
-      c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017),
-      c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017),
-      c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017)),
+      c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,"null"),
+      c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,"null"),
+      c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"71.4%"),
+      c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017,"48.2%"),
+      c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,"41.6%"),
+      c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017,"50.5%")),
     line = list(color = '#506784'),
-    fill = list(color = c('#25FEFD', 'white')),
+    fill = list(color = c('red', 'white')),
     align = c('left', 'center'),
-    font = list(color = c('#506784'), size = 12)
+    font = list(color = c('black'), size = 12)
   ))
 p
 
+<<<<<<< HEAD
+=======
+## Gif
+
+Price <- c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,
+           b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,
+           c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,
+           d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017,
+           e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,
+           f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017)
+
+Years <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+           "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+           "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+           "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+           "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+           "2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
+
+Flat_Type <- c("2 Room","2 Room","2 Room","2 Room","2 Room","2 Room","2 Room","2 Room","2 Room","2 Room","2 Room",
+               "3 Room","3 Room","3 Room","3 Room","3 Room","3 Room","3 Room","3 Room","3 Room","3 Room","3 Room",
+               "4 Room","4 Room","4 Room","4 Room","4 Room","4 Room","4 Room","4 Room","4 Room","4 Room","4 Room",
+               "5 Room","5 Room","5 Room","5 Room","5 Room","5 Room","5 Room","5 Room","5 Room","5 Room","5 Room",
+               "Executive","Executive","Executive","Executive","Executive","Executive","Executive","Executive","Executive","Executive","Executive",
+               "Average","Average","Average","Average","Average","Average","Average","Average","Average","Average","Average")
+
+kgif <- data.frame(Price,Years,Flat_Type)
+kgif
+
+kgif$Price <- as.numeric(as.character(kgif$Price))
+kgif$Years <- as.numeric(as.character(kgif$Years))
+
+library(ggplot2)
+library(gganimate)
+#install.packages("gifski")
+library(gifski)
+
+k <- ggplot(
+  kgif,
+  aes(Years,Price, group = Flat_Type, color = factor(Flat_Type), label = Flat_Type)
+) +
+  geom_line() +
+  scale_color_viridis_d() +
+  labs(x = "Years", y = "Yceffc") +
+  ggtitle("TITLE") +
+  theme(legend.position = "top") +
+  guides(color=guide_legend(title="Flat Type")) +
+  geom_label() +
+  geom_point(aes(group = seq_along(Years)), size = 7) +
+  transition_reveal(Years)
+k
+
+>>>>>>> 2610dcf9d556c9083112a9a6ed9346fbaa767bd4
