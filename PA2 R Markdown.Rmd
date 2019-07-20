@@ -74,6 +74,12 @@ body {
 text-align: justify}
 </style>
 
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
 When Punggol was first unveiled 1996 by former Prime Minister, Goh Chok Tong, there was a vision to make it the Waterfront Town in the 21st Century. Located in the northeast region of Singapore, bordered by the Singapore shoreline as as well as the Strait of Johor, there was an ambitious plan to transform the old village of Punggol into a waterfront town with residential housing occupying along the rivers and coastal areas.
 
 Subsequently in 2007, Punggol was selected as one of the pilot towns under the Remaking Our Heartland (ROH) programme. It included a master plan to further realise the vision of Punggol as a waterfront town. One of the plan includes a man-made waterway that goes through the town, bringing in opportunities for authentic waterfront living and exciting water-based activities.
@@ -81,7 +87,6 @@ Subsequently in 2007, Punggol was selected as one of the pilot towns under the R
 Come 2017, just 10 years after the ROH programme was introduced, prices have skyrocketted to nearly $900,000. This mark a new milestone in the HDB resale market for the suburban town in the region.
 
 ``` {r H1G1 Code, echo=FALSE, include=FALSE}
-
 Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
 Punggol$month <- as.Date(paste0(Punggol$month, "-01"), "%Y-%m-%d")
 Punggol$year <- format(as.Date(Punggol$month, format="%Y-%m-%d"),"%Y")
@@ -363,12 +368,32 @@ HDBIcon <- makeIcon(
   iconUrl = "./Images/nDPK2G0I_400x400.jpg",
   iconWidth = 20, iconHeight = 30,
   iconAnchorX = 10, iconAnchorY = 30)
+
+tag.map.title <- tags$style(HTML("
+  .leaflet-control.map-title { 
+    transform: translate(-50%,20%);
+    left: 50%;
+    text-align: center;
+    padding-left: 10px; 
+    padding-right: 10px; 
+    background: rgba(255,255,255,0.75);
+    font-weight: bold;
+    font-size: 28px;
+  }
+"))
+
+title <- tags$div(
+  tag.map.title, HTML("Most Expensive Flat Per Town")
+)  
+
+
 ```
 
-```{r map, echo=FALSE}
+```{r map, fig.align = "center",echo=FALSE}
 leaflet() %>%
   addTiles() %>%
-  addMarkers(data=top, popup = topname, icon=HDBIcon)
+  addMarkers(data=top, popup = topname, icon=HDBIcon) %>%
+  addControl(title, position = "topright ", className="map-title")
 
 ```
 
@@ -934,7 +959,7 @@ k <-  plot_ly(mature, x = ~resale_price, color = ~flat_type, type = "box") %>%
 k
 ```
 
-The boxplot graph above depicts the resale prices of HDBs in mature towns per flat type. 5-room flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of 1.18 million followed by Executive and 3-room flat types. On the other hand, 3-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 7,500 over 27 years followed by 2-room and 4-room flat types.
+The boxplot graph above depicts the resale prices of HDBs in mature towns per flat type. 5-room flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of $1.18 million followed by Executive and 3-room flat types. On the other hand, 3-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 7,500 over 27 years followed by 2-room and 4-room flat types.
 
 ```{r V4G11, echo=FALSE}
 o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>%
@@ -945,7 +970,7 @@ o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>
 o
 ```
 
-The boxplot graph above depicts the resale prices of HDBs in non-mature towns per flat type. Executive flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of 938,000 followed by 5-room and 4-room flat types. On the other hand, 2-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 16,800 over 27 years followed by 3-room and 4-room flat types.
+The boxplot graph above depicts the resale prices of HDBs in non-mature towns per flat type. Executive flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of $938,000 followed by 5-room and 4-room flat types. On the other hand, 2-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 16,800 over 27 years followed by 3-room and 4-room flat types.
 
 ```{r V4G2 Code, echo=FALSE, include=FALSE}
 mature$month <- as.yearmon(mature$month, "%Y-%m")
@@ -1014,7 +1039,7 @@ title <- tags$div(
 m <- leaflet(town) %>%
   setView(mymap, lat=1.351616, lng =103.808053, zoom = 11) %>%
   addTiles() %>%
-  addControl(title, position = "topleft", className="map-title")
+  addControl(title, position = "topright", className="map-title")
 
 m %>% addPolygons()
 
