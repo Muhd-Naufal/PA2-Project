@@ -314,17 +314,24 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
+
 hdb2$month <- as.Date(paste0(hdb2$month, "-01"), "%Y-%m-%d")
+
 hdb3 <- filter(hdb2, month >= "2012-01-01")
+
 hdb4 <- filter(hdb3, flat_type == "4 ROOM" | 
                      flat_type == "5 ROOM" | 
                      flat_type == "EXECUTIVE" | 
                      flat_type == "MULTI-GENERATION")
 
 hdb5 <- filter(hdb4, resale_price >= 900000)
+
 hdb6 <- count(hdb5, "flat_type")
+
 hdb7 <- data.frame(hdb5$flat_type, hdb5$resale_price, hdb5$month)
+
 hdb7$hdb5.resale_price <- 1
+
 sum(hdb7$hdb5.resale_price)
 ```
 
@@ -347,6 +354,7 @@ hdb8 <- filter(hdb3, flat_type == "4 ROOM" |
                  flat_type == "MULTI-GENERATION")
 
 hdb9 <- data.frame(hdb8$flat_type, hdb8$month)
+
 hdb9$year <- substring(hdb9$hdb8.month,1,4)
 
 i <- sapply(hdb9, is.factor)
@@ -435,12 +443,18 @@ Still trying to make it work...
 ## Visualization 1
 
 ```{r V1G1 Code, echo=FALSE, include=FALSE}
+
+#Headline 1: Remaking our Heartland
+
 raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
 
+#regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
 df<-as.data.frame(year)
 raw<-cbind(df,raw1)
 
+#select towns with ROH
+library(dplyr)
 towndata<-raw%>%
   select(year,town,resale_price)
 
@@ -455,8 +469,12 @@ rohvalues<-which(towndata$town=="PUNGGOL"|
                    towndata$town=="PASIR RIS")
 
 rohdf<-towndata[rohvalues,]
-rohdf$year <- as.numeric(as.character(rohdf$year))
 
+#change year from factor to numeric
+rohdf$year <- as.numeric(as.character(rohdf$year))
+str(rohdf)
+
+#prices before ROH
 pgb1<-which(rohdf$town=="PUNGGOL" & rohdf$year<2007)
 pgb2<-rohdf[pgb1,]
 punggolbef<-mean(pgb2$resale_price)
@@ -493,7 +511,7 @@ prb1<-which(rohdf$town=="PASIR RIS" & rohdf$year<2015)
 prb2<-rohdf[prb1,]
 prbef<-mean(prb2$resale_price)
 
-
+#prices after ROH
 
 pga1<-which(rohdf$town=="PUNGGOL" & rohdf$year>2006)
 pga2<-rohdf[pga1,]
@@ -531,6 +549,7 @@ pra1<-which(rohdf$town=="PASIR RIS" & rohdf$year>2014)
 pra2<-rohdf[pra1,]
 praft<-mean(pra2$resale_price)
 
+#price difference due to ROH
 dpunggol<-punggolaft-punggolbef
 dyishun<-yishunaft-yishunbef
 dqueenstown<-queenstownaft-queenstownbef
@@ -541,6 +560,7 @@ dtoapayoh<-tpaft-tpbef
 dwoodlands<-woodaft-woodbef
 dpasirris<-praft-prbef
 
+#combine as vectors
 Punggol<-c("Punggol",punggolbef,punggolaft,dpunggol)
 Yishun<-c("Yishun",yishunbef,yishunaft,dyishun)
 Queenstown<-c("Queenstown",queenstownbef,queenstownaft,dqueenstown)
@@ -551,14 +571,21 @@ ToaPayoh<-c("Toa Payoh",tpbef,tpaft,dtoapayoh)
 Woodlands<-c("Woodlands",woodbef,woodaft,dwoodlands)
 PasirRis<-c("Pasir Ris",prbef,praft,dpasirris)
 
+#combine
 prices<-data.frame(Punggol,Yishun,Queenstown,MarineParade,Hougang,JurongEast,ToaPayoh,Woodlands,PasirRis)
 prices<-t(prices)
 
+#rename column name
 colnames(prices)<-c("Town","Prices before ROH","Prices after ROH","Price Difference due to ROH")
 pricesfinal<-data.frame(prices)
 
+#melt columns
+library(reshape2)
 melted<-melt(pricesfinal,id.vars="Town",measure.vars = c("Prices.before.ROH","Prices.after.ROH"))
+
+#convert values from character to integer
 melted$value <- as.numeric(as.character(melted$value))
+str(melted)
 ```
 
 ```{r V1G1, echo=FALSE}
@@ -574,9 +601,11 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
     
   )
 
+#rescale
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 
 plot1final<-ggplotly(plot1)
+plot1final
 ```
 "Remaking our Heartland" is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
 
@@ -587,8 +616,11 @@ The years used to compute Prices before ROH are from 1990 to 1 year before ROH, 
 You may hover your mouse above the bars to see the exact average price of these flats.
 
 All flats that were improved under the ROH program have seen an increase in average resale price over the years and thus appreciated in value due to ROH. Top 3 Towns that show greatest appreciation, from most to least, are Queenstown, Marine Parade and Toa Payoh.  
-
+ 
 ```{r V1G2 Code, echo=FALSE, include=FALSE}
+#Plot 2 - Line plot
+
+#top town with highest increase from ROH
 top1<-raw%>%
   select(year,town,resale_price)
 
@@ -596,6 +628,7 @@ top3a<-which(towndata$town=="QUEENSTOWN")
 
 top3b<-top1[top3a,]
 
+#average price
 
 y2000w<-which(top3b$year==2000)
 y2000w2<-top3b[y2000w,]
@@ -669,6 +702,7 @@ y2017w<-which(top3b$year==2017)
 y2017w2<-top3b[y2017w,]
 mean2017<-mean(y2017w2$resale_price)
 
+#combine mean
 meantab<-c(mean2000,mean2001,mean2002,mean2003,mean2004,mean2005,
               mean2006,mean2007,mean2008,mean2009,mean2010,mean2011,
               mean2012,mean2013,mean2014,mean2015,mean2016,mean2017)
@@ -680,12 +714,14 @@ yeartab<-c("2000","2001","2002","2003","2004","2005","2006","2007",
 meandf<-cbind(yeartab,meantab)
 meandf2<-as.data.frame(meandf)
 
+#change values to numeric
 meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
 ```
 
 ```{r V1G2, echo=FALSE}
+library(ggplot2)
 options(scipen=10000)
 
 secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
@@ -699,26 +735,34 @@ secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
     
   )
 
+library(plotly)
 plot2final<-ggplotly(secondplot)
+plot2final
 ```
 This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
 
 Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
 
+You may hover your mouse above the line graph to have a look at yearly resale prices of flats in Queenstown, denoted by "meantab".
+
 ## Visualization 2
 
 ```{r V2G1 Code, echo=FALSE, include=FALSE}
+#Combined test 
 combined <- read.csv("./Datasets/CombinedDataset.csv")
 combined <- as.data.frame(combined)
 coordinates(combined) <- ~Longitude + Latitude
 
+#Choose points in map
 onehundredhdb <- read.csv("./Datasets/100HDBAddress.csv")
 coordinates(onehundredhdb) <- ~Longitude + Latitude
 
+#Buffer range
 pointsBuffer3 <- gBuffer(onehundredhdb, width=.005, byid = TRUE)
 ```
 
 ```{r V2G1, echo=FALSE}
+#Combined test map 
 leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
   addTiles() %>%
   addMarkers(data=combined,clusterOptions = markerClusterOptions()) %>%
@@ -732,9 +776,12 @@ count<- over(pointsBuffer3, combined, fn=length)
 count <- as.data.frame(count)
 count <-count[,-2:-3]
 count <- as.data.frame(count)
+count
 
 resale <- onehundredhdb$Resale.Value
+
 resale <- as.data.frame(resale)
+
 final <- cbind(count,resale)
 ```
 
@@ -750,15 +797,26 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```{r V3G1 codes, echo=FALSE, include=FALSE}
 data <- read.csv("./Datasets/PopulationData.csv")
+library(dplyr)
+str(data)
+#data$Population <- as.numeric(levels(data$Population))[data$Population]
 
+#Find population change from 2000 to 2015
+#Not sure if should hardcode or not
 population2000 <- data[4,2]
 population2015 <- data[6,2]
+
+class(population2000)
+#Population change
 
 no_population <- population2015-population2000
 no_population
 population_change <- ((population2015-population2000)/population2000)*100
 population_change
 
+#The population change was 37.7894% from 2000 to 2015
+
+#Housing Shortage
 housing2000 <- data[4,3]
 housing2015 <- data[6,3]
 
@@ -766,6 +824,7 @@ no_housing <- housing2015-housing2000
 housing_change <- ((housing2015-housing2000)/housing2000)*100
 housing_change
 
+#Ratio of new population
 no_population/no_housing
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -795,6 +854,7 @@ p
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ```{r V4G1 Code, echo=FALSE, include=FALSE}
+#mature
 maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
 
 mature2 <- filter(maturecsv, flat_type == "2 ROOM"|
@@ -821,6 +881,7 @@ mature <-filter(mature2, town =="ANG MO KIO"|
                   town=="TOA PAYOH"|
                   town=="PASIR RIS")
 
+#nonmature
 
 nonmaturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
 
@@ -871,13 +932,17 @@ mature$month <- as.yearmon(mature$month, "%Y-%m")
 str(mature)
 nonmature$month <- as.yearmon(nonmature$month, "%Y-%m")
 
+#filter to >=2010
 newmature <- filter(mature, month >= "2010-01")
+newmature
 newnonmature <- filter(nonmature, month >= "2010-01")
+newnonmature
 
-
+#Find avg resale price & difference
 matureavg <- mean(newmature$resale_price)
 nonmatureavg <- mean(newnonmature$resale_price)
 difference <- matureavg - nonmatureavg
+difference
 
 townavg <- c(matureavg,nonmatureavg)
 townname <- c("Mature","Non-Mature")
@@ -910,6 +975,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```{r V6G1 Code, echo=FALSE, include=FALSE}
 town <- geojsonio::geojson_read("map.geojson", what = "sp")
+class(town)
+names(town)
 
 mymap = leaflet()
 
