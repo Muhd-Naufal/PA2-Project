@@ -69,6 +69,7 @@ library(plyr)
 library(dplyr)
 
 hdb6 <- count(hdb5, "flat_type")
+hdb6
 #Select specific columns
 
 hdb7 <- data.frame(hdb5$flat_type, hdb5$resale_price, hdb5$month)
@@ -199,4 +200,64 @@ p <- ggplot(
   geom_point(aes(group = seq_along(Year)), size = 7) +
   transition_reveal(Year)
 p
-   
+
+############
+
+
+
+top <- read.csv("./Datasets/TopTown.csv")
+top <- as.data.frame(top)
+topname<-top$Name
+coordinates(top) <- ~Longitude + Latitude
+
+
+HDBIcon <- makeIcon(
+  iconUrl = "./Images/nDPK2G0I_400x400.jpg",
+  iconWidth = 20, iconHeight = 30,
+  iconAnchorX = 10, iconAnchorY = 30)
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data=top, popup = topname, icon=HDBIcon)
+
+##############
+
+#Number of $900,000 flats vs overall market
+
+million <- nrow(hdb7)
+total <- nrow(hdb4)
+nonmillion <- total - million
+
+percentagemil <- million/total * 100
+percentagemil <- format(round(percentagemil, 2), nsmall = 2)
+percentagemil <- paste0(percentagemil,'%')
+
+str(percentagemil)
+percentagenonmil <- nonmillion/total * 100
+percentagenonmil <- format(round(percentagenonmil, 2), nsmall = 2)
+percentagenonmil <- paste0(percentagenonmil,'%')
+
+library(plotly)
+
+p <- plot_ly(
+  type = 'table',
+  header = list(
+    values = c('<b>HDB</b>','<b>Million dollar HDBs</b>','<b>Non-Million dollar HDB</b>','<b>Total HDB</b>'),
+    line = list(color = '#506784'),
+    fill = list(color = 'red'),
+    align = c('left','center'),
+    font = list(color = 'white', size = 12)
+  ),
+  cells = list(
+    values = rbind(
+      c('</b>Count of HDB</b>','</b>Percentage</b>'),
+      c(million,percentagemil),
+      c(nonmillion,percentagenonmil),
+      c(total,"<b>100%<b>")),
+    line = list(color = '#506784'),
+    fill = list(color = c('#FA8072', 'white')),
+    align = c('left', 'center'),
+    font = list(color = c('black'), size = 12)
+  ))
+p
+
