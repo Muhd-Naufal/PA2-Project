@@ -7,10 +7,12 @@ library(geojsonio)
 library(RColorBrewer)
 library(rgeos)
 library(likert) 
+library(zoo) 
+library(plotly)
 
-Household<-read.csv("./Datasets/HDB Resale Prices.csv")
+Householdcsv<-read.csv("./Datasets/HDB1.csv")
 
-Household2 <- filter(Household, flat_type == "3 ROOM" |
+Household <- filter(Householdcsv, flat_type == "3 ROOM" |
                        flat_type == "4 ROOM" | 
                        flat_type == "5 ROOM" | 
                        flat_type == "EXECUTIVE" )
@@ -32,44 +34,21 @@ AverageSquare = (Household$resale_price) / FloorArea
 FloorArea <- cbind(FloorArea,AverageSquare) 
 FloorArea
 
-####
+###
 
-Household<-read.csv("./Datasets/HDB Resale Prices.csv")
+w <-  plot_ly(Household, x = ~floor_area_sqm, color = ~flat_type, type = "scatter") %>%
+  
+  layout(title="Floor area of Square Meters per Flat Type",
+         xaxis=list(title="Floor Square Meter"),
+         yaxis=list(title="Flat Type"))
+w
 
+Household$Year <- factor(Household$Year, levels = Household[["Year"]])
 
-g <- which(Household$type == "Company cars"| data$type == "Private cars" | data$type == "Rental cars")
-g
-h <- data[g,]
-
-i <- which(data$year > 2013 & data$year < 2017)
-j <- h[i,]
-j <- na.omit(j)
-
-j %>%
-  group_by(year)
-
-data %>%
-  filter(data$type == "Company cars"| data$type == "Private cars" | data$type == "Rental cars", data$year >= 2013) %>%
-  group_by(year) %>%
-  summarise(number = sum(number))
-
-
-library(ggplot2)
-library(dplyr)
-options(scipen=10000)
-
-
-data2<-subset(df,df$sector=="Private Sector"& df$year>=2000)
-data2
-
-
-data2 <- filter(data, data$ethnic_group == "Chinese" | data$ethnic_group == "Malay" )
-data2
-
-ggplot()+
-  geom_line(data=data1,aes(x=data1$year,y=data1$no_of_drug_abusers),color="blue")+
-  geom_point(data=data1, aes(x=data1$year,y=data1$no_of_drug_abusers),color="blue")+
-  geom_line(data=data2,aes(x=data2$year,y=data2$no_of_drug_abusers),color="red")+
-  geom_point(data=data2, aes(x=data2$year,y=data2$no_of_drug_abusers),color="red")+
-  ggtitle("Q4.3 - Student Name - New Absersby ethnic groups") + xlab("Year")+ ylab("No of Drugs Abusers")
+p <- plot_ly(Household, x = ~Year, y = ~floor_area_sqm, name = '1990', type = 'scatter', mode = 'lines',
+             line = list(color = 'rgb(205, 12, 24)', width = 4)) %>%
+  add_trace(y = ~floor_area_sqm, name = '2000', line = list(color = 'rgb(22, 96, 167)', width = 4)) %>%
+  layout(title = "Average Floor Square per meters for Flat types",
+         xaxis = list(title = "Year"),
+         yaxis = list (title = "Floor Square Meters"))
 
