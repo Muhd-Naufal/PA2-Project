@@ -1,0 +1,53 @@
+---
+title: "Visualization 5"
+author: "Zulfikar"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  prettydoc::html_pretty:
+    highlight: github
+    theme: cayman
+---
+
+```{r libraries, include= FALSE}
+library(prettydoc)
+library(plyr)
+library(dplyr)
+library(RColorBrewer)
+library(leaflet)
+library(geojsonio)
+library(ggplot2)
+library(gganimate)
+library(gifski)
+library(data.table)
+library(ggrepel)
+library(plotly)
+library(shiny)
+library(rgeos)
+library(zoo)
+library(htmlwidgets)
+library(htmltools)
+library(animation)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+ 
+
+## How Square Meter of HDB Flats Affects Resale Price
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
+![](Images/edHDB-BTO-Skyline-@-Bukit-Batok-3.jpg)
