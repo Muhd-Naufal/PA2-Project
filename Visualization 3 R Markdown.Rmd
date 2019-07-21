@@ -1,0 +1,97 @@
+---
+title: "Visualization 3"
+author: "Javier"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  prettydoc::html_pretty:
+    highlight: github
+    theme: cayman
+---
+
+```{r libraries, include= FALSE}
+library(prettydoc)
+library(plyr)
+library(dplyr)
+library(RColorBrewer)
+library(leaflet)
+library(geojsonio)
+library(ggplot2)
+library(gganimate)
+library(gifski)
+library(data.table)
+library(ggrepel)
+library(plotly)
+library(shiny)
+library(rgeos)
+library(zoo)
+library(htmlwidgets)
+library(htmltools)
+library(animation)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+  
+## Title
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
+![](Images/DSC_0213.jpg)
+
+```{r V3G1 codes, echo=FALSE, include=FALSE}
+data <- read.csv("./Datasets/PopulationData.csv")
+
+population2000 <- data[4,2]
+population2015 <- data[6,2]
+
+no_population <- population2015-population2000
+no_population
+population_change <- ((population2015-population2000)/population2000)*100
+population_change
+
+housing2000 <- data[4,3]
+housing2015 <- data[6,3]
+
+no_housing <- housing2015-housing2000
+housing_change <- ((housing2015-housing2000)/housing2000)*100
+housing_change
+
+no_population/no_housing
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```{r V3G1, message=FALSE, results=FALSE,echo=FALSE}
+
+```
+
+```{r V3G2 ,message=FALSE, warning=FALSE, echo=FALSE}
+data1 <- read.csv("./Datasets/YearsUnits.csv")
+
+ay <- list(
+  tickfont = list(color = "red"),
+  overlaying = "y",
+  side = "right",
+  title = "Index"
+)
+ay
+p <- plot_ly() %>%
+  add_bars(x = ~data1$ï..Year, y = ~data1$Units.completed, name = "Units completed") %>%
+  add_lines(x = ~data1$ï..Year, y = ~data1$Price.Index.2009...100, name = "Index", yaxis = "y2") %>%
+  layout(
+    title = "Year against Units completed and Index", yaxis2 = ay,
+    xaxis = list(title="Year")
+  )
+p
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
