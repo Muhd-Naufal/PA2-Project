@@ -90,7 +90,7 @@ Definition of the ratio is to evaluate on average, how many (new) people (new pe
 Using View(data), we can see that the persons per dwelling units(PDU) is 4.3. However, the ratio exceeds the PDU.
 
 In comparison too, the PDU in 2000 is lower than 2015. 
-Singaporeans were actually worse off in 2015 than compared to 2000.
+**Singaporeans were actually worse off in 2015 than compared to 2000.**
 
 
 ```{r V3G2 ,message=FALSE, warning=FALSE, echo=FALSE}

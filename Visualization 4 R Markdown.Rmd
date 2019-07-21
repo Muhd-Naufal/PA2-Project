@@ -82,7 +82,6 @@ mature <-filter(mature2, town =="ANG MO KIO"|
                   town=="TOA PAYOH"|
                   town=="PASIR RIS")
 
-
 nonmaturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
 
 nonmature2 <- filter(nonmaturecsv, flat_type == "2 ROOM"|
@@ -131,7 +130,6 @@ The boxplot graph above depicts the resale prices of HDBs in non-mature towns pe
 
 ```{r V4G2 Code, echo=FALSE, include=FALSE}
 mature$month <- as.yearmon(mature$month, "%Y-%m")
-str(mature)
 nonmature$month <- as.yearmon(nonmature$month, "%Y-%m")
 
 newmature <- filter(mature, month >= "2010-01")
@@ -155,4 +153,4 @@ d <- plot_ly(townbar, x = ~townname, y = ~townavg, type = 'bar',text = townavg, 
 
 d
 ```
-The column bar graph above depicts the difference in average resale prices overall between Mature and Non-Mature Estates over 27 years. HDB flats in mature estates are seen to be the most expensive as they are resold at an average resale price of 454873.76 while non-mature estates are seen to be cheaper as they are resold lower at 413398.32 on average.
+The column bar graph above depicts the difference in average resale prices overall between Mature and Non-Mature Estates over 27 years. HDB flats in mature estates are seen to be the most expensive as they are resold at an average resale price of $454,873 while non-mature estates are seen to be cheaper as they are resold lower at $413,398 on average.
