@@ -58,7 +58,8 @@ p <- plot_ly() %>%
   add_lines(x = ~data1$ï..Year, y = ~data1$Price.Index.2009...100, name = "Index", yaxis = "y2") %>%
   layout(
     title = "Year against Units completed and Index", yaxis2 = ay2,
-    xaxis = list(title="Year")
+    xaxis = list(title="Year"),
+    yaxis = list(title="Units Completed")
   )
 p
 
