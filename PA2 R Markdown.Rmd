@@ -739,7 +739,7 @@ plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 plot1final<-ggplotly(plot1)
 plot1final
 ```
-"Remaking our Heartland" is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
+**"Remaking our Heartland"** is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
 
 This stacked bar graph shows the differences in average prices of flats that have undergone the "Remaking our Heartland" program. A stacked bar chart was chosen to better show the relative difference between the prices. The graph is also sorted from highest to lowest Price after ROH.
 

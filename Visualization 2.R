@@ -220,3 +220,10 @@ ggplot(final,aes(x=count,y=resale)) +
   ggtitle("Relationship between Number of Points of Interest and Resale Value")
 
 
+ggplot(final,aes(x=count,y=resale)) +
+  geom_smooth(fill = "pink", se=FALSE, aes(colour="Resale Price")) +
+  geom_smooth(method="lm",se=FALSE, aes(colour="Regression Line")) +
+  scale_colour_manual(name="legend", values=c("red", "blue")) +
+  ggtitle("Relationship between Number of Points of Interest and Resale Value") +
+  labs(x = "Count of Points of Interest", y = "Resale Price") 
+
