@@ -193,6 +193,11 @@ leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
   addMarkers(data=onehundredhdb) %>%
   addPolygons(data=pointsBuffer3)
 
+
+
+
+
+
 count<- over(pointsBuffer3, combined, fn=length)
 count <- as.data.frame(count)
 count <-count[,-2:-3]
@@ -208,12 +213,7 @@ resale
 final <- cbind(count,resale)
 final
 
-#scatterplot
 library(ggplot2)
-
-ggplot(final,aes(x=count,y=resale)) +
-  geom_point(stat="identity",color ="red")
-
 ggplot(final,aes(x=count,y=resale)) +
   geom_smooth( fill = "pink", colour = "red",se=FALSE) +
   geom_smooth(method="lm",se=FALSE) +

@@ -1,6 +1,5 @@
 #Headline 1: Remaking our Heartland
 
-
 raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
 
 #Summary 
@@ -153,6 +152,9 @@ melted<-melt(pricesfinal,id.vars="Town",measure.vars = c("Prices.before.ROH","Pr
 melted$value <- as.numeric(as.character(melted$value))
 str(melted)
 
+#reorder
+melted$Town<-factor(melted$Town,levels=c("Marine Parade","Pasir Ris","Toa Payoh","Hougang","Punggol","Queenstown","Jurong East","Woodlands","Yishun"),ordered = TRUE)
+
 #ggplot graph
 library(ggplot2)
 plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
@@ -169,7 +171,7 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 plot1
 
-install.packages("plotly")
+#install.packages("plotly")
 library(plotly)
 plot1final<-ggplotly(plot1)
 plot1final
