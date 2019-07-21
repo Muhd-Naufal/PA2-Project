@@ -136,7 +136,14 @@ q <- plot_ly(final2000, labels = ~Flat_Type2000, values = ~Categories2000, type 
 q
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Over the years, the number of flats have been built in a fast moving pace and alot of the flats have been drastically made for the people as population rises over the time being. As the years and decades past, many of the upcoming families will need shelter for their own and thus the flats sold have been on an increase state.
+
+This first pie chart shows the percentage of flat types that is sold in the 1990s. Both 3 Room and 4 room stands out as the majority with the combination of 74.9% of the total percentage of the flat types that have been sold which is equivalent to 211,787 flats sold in that era.
+
+The second pie chart shows the percentage of flat types that is sold in the 2000s. As you can see and compare from both charts, the combination of both percentage which the flats have been purchased is 69.2% which is a decrease of 5.7% compared to the 1990s while there is 5.4% increased on 5 room flats that have been sold in the 2000s and moreover , a decrease of 0.36% to those sold in 2000s as compare to the 1990s for Executive Flats.
+
+You can also check which flats to compare by just clicking the legend indicated at the top corner
+
 
 ```{r V5G2, echo=FALSE}
 x <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
@@ -153,4 +160,6 @@ t <- plot_ly(data, x = ~x, y = ~y1, type = 'bar', name = '1990s', marker = list(
          barmode = 'group')
 t
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+In this Bar chart above, it will compare both eras of the 1990s and 2000s and this indicates that over a decade, there are increases on all 4 flats that is mentioned on the chart. Moreover, for both 4 room and 5 room category, there is a significant increase with 4 room flats having difference of 87,339 flats sold during the 1990s and 2000s whereas also a significant increse with 5 room flats with a difference of 58.776 flats sold during the 1990s and 2000s
+
+Ho
