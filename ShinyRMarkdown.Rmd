@@ -539,7 +539,7 @@ nonmillion <- total - million
 percentagemil <- million/total * 100
 percentagemil <- format(round(percentagemil, 2), nsmall = 2)
 percentagemil <- paste0(percentagemil,'%')
-
+hh
 str(percentagemil)
 percentagenonmil <- nonmillion/total * 100
 percentagenonmil <- format(round(percentagenonmil, 2), nsmall = 2)
