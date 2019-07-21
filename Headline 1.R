@@ -1,7 +1,6 @@
 
 #Will Tengah Property prices be the same rise as Punggol?
 
-
 #Punggol Resale Prices
 Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
 
@@ -192,7 +191,7 @@ average <- c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017)
 
 Punggoldf <- data.frame(Year,tworoom,threeroom,fourroom,fiveroom,executive,average)
 
-<<<<<<< HEAD
+
  
 #f<- reshape(testhdb2room, idvar = "Year", timevar = "Mean", direction = "wide")
 
@@ -237,8 +236,7 @@ p <- plot_ly(
   ))
 p
 
-<<<<<<< HEAD
-=======
+
 ## Gif
 
 Price <- c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,
@@ -287,5 +285,3 @@ k <- ggplot(
   geom_point(aes(group = seq_along(Years)), size = 7) +
   transition_reveal(Years)
 k
-
->>>>>>> 2610dcf9d556c9083112a9a6ed9346fbaa767bd4
