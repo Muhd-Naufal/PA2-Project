@@ -170,8 +170,17 @@ f2016<-as.integer(mean(type23452016$resale_price))
 f2017<-as.integer(mean(type23452017$resale_price))
 
 
+
+Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
+
+#Mean <- c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,
+          b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,
+          c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,
+          d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017)
+
 #Add to data frame
 Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
+
 
 tworoom <- c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017)
 threeroom <- c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017)
@@ -182,6 +191,26 @@ average <- c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017)
 
 Punggoldf <- data.frame(Year,tworoom,threeroom,fourroom,fiveroom,executive,average)
 
+<<<<<<< HEAD
+
+ 
+#f<- reshape(testhdb2room, idvar = "Year", timevar = "Mean", direction = "wide")
+
+rapply( Punggoldf[,c(2,3)], f=function(x) ifelse(is.nan(x),0,x), how="replace")
+Punggoldf
+#Tengah
+Year <- c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
+
+#Replace NaN value with zero
+is.nan.data.frame <- function(x)
+  do.call(cbind, lapply(x, is.nan))
+
+Punggoldf[is.nan(Punggoldf)] <- 0
+
+str(Punggoldf)
+Punggoldf
+=======
+>>>>>>> 5cd1cf87d8448ff768ea09122c50a73aa391f245
 
 library(plotly)
 
@@ -211,6 +240,7 @@ p <- plot_ly(
     width = 100, height = 30
   ))
 p
+
 
 ## Gif
 
@@ -260,8 +290,12 @@ k <- ggplot(
   geom_label() +
   geom_point(aes(group = seq_along(Years)), size = 7) +
   transition_reveal(Years)
+<<<<<<< HEAD
+k
+=======
 
 k + theme(plot.title = element_text(color="black", size=14, face="bold"),
           axis.title.x = element_text(color="black", size=14, face="bold"),
           axis.title.y = element_text(color="black", size=14, face="bold"))
 
+>>>>>>> adf045e1bf5571ff98374a3096ae9b1b048c7611
