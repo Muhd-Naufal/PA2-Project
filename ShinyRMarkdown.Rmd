@@ -647,7 +647,7 @@ head(resale)
 
 monthly = aggregate(PriceArea~month, FUN=mean, data=resale)
 monthly_ts = ts(monthly$PriceArea,start = c(2012,3), frequency=12)
-plot(monthly_ts, xlab="Year", ylab="Average Resale Flat Price")
+plot(monthly_ts, xlab="Year", ylab="Average Price per Square Meter")
 
 par(mfrow = c(1,2), pty = "s")
 acf(monthly_ts, xlab="Lag (in years)")
@@ -675,7 +675,7 @@ resale$PriceArea <- resale$resale_price/resale$floor_area_sqm
 
 monthly = aggregate(PriceArea~month, FUN=mean, data=resale)
 monthly_ts = ts(monthly$PriceArea,start = c(2012,3), frequency=12)
-plot(monthly_ts, xlab="Year", ylab="Average Resale Flat Price")
+plot(monthly_ts, xlab="Year", ylab="Average Price per Square Meter")
 
 par(mfrow = c(1,2), pty = "s")
 acf(monthly_ts, xlab="Lag (in years)")
@@ -702,7 +702,7 @@ resale$PriceArea <- resale$resale_price/resale$floor_area_sqm
 
 monthly = aggregate(PriceArea~month, FUN=mean, data=resale)
 monthly_ts = ts(monthly$PriceArea,start = c(2012,3), frequency=12)
-plot(monthly_ts, xlab="Year", ylab="Average Resale Flat Price")
+plot(monthly_ts, xlab="Year", ylab="Average Price per Square Meter")
 
 par(mfrow = c(1,2), pty = "s")
 acf(monthly_ts, xlab="Lag (in years)")
@@ -729,7 +729,7 @@ resale$PriceArea <- resale$resale_price/resale$floor_area_sqm
 
 monthly = aggregate(PriceArea~month, FUN=mean, data=resale)
 monthly_ts = ts(monthly$PriceArea,start = c(2012,3), frequency=12)
-plot(monthly_ts, xlab="Year", ylab="Average Resale Flat Price")
+plot(monthly_ts, xlab="Year", ylab="Average Price per Square Meter")
 
 par(mfrow = c(1,2), pty = "s")
 acf(monthly_ts, xlab="Lag (in years)")
@@ -757,7 +757,7 @@ resale$PriceArea <- resale$resale_price/resale$floor_area_sqm
 
 monthly = aggregate(PriceArea~month, FUN=mean, data=resale)
 monthly_ts = ts(monthly$PriceArea,start = c(2012,3), frequency=12)
-plot(monthly_ts, xlab="Year", ylab="Average Resale Flat Price")
+plot(monthly_ts, xlab="Year", ylab="Average Price per Square Meter")
 
 par(mfrow = c(1,2), pty = "s")
 acf(monthly_ts, xlab="Lag (in years)")
@@ -769,8 +769,8 @@ summary(fit2)
 
 prediction = predict(fit2, n.ahead=10)
 
-plot(monthly_ts, type ="l", xlab="", ylab = "Average Resale Flat Price", xlim = c(2012,2019),ylim = c(4500,6500), main="ARIMA prediction")
-plot(monthly_ts, type = "l",xlab = "", ylab = "Average Resale Flat Price",xlim = c(2012,2018),main = "ARIMA Prediction")
+plot(monthly_ts, type ="l", xlab="", ylab = "Average Price per Square Meter", xlim = c(2012,2019),ylim = c(4500,6500), main="ARIMA prediction")
+plot(monthly_ts, type = "l",xlab = "", ylab = "Average Price per Square Meter",xlim = c(2012,2018),main = "ARIMA Prediction")
 lines(10^(prediction$pred),col="blue")
 lines(10^(prediction$pred+2*prediction$se),col="orange")
 lines(10^(prediction$pred-2*prediction$se),col="orange")
