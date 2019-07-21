@@ -114,7 +114,7 @@ hdb9
 
 str(hdb9)
 
-i <- sapply(hdb9, is.factor)
+i <- sapply(hdb9, is.factor)gw+
 hdb9[i] <- lapply(hdb9[i], as.character)
 str(hdb9)
 

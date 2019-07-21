@@ -23,13 +23,13 @@ tag.map.title <- tags$style(HTML("
   .leaflet-control.map-title { 
     transform: translate(-50%,20%);
     position: fixed !important;
-    left: 50%;
+    left: 60%;
     text-align: center;
     padding-left: 10px; 
     padding-right: 10px; 
     background: rgba(255,255,255,0.75);
     font-weight: bold;
-    font-size: 28px;
+    font-size: 20px;
   }
 "))
 
@@ -38,6 +38,7 @@ title <- tags$div(
 )  
 
 m <- leaflet(town) %>%
+  setView(mymap, lat=1.3521, lng =103.8198, zoom = 10) %>%
   setView(mymap, lat=1.351616, lng =103.808053, zoom = 11) %>%
   addTiles() %>%
   addControl(title, position = "topleft", className="map-title")
@@ -131,7 +132,7 @@ m <- m %>% addPolygons(
   fillOpacity = 0.7,
   highlight = highlightOptions(
     weight = 5,
-    color = "#666",
+    color = "#667",
     dashArray = "",
     fillOpacity = 0.7,
     bringToFront = TRUE),
