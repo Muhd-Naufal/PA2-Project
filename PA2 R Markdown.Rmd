@@ -277,7 +277,7 @@ p <- plot_ly(
       c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,"<b>41.6%<b>"),
       c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017,"<b>50.5%<b>")),
     line = list(color = '#506784'),
-    fill = list(color = c('red', 'white')),
+    fill = list(color = c('#FA8072', 'white')),
     align = 'center',
     font = list(color = c('black'), size = 12),
     width = 100, height = 30
@@ -529,6 +529,50 @@ anim_save("p.gif", p)
 
 This graph shows the timeline of HDB flats that were sold per flat type, year by year from 2012 onwards. Interestingly, between 2012 and 2013, there is a significant drop in transaction volume across all flat types except for Multi-Generation which manages to stay the same. Afterwards, we can see a gradual increase in transaction volume from 2014 onwards. While 5 Room flats, Executive and Multi-Generation flat types are able to command higher prices, their individual volume is still lower that 4 Room HDB flats.
 
+```{r H2G3 Code, echo=FALSE, include=FALSE}
+
+million <- nrow(hdb7)
+total <- nrow(hdb4)
+nonmillion <- total - million
+
+percentagemil <- million/total * 100
+percentagemil <- format(round(percentagemil, 2), nsmall = 2)
+percentagemil <- paste0(percentagemil,'%')
+
+str(percentagemil)
+percentagenonmil <- nonmillion/total * 100
+percentagenonmil <- format(round(percentagenonmil, 2), nsmall = 2)
+percentagenonmil <- paste0(percentagenonmil,'%')
+```
+
+```{r H2G3, echo=FALSE }
+p <- plot_ly(
+  type = 'table',
+  header = list(
+    values = c('<b>2012-2017</b>','<b>$900,000+ HDBs</b>','<b>Non $900,000+ HDB</b>','<b>Total HDB</b>'),
+    line = list(color = '#506784'),
+    fill = list(color = 'red'),
+    align = c('left','center'),
+    font = list(color = 'white', size = 14),
+    width = 100, height = 50
+  ),
+  cells = list(
+    values = rbind(
+      c('<b>Count of HDB<b>','<b>Percentage<b>'),
+      c(million,percentagemil),
+      c(nonmillion,percentagenonmil),
+      c(total,"<b>100%<b>")),
+    line = list(color = '#506784'),
+    fill = list(color = c('#FA8072', 'white')),
+    align = c('left', 'center'),
+    font = list(color = c('black'), size = 14),
+    width = 100, height = 50
+  ))
+p
+```
+
+It is true that the number of flats that are selling at high prices has indeed increased, this might not be as alarming. The table below shows the percentage of flats sold that have exceeded the $900,000 from the period of 2012 to 2017. Rest assured that the increase in those flats sold is still below one percent which is **0.80%** of all flats in that period. Therefore, $1,000,000 HDB flats will still be considered an exception and not the norm for the foreseeable future.
+
 ***
 
 ## Predictive Model
@@ -538,8 +582,8 @@ Still trying to make it work...
 ***
 Ref:
 
-https://www.propertyguru.com.sg/property-management-news/2016/8/133966/are-million-dollar-hdb-flats-becoming-the-norm-2
-https://blog.seedly.sg/is-tengah-bto-good/
+*https://www.propertyguru.com.sg/property-management-news/2016/8/133966/are-million-dollar-hdb-flats-becoming-the-norm-2
+*https://blog.seedly.sg/is-tengah-bto-good/
 
 ***
 
@@ -695,7 +739,7 @@ plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 plot1final<-ggplotly(plot1)
 plot1final
 ```
-"Remaking our Heartland" is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
+**"Remaking our Heartland"** is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
 
 This stacked bar graph shows the differences in average prices of flats that have undergone the "Remaking our Heartland" program. A stacked bar chart was chosen to better show the relative difference between the prices. The graph is also sorted from highest to lowest Price after ROH.
 
@@ -1030,6 +1074,7 @@ The column bar graph above depicts the difference in average resale prices overa
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
+##Visualization 6
 # Compare HDB Median Resale Prices
 
 ```{r V6G1 Code, echo=FALSE, include=FALSE}
@@ -1092,6 +1137,8 @@ m <- m %>% addPolygons(
     textsize = "15px",
     direction = "auto"))
 m
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+The map above was taken from the URA website. Different towns have been split into polygons. The median prices have been calculated to show the rough development around the area over a 5-year timespan. If an area has seen a huge increase in median resale price from one 5-year observation to another, it might imply that the area is developing and hence the median resale price increases. For example, if there are more "Points of Interest" in the area, the average resale price of the area will go up, which means that the median resale price will increase as well. Places where resale data is not available is shown as $0 for the all 3 observations.
+
+Reference - Map: https://data.gov.sg/dataset/master-plan-2014-planning-area-boundary-no-sea
+Reference - Data: https://data.gov.sg/dataset/resale-flat-prices
