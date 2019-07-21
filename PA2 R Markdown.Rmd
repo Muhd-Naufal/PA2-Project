@@ -31,6 +31,7 @@ library(htmltools)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
 ```
 
 ***
@@ -38,7 +39,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * **Headlines**
   + Forecasting Tengah Town
-  + Is $1m HDB Becoming Ehe Norm?
+  + Is $1m HDB Becoming The Norm?
   + Predicting HDB Resale Prices
 
 * **Visualizations**
@@ -60,16 +61,24 @@ text-align: justify}
 
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The R Markdown report will comprehensively cover the aspects of HDB Resale Prices from the early 90s to the current year. Through analysis of the dataset, we will produce quality and informative insights, graphs accompanying the insights as well as a predictive model. We hope that through this document, it will aid users in their decision making process and other general purposes. 
 
 &nbsp;
 &nbsp;
+
+***
 
 ## Will Tengah Property Prices See The Same Rise As Punggol?
 
 <style>
 body {
 text-align: justify}
+</style>
+
+<style>
+.html-widget {
+    margin: auto;
+}
 </style>
 
 When Punggol was first unveiled 1996 by former Prime Minister, Goh Chok Tong, there was a vision to make it the Waterfront Town in the 21st Century. Located in the northeast region of Singapore, bordered by the Singapore shoreline as as well as the Strait of Johor, there was an ambitious plan to transform the old village of Punggol into a waterfront town with residential housing occupying along the rivers and coastal areas.
@@ -79,7 +88,6 @@ Subsequently in 2007, Punggol was selected as one of the pilot towns under the R
 Come 2017, just 10 years after the ROH programme was introduced, prices have skyrocketted to nearly $900,000. This mark a new milestone in the HDB resale market for the suburban town in the region.
 
 ``` {r H1G1 Code, echo=FALSE, include=FALSE}
-
 Punggol <- read.csv("./Datasets/HDB Resale Prices.csv")
 Punggol$month <- as.Date(paste0(Punggol$month, "-01"), "%Y-%m-%d")
 Punggol$year <- format(as.Date(Punggol$month, format="%Y-%m-%d"),"%Y")
@@ -306,7 +314,7 @@ kgif$Years <- as.numeric(as.character(kgif$Years))
 
 ```
 
-```{r H1G2, message = FALSE, warning = FALSE, results = FALSE, echo=FALSE}
+```{r H1G2, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 k <- ggplot(
   kgif,
   aes(Years,Price, group = Flat_Type, color = factor(Flat_Type), label = Flat_Type)
@@ -341,13 +349,58 @@ HDB's newest town in over 20 years since Punggol, Tengah will no doubt be the ne
 
 Tengah, like Punggol started off with a blank state but Punggol town has established itself as a modern digital town with plans to make it the next digital district. While Tengah has position itself a green town, those who likes nature and lush greenery. Therefore the appeals of each town are different. It took years for Punggol town to be built up as it is today and it could take the same for Tengah to do the same. Furthermore, the Jurong Region Line will potentially inject capital appreciation of the area of Tengah. 
 
-All in all, with Punggol featuring a Waterfront Living, Punggol Digital District and North East Line MRT Line it is able to command a high resale price. In time with Tengah featuring a Forest Town, Jurong Innovation District and Jurong Region MRT Line, we believe it too can provide a near similar growth or even higher as Jurong East is envisioned to be Singapore's second CBD. 
+All in all, with Punggol featuring a Waterfront Living, Punggol Digital District and North East Line MRT Line it is able to command a high resale price. In time with Tengah featuring a Forest Town, Jurong Innovation District and Jurong Region MRT Line, we believe it too can provide a near similar growth or even higher as Jurong East which is envisioned to be Singapore's second CBD is located next to Tengah.
 
+***
 
 ## Will million dollar HDB flats be new new norm?
 ![](Images/GV-104-Main.original.jpg) 
 
 Over the years, HDB flats reaching close or at the $1 million mark has dominated the property headlines. Seeing HDB flats sold at that price seems bewildering. Many will wonder whether HDB mean affordable housing anymore? And will we expect to see million dollar HDB becoming the norm, potentially competiting with the Private Property market? 
+
+Below is an interactive map, marking each HDB flat that was transacted with the highest price per town. Click on the HDB icon to see the town and the amount that it was transacted. 
+
+```{r map Code, echo=FALSE, include=FALSE}
+top <- read.csv("./Datasets/TopTown.csv")
+top <- as.data.frame(top)
+topname<-top$Name
+coordinates(top) <- ~Longitude + Latitude
+
+
+HDBIcon <- makeIcon(
+  iconUrl = "./Images/nDPK2G0I_400x400.jpg",
+  iconWidth = 20, iconHeight = 30,
+  iconAnchorX = 10, iconAnchorY = 30)
+
+tag.map.title <- tags$style(HTML("
+  .leaflet-control.map-title { 
+    transform: translate(-50%,20%);
+    left: 50%;
+    text-align: center;
+    padding-left: 10px; 
+    padding-right: 10px; 
+    background: rgba(255,255,255,0.75);
+    font-weight: bold;
+    font-size: 28px;
+  }
+"))
+
+title <- tags$div(
+  tag.map.title, HTML("Most Expensive Flat Per Town")
+)  
+
+
+```
+
+```{r map,echo=FALSE}
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data=top, popup = topname, icon=HDBIcon) %>%
+  addControl(title, position = "topright", className="map-title")
+
+```
+
+For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is is for the purpose of a more effective graph. If it were set to $1,000,000, there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
@@ -375,7 +428,7 @@ ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], ae
   labs(fill='Flat Type') 
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that the most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the forseable future. 
 
 ```{r H2G2 code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
@@ -464,15 +517,24 @@ anim_save("p.gif", p)
 
 ![](p.gif)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This graph shows the timeline of HDB flats that were sold per flat type, year by year from 2012 onwards. Interestingly, between 2012 and 2013, there is a significant drop in transaction volume across all flat types except for Multi-Generation which manages to stay the same. Afterwards, we can see a gradual increase in transaction volume from 2014 onwards. While 5 Room flats, Executive and Multi-Generation flat types are able to command higher prices, their individual volume is still lower that 4 Room HDB flats.
+
+***
 
 ## Predictive Model
 
 Still trying to make it work...
 
+***
+Ref:
+https://www.propertyguru.com.sg/property-management-news/2016/8/133966/are-million-dollar-hdb-flats-becoming-the-norm-2
+https://blog.seedly.sg/is-tengah-bto-good/
+
+***
+
 <center> <h1>Visualizations</h1> </center>
 
-## Visualization 1
+## Remaking Our Heartland Programme
 
 ```{r V1G1 Code, echo=FALSE, include=FALSE}
 raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
@@ -749,7 +811,7 @@ This line graph drills down to show the increase in resale prices of flats in Qu
 
 Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
 
-## Visualization 2
+## Relationship between POI and Resale Value
 
 ```{r V2G1 Code, echo=FALSE, include=FALSE}
 combined <- read.csv("./Datasets/CombinedDataset.csv")
@@ -838,7 +900,10 @@ p
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-## Visualization 4
+## Value comparison between Mature towns and Non-Mature Towns
+
+In the Singapore market, the maturity of an estate or town refers to its age. Towns that have been around for more than 20 years are deemed mature. Those that have been built more recently are considered non-mature. The main difference between mature estate and a non mature estate two is that generally the mature-estates also have mature neighbourhoods and better amenities. Mature estate tends to be more expensive than their non-mature counterparts.
+
 
 ```{r V4G1 Code, echo=FALSE, include=FALSE}
 maturecsv<-read.csv("./Datasets/HDB Resale Prices.csv")
@@ -901,6 +966,8 @@ k <-  plot_ly(mature, x = ~resale_price, color = ~flat_type, type = "box") %>%
 k
 ```
 
+The boxplot graph above depicts the resale prices of HDBs in mature towns per flat type. 5-room flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of $1.18 million followed by Executive and 3-room flat types. On the other hand, 3-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 7,500 over 27 years followed by 2-room and 4-room flat types.
+
 ```{r V4G11, echo=FALSE}
 o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>%
   
@@ -910,7 +977,7 @@ o <-  plot_ly(nonmature, x = ~resale_price, color = ~flat_type, type = "box") %>
 o
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The boxplot graph above depicts the resale prices of HDBs in non-mature towns per flat type. Executive flats are seen to have the highest resale price over 27 years as compared to the other flat types, reaching a maximum resale price of $938,000 followed by 5-room and 4-room flat types. On the other hand, 2-room flats are seen to have the lowest resale price over 27 years, reaching a minimum of 16,800 over 27 years followed by 3-room and 4-room flat types.
 
 ```{r V4G2 Code, echo=FALSE, include=FALSE}
 mature$month <- as.yearmon(mature$month, "%Y-%m")
@@ -938,7 +1005,7 @@ d <- plot_ly(townbar, x = ~townname, y = ~townavg, type = 'bar',text = townavg, 
 
 d
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The column bar graph above depicts the difference in average resale prices overall between Mature and Non-Mature Estates over 27 years. HDB flats in mature estates are seen to be the most expensive as they are resold at an average resale price of 454873.76 while non-mature estates are seen to be cheaper as they are resold lower at 413398.32 on average.
 
 ## Visualization 5
 
@@ -952,14 +1019,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
-# Visualization 6
+# Compare HDB Median Resale Prices
 
 ```{r V6G1 Code, echo=FALSE, include=FALSE}
 town <- geojsonio::geojson_read("map.geojson", what = "sp")
 
 mymap = leaflet()
 
-tag.map.title <- tags$style(HTML("
+tag.map.title2 <- tags$style(HTML("
   .leaflet-control.map-title { 
     transform: translate(-50%,20%);
     left: 50%;
@@ -973,13 +1040,13 @@ tag.map.title <- tags$style(HTML("
 "))
 
 title <- tags$div(
-  tag.map.title, HTML("Median Resale Price Per HDB Town")
+  tag.map.title2, HTML("Median Resale Price Per HDB Town")
 )  
 
 m <- leaflet(town) %>%
   setView(mymap, lat=1.351616, lng =103.808053, zoom = 11) %>%
   addTiles() %>%
-  addControl(title, position = "topleft", className="map-title")
+  addControl(title, position = "topright", className="map-title")
 
 m %>% addPolygons()
 
@@ -1016,3 +1083,4 @@ m <- m %>% addPolygons(
 m
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
