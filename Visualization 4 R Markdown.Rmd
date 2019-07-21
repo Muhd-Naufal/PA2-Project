@@ -1,6 +1,6 @@
 ---
 title: "Visualization 4"
-author: "Ashraf"
+author: "Muhammad Ashraf Bin Hamer"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
