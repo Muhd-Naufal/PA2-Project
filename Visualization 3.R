@@ -45,6 +45,7 @@ no_population/no_housing
 
 #Level 2
 data1 <- read.csv("./Datasets/YearsUnits.csv")
+str(data1)
 
 ay2 <- list(
   tickfont = list(color = "red"),
