@@ -9,6 +9,8 @@ library(rgeos)
 library(likert) 
 library(zoo) 
 library(plotly)
+library(ggplot2)
+options(scipen=10000)
 
 Householdcsv<-read.csv("./Datasets/HDB1.csv")
 
@@ -17,38 +19,156 @@ Household <- filter(Householdcsv, flat_type == "3 ROOM" |
                        flat_type == "5 ROOM" | 
                        flat_type == "EXECUTIVE" )
 
-Period1990 <- c(69,105,123,140)
-Period2000 <- c(65,90,110,140)
+Household
+
+##
+Setyear <- filter(Household, Year >= 1990 , Year < 2000)
+Setyear 
+
+str(Setyear)
+tail(Setyear)
+
+Setyear$resale_price <- as.numeric(levels(Setyear$resale_price))[Setyear$resale_price]
+
+ThreeRoom1990 <- filter(Setyear, flat_type == "3 ROOM")
+FourRoom1990 <- filter(Setyear, flat_type == "4 ROOM")
+FiveRoom1990 <- filter(Setyear, flat_type == "5 ROOM")
+ExecutiveRoom1990 <- filter(Setyear, flat_type == "EXECUTIVE")
+
+v3r1990 <- nrow(ThreeRoom1990)
+v3r1990
+v4r1990 <- nrow(FourRoom1990)
+v4r1990
+v5r1990 <- nrow(FiveRoom1990)
+v5r1990
+vExr1990 <- nrow(ExecutiveRoom1990)
+vExr1990
+
+total1990 <- sum(v3r1990,v4r1990,v5r1990,vExr1990)
+total1990
+
+v3r1990p <- v3r1990/total1990 * 100
+v3r1990p
 
 
-FloorArea <- data.frame(Period1990,Period2000)
+v4r1990p <- v4r1990/total1990 * 100
+v4r1990p
 
-rownames(FloorArea) <- c("3-Room","4-Room","5-Room","Executive")
+v5r1990p <- v5r1990/total1990 * 100
+v5r1990p
 
-FloorArea
+vExr1990p <- vExr1990/total1990 * 100
+vExr1990p
 
-###
 
-AverageSquare = (Household$resale_price) / FloorArea
 
-FloorArea <- cbind(FloorArea,AverageSquare) 
-FloorArea
 
-###
 
-w <-  plot_ly(Household, x = ~floor_area_sqm, color = ~flat_type, type = "scatter") %>%
+
+##
+
+Setyear2 <- filter(Household, Year >= 2000 , Year <= 2017)
+Setyear2
+
+
+Setyear2$resale_price <- as.numeric(levels(Setyear2$resale_price))[Setyear2$resale_price]
+str(Setyear2)
+
+ThreeRoom2000 <- filter(Setyear2, flat_type == "3 ROOM")
+FourRoom2000 <- filter(Setyear2, flat_type == "4 ROOM")
+FiveRoom2000 <- filter(Setyear2, flat_type == "5 ROOM")
+ExecutiveRoom2000 <- filter(Setyear2, flat_type == "EXECUTIVE")
+
+v3r2000 <- nrow(ThreeRoom2000)
+v3r2000
+v4r2000 <- nrow(FourRoom2000)
+v4r2000
+v5r2000 <- nrow(FiveRoom2000)
+v5r2000
+vExr2000 <- nrow(ExecutiveRoom2000)
+vExr2000
+
+total2000 <- sum(v3r2000,v4r2000,v5r2000,vExr2000)
+total2000
+
+v3r2000p <- v3r2000/total2000 * 100
+v3r2000p
+
+
+v4r2000p <- v4r2000/total2000 * 100
+v4r2000p
+
+v5r2000p <- v5r2000/total2000 * 100
+v5r2000p
+
+vExr2000p <- vExr2000/total2000 * 100
+vExr2000p
+
+str(FiveRoom2000)
+
+
+
+
+ThreeRoomResale2
+
+Flat_Type <- c("3R","4R","5R","EXE")
+Floor_square <- c(combinemean,combinemean2)
+Resale <- c(combinemeanr,combinemeanr2)
+
+FinalTable <- data.frame(Year, Floor_square, Resale)
+FinalTable
+
+str(FinalTable)
+
+FinalTable$Year <- as.numeric(levels(FinalTable$Year))[FinalTable$Year]
+FinalTable
+str(FinalTable)
+
+library(plotly)
+
+Flat_Type1990 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+Categories1990 <- c(v3r1990,v4r1990,v5r1990,vExr1990)
+
+final1990 <- data.frame(Flat_Type1990,Categories1990)
+
+p <- plot_ly(final1990, labels = ~Flat_Type1990, values = ~Categories1990, type = 'pie') %>%
+  layout(title = 'Percentage of Flat types sold in 1990s',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+p
+
+Flat_Type2000 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+Categories2000 <- c(v3r2000,v4r2000,v5r2000,vExr2000)
+
+final2000 <- data.frame(Flat_Type2000,Categories2000)
+
+q <- plot_ly(final2000, labels = ~Flat_Type2000, values = ~Categories2000, type = 'pie') %>%
+  layout(title = 'Percentage of Flat types sold in 2000s',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+q
+
+
+x <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+y <- c(v3r1990,v4r1990,v5r1990,vExr1990)
+data <- data.frame(x, y)
+
+s <- plot_ly(data, x = ~x, y = ~y, type = 'bar', color = I("dark green")) %>%
+  layout(title = "Flat types sold in 1990s",
+         xaxis = list(title = "Flat types"),
+         yaxis = list(title = "Number of Flats Sold"))
+
+s
+
   
-  layout(title="Floor area of Square Meters per Flat Type",
-         xaxis=list(title="Floor Square Meter"),
-         yaxis=list(title="Flat Type"))
-w
-
-Household$Year <- factor(Household$Year, levels = Household[["Year"]])
-
-p <- plot_ly(Household, x = ~Year, y = ~floor_area_sqm, name = '1990', type = 'scatter', mode = 'lines',
-             line = list(color = 'rgb(205, 12, 24)', width = 4)) %>%
-  add_trace(y = ~floor_area_sqm, name = '2000', line = list(color = 'rgb(22, 96, 167)', width = 4)) %>%
-  layout(title = "Average Floor Square per meters for Flat types",
-         xaxis = list(title = "Year"),
-         yaxis = list (title = "Floor Square Meters"))
+  x <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+  y <- c(v3r2000,v4r2000,v5r2000,vExr2000)
+  data <- data.frame(x, y)
+  
+  r <- plot_ly(data, x = ~x, y = ~y, type = 'bar', color = I("red")) %>%
+    layout(title = "Flat types sold in 2000s",
+           xaxis = list(title = "Flat Types"),
+           yaxis = list(title = "Number of Flats Sold"))
+  
+r
 
