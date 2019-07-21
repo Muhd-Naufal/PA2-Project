@@ -579,18 +579,9 @@ It is true that the number of flats that are selling at high prices has indeed i
 ## Here's what to expect for the upcoming "Average Price per Square Meter" for different Flat Types in the next 10 months
 
 ```{r P1G1, echo = FALSE, include=FALSE}
-resale <- read.csv("HDB Resale Prices.csv")
-library(dplyr)
 
-levels(resale$resale_price)
-
-resale <- read.csv("./Datasets/HDB1.csv")
-
-#install.packages("shiny")
 library(shiny)
-
 library(dplyr)
-
 
 #ONE ROOM
 #Codes from Line 13 to Line 192 is repeated but with different filters of Flat Types
