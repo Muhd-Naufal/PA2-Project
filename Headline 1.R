@@ -191,6 +191,7 @@ average <- c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017)
 
 Punggoldf <- data.frame(Year,tworoom,threeroom,fourroom,fiveroom,executive,average)
 
+<<<<<<< HEAD
 
  
 #f<- reshape(testhdb2room, idvar = "Year", timevar = "Mean", direction = "wide")
@@ -208,6 +209,8 @@ Punggoldf[is.nan(Punggoldf)] <- 0
 
 str(Punggoldf)
 Punggoldf
+=======
+>>>>>>> 5cd1cf87d8448ff768ea09122c50a73aa391f245
 
 library(plotly)
 
@@ -217,22 +220,24 @@ p <- plot_ly(
     values = c('<b>YEAR</b>', '<b>2 Room</b>','<b>3 Room</b>','<b>4 Room</b>','<b>5 Room</b>','<b>Executive<b>','<b>Total<b>'),
     line = list(color = '#506784'),
     fill = list(color = 'red'),
-    align = c('left','center'),
-    font = list(color = 'black', size = 12)
+    align = 'center',
+    font = list(color = 'white', size = 12),
+    width = 100, height = 50
   ),
   cells = list(
     values = rbind(
-      c("2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017", '<b>2008 vs 2018</b>'),
+      c("<b>2007<b>","<b>2008<b>","<b>2009<b>","<b>2010<b>","<b>2011<b>","<b>2012<b>","<b>2013<b>","<b>2014<b>","<b>2015<b>","<b>2016<b>","<b>2017<b>", '<b>2008 vs 2018</b>'),
       c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,"null"),
       c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,"null"),
-      c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"71.4%"),
-      c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017,"48.2%"),
-      c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,"41.6%"),
-      c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017,"50.5%")),
+      c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"<b>71.4%<b>"),
+      c(d2007,d2008,d2009,d2010,d2011,d2012,d2013,d2014,d2015,d2016,d2017,"<b>48.2%<b>"),
+      c(e2007,e2008,e2009,e2010,e2011,e2012,e2013,e2014,e2015,e2016,e2017,"<b>41.6%<b>"),
+      c(f2007,f2008,f2009,f2010,f2011,f2012,f2013,f2014,f2015,f2016,f2017,"<b>50.5%<b>")),
     line = list(color = '#506784'),
     fill = list(color = c('red', 'white')),
-    align = c('left', 'center'),
-    font = list(color = c('black'), size = 12)
+    align = 'center',
+    font = list(color = c('black'), size = 12),
+    width = 100, height = 30
   ))
 p
 
