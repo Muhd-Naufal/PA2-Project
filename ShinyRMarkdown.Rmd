@@ -407,7 +407,7 @@ leaflet() %>%
 
 ```
 
-For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is is for the purpose of a more effective graph. If it were set to $1,000,000, there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
+For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is for the purpose of a more effective graph. If it were set to $1,000,000 there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
