@@ -1,6 +1,6 @@
 ---
 title: "Visualization 2"
-author: "Naufal"
+author: "Muhammad Naufal Bin Kamsani"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
@@ -68,7 +68,7 @@ The most effective way to view it is though the use of a map. To achieve this, u
 * Primary Schools
 * Secondary Schools
 * Shopping Malls
-* SUpermarkets
+* Supermarkets
 
 We then use a sample of 100 HDB flats with their latitude and longtitude from the dataset and apply it into the map. 
 
@@ -120,4 +120,4 @@ ggplot(final,aes(x=count,y=resale)) +
   
 ```
 
-
+The graph above depics how the increasing POI affects resale value of HDB flats. We can see that as POI gradually increases, the resale prices increases too. Although the line is 'curvy', as in it increases and decreases over time, but overall, we can see that resale prices increase relative to POI. This can be further proven through the regression line which also shows an overall general increase. Thus, we can conclude that **POI does affect resale value**.
