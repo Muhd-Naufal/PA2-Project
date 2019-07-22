@@ -1,6 +1,6 @@
 ---
 title: "Visualization 5"
-author: "Muhammad Zulfikar Bin Zainal"
+author: "Muhammad Zulfikar Bin Zainal, DFI/3A/04 , P1644573"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
