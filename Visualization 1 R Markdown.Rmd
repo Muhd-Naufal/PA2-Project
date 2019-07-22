@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
- 
+
 
 ## Remaking Our Heartland Programme
 
@@ -109,7 +109,6 @@ woodbef<-mean(wb2$resale_price)
 prb1<-which(rohdf$town=="PASIR RIS" & rohdf$year<2015)
 prb2<-rohdf[prb1,]
 prbef<-mean(prb2$resale_price)
-
 
 
 pga1<-which(rohdf$town=="PUNGGOL" & rohdf$year>2006)
@@ -199,9 +198,9 @@ plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 plot1final<-ggplotly(plot1)
 plot1final
 ```
-**"Remaking our Heartland"** is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
+**"Remaking our Heartland"** is a program by HDB to renew and rejuvenate existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
 
-This stacked bar graph shows the differences in average prices of flats that have undergone the "Remaking our Heartland" program. A stacked bar chart was chosen to better show the relative difference between the prices. The graph is also sorted from highest to lowest Price after ROH.
+This stacked bar graph shows the differences in average prices of flats that have undergone the Remaking our Heartland (ROH) program. A stacked bar chart was chosen to better show the relative difference between the prices. The graph is also sorted from highest to lowest Price after ROH.
 
 The years used to compute Prices before ROH are from 1990 to 1 year before ROH, and the years used to compute Prices after ROH are from the year of their respective ROH commencement year to 2017.
 
@@ -326,3 +325,9 @@ plot2final
 This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
 
 Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
+
+***
+
+References:
+
+* Website: https://www20.hdb.gov.sg/fi10/fi10349p.nsf/hdbroh/index.html

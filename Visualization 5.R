@@ -108,22 +108,6 @@ str(FiveRoom2000)
 
 
 
-
-ThreeRoomResale2
-
-Flat_Type <- c("3R","4R","5R","EXE")
-Floor_square <- c(combinemean,combinemean2)
-Resale <- c(combinemeanr,combinemeanr2)
-
-FinalTable <- data.frame(Year, Floor_square, Resale)
-FinalTable
-
-str(FinalTable)
-
-FinalTable$Year <- as.numeric(levels(FinalTable$Year))[FinalTable$Year]
-FinalTable
-str(FinalTable)
-
 library(plotly)
 
 Flat_Type1990 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
@@ -140,7 +124,7 @@ p
 Flat_Type2000 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
 Categories2000 <- c(v3r2000,v4r2000,v5r2000,vExr2000)
 
-final2000 <- data.frame(Flat_Type2000,Categories2000)
+final1990 <- data.frame(Flat_Type2000,Categories2000)
 
 q <- plot_ly(final2000, labels = ~Flat_Type2000, values = ~Categories2000, type = 'pie') %>%
   layout(title = 'Percentage of Flat types sold in 2000s',
@@ -148,27 +132,16 @@ q <- plot_ly(final2000, labels = ~Flat_Type2000, values = ~Categories2000, type 
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 q
 
-
 x <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
-y <- c(v3r1990,v4r1990,v5r1990,vExr1990)
-data <- data.frame(x, y)
+y1 <- c(v3r1990,v4r1990,v5r1990,vExr1990)
+y2 <- c(v3r2000,v4r2000,v5r2000,vExr2000)
+data <- data.frame(x, y1, y2)
 
-s <- plot_ly(data, x = ~x, y = ~y, type = 'bar', color = I("dark green")) %>%
-  layout(title = "Flat types sold in 1990s",
-         xaxis = list(title = "Flat types"),
-         yaxis = list(title = "Number of Flats Sold"))
-
-s
-
-  
-  x <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
-  y <- c(v3r2000,v4r2000,v5r2000,vExr2000)
-  data <- data.frame(x, y)
-  
-  r <- plot_ly(data, x = ~x, y = ~y, type = 'bar', color = I("red")) %>%
-    layout(title = "Flat types sold in 2000s",
-           xaxis = list(title = "Flat Types"),
-           yaxis = list(title = "Number of Flats Sold"))
-  
-r
+t <- plot_ly(data, x = ~x, y = ~y1, type = 'bar', name = '1990s', marker = list(color = 'dark green')) %>%
+  add_trace(y = ~y2, name = '2000s', marker = list(color = 'red')) %>%
+  layout(xaxis = list(title = "Flat Types", tickangle = -45),
+         yaxis = list(title = "Number Of Flats Sold"),
+         margin = list(b = 100),
+         barmode = 'group')
+t
 

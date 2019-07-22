@@ -36,15 +36,35 @@ no_population/no_housing
 #Ratio = 5.9152
 
 
+#Level 2
+data1 <- read.csv("./Datasets/YearsUnits.csv")
+data1
+
+library(ggplot2)
+
+ggplot()+
+  geom_bar(mapping = aes(x = data1$ï..Year, y = data1$Units.completed), stat = "identity", color = "black",fill = "blue")+
+  geom_line(mapping = aes(x = data1$ï..Year, y = data1$Price.Index.2009...100 * 40000/160)) +
+  geom_point(mapping = aes(x = data1$ï..Year, y = data1$Price.Index.2009...100 * 40000/160)) +
+  xlab("Year") + ggtitle("Year against Units completed and Index") +
+  scale_y_continuous(
+    name = expression("Units completed"),
+    sec.axis = sec_axis(~. /40000*160,name = "Index"),
+    limits = c(0,40000))
+<<<<<<< HEAD
+=======
+=======
 #Level 1 Findings:
 #Definition of the ratio is to evaluate on average, how many (new) people (new people being the increase in population) will accomodate every new HDB after 2000.
 #Using View(data), we can see that the persons per dwelling units(PDU) is 4.3. However, the ratio exceeds the PDU.
 #In comparison too, the PDU in 2000 is lower than 2015. 
 #Singaporeans were actually worse off in 2015 than compared to 2000.
+>>>>>>> 5cd1cf87d8448ff768ea09122c50a73aa391f245
 
 
 #Level 2
 data1 <- read.csv("./Datasets/YearsUnits.csv")
+str(data1)
 
 ay2 <- list(
   tickfont = list(color = "red"),
@@ -63,8 +83,12 @@ p <- plot_ly() %>%
   )
 p
 
+<<<<<<< HEAD
+>>>>>>> 2610dcf9d556c9083112a9a6ed9346fbaa767bd4
+=======
 
 #Level 2 Findings:
 #Findings have shown that prices have skyrocketed from 2008 onwards.
 #On the other hand, the units completed over the years against the population growth faces a mismatch, as there are more Singaporeans than available HDBs.
 #This supply and demand forced the prices to increase drastically.
+>>>>>>> 5cd1cf87d8448ff768ea09122c50a73aa391f245

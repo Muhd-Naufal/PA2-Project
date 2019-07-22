@@ -50,7 +50,10 @@ text-align: justify}
 }
 </style>
 
-![](Images/20161231_JurongWestHDBFlat_STfilephoto.jpg)
+![](Images/Singapore-homes-BTO.original.jpg)
+
+According to HDB, the median prices is the fifth percentile amountof HDB resale flat purchases. This means that half of the transactions were above and below the median price. This is a useful metric to guage whether sellers/buyers overpay or underpay in their transaction and by how much. 
+
 
 ```{r V6G1 Code, echo=FALSE, include=FALSE}
 town <- geojsonio::geojson_read("map.geojson", what = "sp")
@@ -113,4 +116,16 @@ m <- m %>% addPolygons(
     direction = "auto"))
 m
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The map above was taken from the URA website. Different towns have been split into polygons. The median prices have been calculated to show the rough development around the area over a 5-year timespan. If an area has seen a huge increase in median resale price from one 5-year observation to another, it might imply that the area is developing and hence the median resale price increases. 
+
+For example, if there are more "Points of Interest" in the area, the average resale price of the area will go up, which means that the median resale price will increase as well. 
+
+Where polygons that shows $0 for all three observations are those that either have no resale data or are not HDB towns.  
+
+***
+
+Reference:
+
+* Map: https://data.gov.sg/dataset/master-plan-2014-planning-area-boundary-no-sea
+* Data: https://data.gov.sg/dataset/resale-flat-prices
+
