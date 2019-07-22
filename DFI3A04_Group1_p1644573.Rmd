@@ -1,0 +1,164 @@
+---
+title: "Visualization 5"
+author: "Muhammad Zulfikar Bin Zainal, DFI/3A/04 , P1644573"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  prettydoc::html_pretty:
+    highlight: github
+    theme: cayman
+---
+
+```{r libraries, include= FALSE}
+library(prettydoc)
+library(plyr)
+library(dplyr)
+library(RColorBrewer)
+library(leaflet)
+library(geojsonio)
+library(ggplot2)
+library(gganimate)
+library(gifski)
+library(data.table)
+library(ggrepel)
+library(plotly)
+library(shiny)
+library(rgeos)
+library(zoo)
+library(htmlwidgets)
+library(htmltools)
+library(animation)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+ 
+## Comparing flat type sold from 1990s to 2000s
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
+![](Images/2T2J0398.jpg)
+
+
+```{r V5G1 Code, echo=FALSE, include=FALSE}
+
+
+Householdcsv<-read.csv("./Datasets/HDB1.csv")
+
+Household <- filter(Householdcsv, flat_type == "3 ROOM" |
+                       flat_type == "4 ROOM" | 
+                       flat_type == "5 ROOM" | 
+                       flat_type == "EXECUTIVE" )
+
+
+##
+Setyear <- filter(Household, Year >= 1990 , Year < 2000)
+
+Setyear$resale_price <- as.numeric(levels(Setyear$resale_price))[Setyear$resale_price]
+
+ThreeRoom1990 <- filter(Setyear, flat_type == "3 ROOM")
+FourRoom1990 <- filter(Setyear, flat_type == "4 ROOM")
+FiveRoom1990 <- filter(Setyear, flat_type == "5 ROOM")
+ExecutiveRoom1990 <- filter(Setyear, flat_type == "EXECUTIVE")
+
+v3r1990 <- nrow(ThreeRoom1990)
+v4r1990 <- nrow(FourRoom1990)
+v5r1990 <- nrow(FiveRoom1990)
+vExr1990 <- nrow(ExecutiveRoom1990)
+
+
+total1990 <- sum(v3r1990,v4r1990,v5r1990,vExr1990)
+v3r1990p <- v3r1990/total1990 * 100
+v4r1990p <- v4r1990/total1990 * 100
+v5r1990p <- v5r1990/total1990 * 100
+vExr1990p <- vExr1990/total1990 * 100
+
+##
+
+Setyear2 <- filter(Household, Year >= 2000 , Year <= 2017)
+
+Setyear2$resale_price <- as.numeric(levels(Setyear2$resale_price))[Setyear2$resale_price]
+
+ThreeRoom2000 <- filter(Setyear2, flat_type == "3 ROOM")
+FourRoom2000 <- filter(Setyear2, flat_type == "4 ROOM")
+FiveRoom2000 <- filter(Setyear2, flat_type == "5 ROOM")
+ExecutiveRoom2000 <- filter(Setyear2, flat_type == "EXECUTIVE")
+
+v3r2000 <- nrow(ThreeRoom2000)
+v4r2000 <- nrow(FourRoom2000)
+v5r2000 <- nrow(FiveRoom2000)
+vExr2000 <- nrow(ExecutiveRoom2000)
+
+
+total2000 <- sum(v3r2000,v4r2000,v5r2000,vExr2000)
+total2000
+
+v3r2000p <- v3r2000/total2000 * 100
+v4r2000p <- v4r2000/total2000 * 100
+v5r2000p <- v5r2000/total2000 * 100
+vExr2000p <- vExr2000/total2000 * 100
+```
+
+```{r V5G1, echo=FALSE}
+Flat_Type1990 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+Categories1990 <- c(v3r1990,v4r1990,v5r1990,vExr1990)
+
+final1990 <- data.frame(Flat_Type1990,Categories1990)
+
+p <- plot_ly(final1990, labels = ~Flat_Type1990, values = ~Categories1990, type = 'pie') %>%
+  layout(title = 'Percentage of Flat types sold in 1990s',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+p
+
+Flat_Type2000 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+Categories2000 <- c(v3r2000,v4r2000,v5r2000,vExr2000)
+
+final2000 <- data.frame(Flat_Type2000,Categories2000)
+
+q <- plot_ly(final2000, labels = ~Flat_Type2000, values = ~Categories2000, type = 'pie') %>%
+  layout(title = 'Percentage of Flat types sold in 2000s',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+q
+```
+
+Over the years, the number of flats have been built in a fast moving pace and alot of the flats have been drastically made for the people as population rises over the time being. As the years and decades past, many of the upcoming families will need shelter for their own and thus the flats sold have been on an increase state.
+
+This first pie chart shows the percentage of flat types that is sold in the 1990s. Both 3 Room and 4 room stands out as the majority with the combination of 74.9% of the total percentage of the flat types that have been sold which is equivalent to 211,787 flats sold in that era.
+
+The second pie chart shows the percentage of flat types that is sold in the 2000s. As you can see and compare from both charts, the combination of both percentage which the flats have been purchased is 69.2% which is a decrease of 5.7% compared to the 1990s while there is 5.4% increased on 5 room flats that have been sold in the 2000s and moreover , a decrease of 0.36% to those sold in 2000s as compare to the 1990s for Executive Flats.
+
+You can also check which flats to compare by just clicking the legend indicated at the top corner
+
+
+```{r V5G2, echo=FALSE}
+x <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
+y1 <- c(v3r1990,v4r1990,v5r1990,vExr1990)
+y2 <- c(v3r2000,v4r2000,v5r2000,vExr2000)
+data <- data.frame(x, y1, y2)
+
+t <- plot_ly(data, x = ~x, y = ~y1, type = 'bar', name = '1990s', marker = list(color = 'dark green')) %>%
+  add_trace(y = ~y2, name = '2000s', marker = list(color = 'red')) %>%
+  layout(title = "Number of Flats Sold Between 1990s and 2000s",
+         xaxis = list(title = "Flat Types", tickangle = -45),
+         yaxis = list(title = "Number Of Flats Sold"),
+         margin = list(b = 100),
+         barmode = 'group')
+t
+```
+In this Bar chart above, it can compare both eras of the 1990s and 2000s and this indicates that over a decade, there are increases on all 4 flats that is mentioned on the chart. Moreover, for both 4 room and 5 room category, there is a significant increase with 4 room flats having difference of 87,339 flats sold during the 1990s and 2000s whereas also a significant increse with 5 room flats with a difference of 58.776 flats sold during the 1990s and 2000s
+
+So this shows that over the course of a decade, there is a significant increase of flat types being sold which also increases the resale price too that is evident as there are alot of flats being sold in the 2000s especially.

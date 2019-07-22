@@ -1138,7 +1138,4 @@ m <- m %>% addPolygons(
     direction = "auto"))
 m
 
-The map above was taken from the URA website. Different towns have been split into polygons. The median prices have been calculated to show the rough development around the area over a 5-year timespan. If an area has seen a huge increase in median resale price from one 5-year observation to another, it might imply that the area is developing and hence the median resale price increases. For example, if there are more "Points of Interest" in the area, the average resale price of the area will go up, which means that the median resale price will increase as well. Places where resale data is not available is shown as $0 for the all 3 observations.
 
-Reference - Map: https://data.gov.sg/dataset/master-plan-2014-planning-area-boundary-no-sea
-Reference - Data: https://data.gov.sg/dataset/resale-flat-prices
