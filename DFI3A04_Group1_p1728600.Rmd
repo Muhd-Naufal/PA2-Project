@@ -21,7 +21,7 @@ library(plotly)
 
 "Remaking our Heartland" is a program by HDB to renew and further develop existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood to give residents a higher standard of living.
 
-![](insertphoto.jpg)
+![](./Images/insertphoto.jpg)
 
 ## A closer look at ROH's impact
 &nbsp;
