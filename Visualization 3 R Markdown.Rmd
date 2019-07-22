@@ -1,6 +1,6 @@
 ---
 title: "Visualization 3"
-author: "Javier Loh Hsien Siang"
+author: "Javier Loh Hsien Siang, DFI 04, P1724226"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
