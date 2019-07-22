@@ -1,17 +1,13 @@
-#Headline 1: Remaking our Heartland
-
-raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
-
-#Summary 
-
-#Plot 1
-plot1final
-
-#Plot 2
-plot2final
+library(shiny)
+library(prettydoc)
+library(dplyr)
+library(ggplot2)
+library(plotly)
 
 #codes
-raw1<-read.csv("Datasets/HDB Resale Prices.csv")
+raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
+
+
 
 #regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
@@ -37,7 +33,6 @@ rohdf<-towndata[rohvalues,]
 
 #change year from factor to numeric
 rohdf$year <- as.numeric(as.character(rohdf$year))
-str(rohdf)
 
 #prices before ROH
 pgb1<-which(rohdf$town=="PUNGGOL" & rohdf$year<2007)
@@ -150,7 +145,6 @@ melted<-melt(pricesfinal,id.vars="Town",measure.vars = c("Prices.before.ROH","Pr
 
 #convert values from character to integer
 melted$value <- as.numeric(as.character(melted$value))
-str(melted)
 
 #reorder
 melted$Town<-factor(melted$Town,levels=c("Marine Parade","Pasir Ris","Toa Payoh","Hougang","Punggol","Queenstown","Jurong East","Woodlands","Yishun"),ordered = TRUE)
@@ -159,7 +153,7 @@ melted$Town<-factor(melted$Town,levels=c("Marine Parade","Pasir Ris","Toa Payoh"
 library(ggplot2)
 plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
   geom_bar(stat="identity",position='dodge')+
-  ggtitle("Average Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount")+
+  ggtitle("Average Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount ($)")+
   theme(
     plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
     axis.title.x = element_text(color="blue",size=12,face="bold"),
@@ -169,16 +163,12 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
 
 #rescale
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
-plot1
 
-#install.packages("plotly")
 library(plotly)
 plot1final<-ggplotly(plot1)
 plot1final
 
-#Plot 2 - Line plot
-
-#top town with highest increase from ROH
+#plot2
 top1<-raw%>%
   select(year,town,resale_price)
 
@@ -186,7 +176,6 @@ top3a<-which(towndata$town=="QUEENSTOWN")
 
 top3b<-top1[top3a,]
 
-#average price
 
 y2000w<-which(top3b$year==2000)
 y2000w2<-top3b[y2000w,]
@@ -260,10 +249,9 @@ y2017w<-which(top3b$year==2017)
 y2017w2<-top3b[y2017w,]
 mean2017<-mean(y2017w2$resale_price)
 
-#combine mean
 meantab<-c(mean2000,mean2001,mean2002,mean2003,mean2004,mean2005,
-              mean2006,mean2007,mean2008,mean2009,mean2010,mean2011,
-              mean2012,mean2013,mean2014,mean2015,mean2016,mean2017)
+           mean2006,mean2007,mean2008,mean2009,mean2010,mean2011,
+           mean2012,mean2013,mean2014,mean2015,mean2016,mean2017)
 
 yeartab<-c("2000","2001","2002","2003","2004","2005","2006","2007",
            "2008","2009","2010","2011","2012","2013","2014","2015",
@@ -272,25 +260,21 @@ yeartab<-c("2000","2001","2002","2003","2004","2005","2006","2007",
 meandf<-cbind(yeartab,meantab)
 meandf2<-as.data.frame(meandf)
 
-#change values to numeric
 meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
-
-library(ggplot2)
 options(scipen=10000)
 
 secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
-  geom_line(color="red")+
+  geom_line(color="blue")+
   
   ggtitle("Prices in Queenstown from 2000")+xlab("Year")+ylab("Resale Amount ($)")+
   theme(
     plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
-    axis.title.x = element_text(color="blue",size=12,face="bold"),
+    axis.title.x = element_text(color="black",size=12,face="bold"),
     axis.title.y = element_text(color="blue",size=12,face="bold")
     
   )
 
-library(plotly)
 plot2final<-ggplotly(secondplot)
 plot2final
