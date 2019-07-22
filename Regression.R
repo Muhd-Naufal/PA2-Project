@@ -1,4 +1,5 @@
-data<-read.csv("HDB Resale Prices.csv")
+data<-read.csv("./Datasets/HDB Resale Prices.csv")
+data
 
 #Part 1: Data Cleansing
 
@@ -57,4 +58,3 @@ cor(finaldata)[6,]
 #lm()
 fit1<-lm(resale_price~.,data=finaldata)
 summary(fit1)
-
