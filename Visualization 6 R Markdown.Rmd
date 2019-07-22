@@ -50,7 +50,10 @@ text-align: justify}
 }
 </style>
 
-![](Images/20161231_JurongWestHDBFlat_STfilephoto.jpg)
+![](Images/Singapore-homes-BTO.original.jpg)
+
+According to HDB, the median prices is the fifth percentile amountof HDB resale flat purchases. This means that half of the transactions were above and below the median price. This is a useful metric to guage whether sellers/buyers overpay or underpay in their transaction and by how much. 
+
 
 ```{r V6G1 Code, echo=FALSE, include=FALSE}
 town <- geojsonio::geojson_read("map.geojson", what = "sp")
@@ -125,3 +128,4 @@ Reference:
 
 * Map: https://data.gov.sg/dataset/master-plan-2014-planning-area-boundary-no-sea
 * Data: https://data.gov.sg/dataset/resale-flat-prices
+

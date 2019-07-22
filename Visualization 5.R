@@ -124,7 +124,7 @@ p
 Flat_Type2000 <- c("3 ROOM","4 ROOM","5 ROOM","EXECUTIVE")
 Categories2000 <- c(v3r2000,v4r2000,v5r2000,vExr2000)
 
-final1990 <- data.frame(Flat_Type2000,Categories2000)
+final2000 <- data.frame(Flat_Type2000,Categories2000)
 
 q <- plot_ly(final2000, labels = ~Flat_Type2000, values = ~Categories2000, type = 'pie') %>%
   layout(title = 'Percentage of Flat types sold in 2000s',
