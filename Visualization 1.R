@@ -5,7 +5,7 @@ library(ggplot2)
 library(plotly)
 
 #codes
-raw1<-read.csv("HDB Resale Prices.csv")
+raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
 
 
 
