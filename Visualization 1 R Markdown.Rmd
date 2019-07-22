@@ -325,3 +325,9 @@ plot2final
 This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
 
 Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
+
+***
+
+References:
+
+* Website: https://www20.hdb.gov.sg/fi10/fi10349p.nsf/hdbroh/index.html
