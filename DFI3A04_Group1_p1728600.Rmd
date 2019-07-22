@@ -1,6 +1,6 @@
 ---
 title: "Remaking our Heartlands"
-author: "Wan E Lynn"
+author: "Wan E Lynn (P1728600) DFI3A04_Group1"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
