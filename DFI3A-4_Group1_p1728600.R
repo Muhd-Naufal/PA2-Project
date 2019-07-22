@@ -1,63 +1,21 @@
----
-title: "Visualization 1"
-author: "Wan E Lynn"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  prettydoc::html_pretty:
-    highlight: github
-    theme: cayman
----
-
-```{r libraries, include= FALSE}
-library(prettydoc)
-library(plyr)
-library(dplyr)
-library(RColorBrewer)
-library(leaflet)
-library(geojsonio)
-library(ggplot2)
-library(gganimate)
-library(gifski)
-library(data.table)
-library(ggrepel)
-library(plotly)
 library(shiny)
-library(rgeos)
-library(zoo)
-library(htmlwidgets)
-library(htmltools)
-library(animation)
-```
+library(prettydoc)
+library(dplyr)
+library(ggplot2)
+library(plotly)
 
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.align = 'center')
-```
-
-
-
-## Remaking Our Heartland Programme
-
-<style>
-body {
-text-align: justify}
-</style>
-
-<style>
-.html-widget {
-    margin: auto;
-}
-</style>
-
-![](Images/lush_greenery_incorporated_into_new_developments_at_pasir_ris_town_centre_.jpg)
-```{r V1G1 Code, echo=FALSE, include=FALSE}
+#codes
 raw1<-read.csv("./Datasets/HDB Resale Prices.csv")
 
+
+
+#regroup data to year
 year<-substr(raw1$month, start = 1, stop = 4)
 df<-as.data.frame(year)
 raw<-cbind(df,raw1)
 
+#select towns with ROH
+library(dplyr)
 towndata<-raw%>%
   select(year,town,resale_price)
 
@@ -72,8 +30,11 @@ rohvalues<-which(towndata$town=="PUNGGOL"|
                    towndata$town=="PASIR RIS")
 
 rohdf<-towndata[rohvalues,]
+
+#change year from factor to numeric
 rohdf$year <- as.numeric(as.character(rohdf$year))
 
+#prices before ROH
 pgb1<-which(rohdf$town=="PUNGGOL" & rohdf$year<2007)
 pgb2<-rohdf[pgb1,]
 punggolbef<-mean(pgb2$resale_price)
@@ -110,6 +71,7 @@ prb1<-which(rohdf$town=="PASIR RIS" & rohdf$year<2015)
 prb2<-rohdf[prb1,]
 prbef<-mean(prb2$resale_price)
 
+#prices after ROH
 
 pga1<-which(rohdf$town=="PUNGGOL" & rohdf$year>2006)
 pga2<-rohdf[pga1,]
@@ -147,6 +109,7 @@ pra1<-which(rohdf$town=="PASIR RIS" & rohdf$year>2014)
 pra2<-rohdf[pra1,]
 praft<-mean(pra2$resale_price)
 
+#price difference due to ROH
 dpunggol<-punggolaft-punggolbef
 dyishun<-yishunaft-yishunbef
 dqueenstown<-queenstownaft-queenstownbef
@@ -157,6 +120,7 @@ dtoapayoh<-tpaft-tpbef
 dwoodlands<-woodaft-woodbef
 dpasirris<-praft-prbef
 
+#combine as vectors
 Punggol<-c("Punggol",punggolbef,punggolaft,dpunggol)
 Yishun<-c("Yishun",yishunbef,yishunaft,dyishun)
 Queenstown<-c("Queenstown",queenstownbef,queenstownaft,dqueenstown)
@@ -167,25 +131,29 @@ ToaPayoh<-c("Toa Payoh",tpbef,tpaft,dtoapayoh)
 Woodlands<-c("Woodlands",woodbef,woodaft,dwoodlands)
 PasirRis<-c("Pasir Ris",prbef,praft,dpasirris)
 
+#combine
 prices<-data.frame(Punggol,Yishun,Queenstown,MarineParade,Hougang,JurongEast,ToaPayoh,Woodlands,PasirRis)
 prices<-t(prices)
 
+#rename column name
 colnames(prices)<-c("Town","Prices before ROH","Prices after ROH","Price Difference due to ROH")
 pricesfinal<-data.frame(prices)
 
+#melt columns
+library(reshape2)
 melted<-melt(pricesfinal,id.vars="Town",measure.vars = c("Prices.before.ROH","Prices.after.ROH"))
+
+#convert values from character to integer
 melted$value <- as.numeric(as.character(melted$value))
 
 #reorder
 melted$Town<-factor(melted$Town,levels=c("Marine Parade","Pasir Ris","Toa Payoh","Hougang","Punggol","Queenstown","Jurong East","Woodlands","Yishun"),ordered = TRUE)
 
-```
-
-```{r V1G1, echo=FALSE}
-
+#ggplot graph
+library(ggplot2)
 plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
   geom_bar(stat="identity",position='dodge')+
-  ggtitle("Average Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount")+
+  ggtitle("Average Differences in Prices due to ROH")+xlab("ROH Town")+ylab("Amount ($)")+
   theme(
     plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
     axis.title.x = element_text(color="blue",size=12,face="bold"),
@@ -193,22 +161,14 @@ plot1<-ggplot(melted,aes(x=Town,y=value,fill=variable))+
     
   )
 
+#rescale
 plot1<-plot1+scale_y_continuous(breaks=seq(150000,1000000,by=100000))
 
+library(plotly)
 plot1final<-ggplotly(plot1)
 plot1final
-```
-**"Remaking our Heartland"** is a program by HDB to renew and rejuvenate existing HDB towns and estates, and to ensure sustainability and vibrancy of the HDB heartlands. This generally includes building more ammenities within the neighbourhood.
 
-This stacked bar graph shows the differences in average prices of flats that have undergone the Remaking our Heartland (ROH) program. A stacked bar chart was chosen to better show the relative difference between the prices. The graph is also sorted from highest to lowest Price after ROH.
-
-The years used to compute Prices before ROH are from 1990 to 1 year before ROH, and the years used to compute Prices after ROH are from the year of their respective ROH commencement year to 2017.
-
-You may hover your mouse above the bars to see the exact average price of these flats.
-
-All flats that were improved under the ROH program have seen an increase in average resale price over the years and thus appreciated in value due to ROH. Top 3 Towns that show greatest appreciation, from most to least, are Queenstown, Marine Parade and Toa Payoh.  
-
-```{r V1G2 Code, echo=FALSE, include=FALSE}
+#plot2
 top1<-raw%>%
   select(year,town,resale_price)
 
@@ -290,8 +250,8 @@ y2017w2<-top3b[y2017w,]
 mean2017<-mean(y2017w2$resale_price)
 
 meantab<-c(mean2000,mean2001,mean2002,mean2003,mean2004,mean2005,
-              mean2006,mean2007,mean2008,mean2009,mean2010,mean2011,
-              mean2012,mean2013,mean2014,mean2015,mean2016,mean2017)
+           mean2006,mean2007,mean2008,mean2009,mean2010,mean2011,
+           mean2012,mean2013,mean2014,mean2015,mean2016,mean2017)
 
 yeartab<-c("2000","2001","2002","2003","2004","2005","2006","2007",
            "2008","2009","2010","2011","2012","2013","2014","2015",
@@ -303,31 +263,18 @@ meandf2<-as.data.frame(meandf)
 meandf2$meantab <- as.numeric(as.character(meandf2$meantab))
 meandf2$yeartab <- as.numeric(as.character(meandf2$yeartab))
 
-```
-
-```{r V1G2, echo=FALSE}
 options(scipen=10000)
 
 secondplot<-ggplot(meandf2,aes(x=yeartab,y=meantab))+
-  geom_line(color="red")+
+  geom_line(color="blue")+
   
   ggtitle("Prices in Queenstown from 2000")+xlab("Year")+ylab("Resale Amount ($)")+
   theme(
     plot.title=element_text(color="black",size=12,face="bold.italic",hjust=0.5),
-    axis.title.x = element_text(color="blue",size=12,face="bold"),
+    axis.title.x = element_text(color="black",size=12,face="bold"),
     axis.title.y = element_text(color="blue",size=12,face="bold")
     
   )
 
 plot2final<-ggplotly(secondplot)
 plot2final
-```
-This line graph drills down to show the increase in resale prices of flats in Queenstown, which showed the greatest price increase due to ROH. 
-
-Queenstown showed the most aggressive price increase during 2006-2008. This may be credited due to ROH-Queenstown which took place from 2007 onwards and resale prices showed an upward trend for the next 10 years till 2017.
-
-***
-
-References:
-
-* Website: https://www20.hdb.gov.sg/fi10/fi10349p.nsf/hdbroh/index.html
