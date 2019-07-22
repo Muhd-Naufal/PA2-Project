@@ -68,7 +68,7 @@ The most effective way to view it is though the use of a map. To achieve this, u
 * Primary Schools
 * Secondary Schools
 * Shopping Malls
-* SUpermarkets
+* Supermarkets
 
 We then use a sample of 100 HDB flats with their latitude and longtitude from the dataset and apply it into the map. 
 

@@ -40,17 +40,17 @@ knitr::opts_chunk$set(fig.align = 'center')
 # Contents
 
 * **Headlines**
-  + Forecasting Tengah Town
-  + Is $1m HDB Becoming The Norm?
-  + Predicting HDB Resale Prices
+  + Will Tengah Property Prices See The Same Rise As Punggol?
+  + Will million dollar HDB flats be new new norm?
+  + Here's what to expect for the upcoming "Average Price per Square Meter" for different Flat   Types in the next 10 months
 
 * **Visualizations**
   + Remaking Our Heartland 
   + Relationship Between POI and Resale Price
-  + Why Prices Drastically Increase From 2007 Onwards 
+  + Singaporeans' HDB predicament: HDB dilemma for the future
   + Value Comparison Between Mature Towns And Non-Mature Towns
-  + Does Premium/Non-standard HDBs account for high resale value? 
-  + Compare HDB Median Resale Price Per Town
+  + Comparing flat type sold from 1990s to 2000s
+  + Comparing Median Resale prices against other towns
  
 ***
 ![](Images/9710488.jpg) 
