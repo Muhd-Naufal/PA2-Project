@@ -1,6 +1,6 @@
 ---
 title: "Visualization 2"
-author: "Muhammad Naufal Bin Kamsani"
+author: "Muhammad Naufal Bin Kamsani, DFI/FT/3A/04, 1747603"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
