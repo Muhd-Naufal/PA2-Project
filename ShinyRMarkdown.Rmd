@@ -807,7 +807,7 @@ As many houses are getting smaller, GlobNex has provided users to understand and
 With Shiny package, we have collated plot graphs to allow Users to visualize the Average Price per Square Meter
 
 App allows users to click on radio buttons to interact and display different plots according to selection, list of flat types.
-Still trying to make it work...
+
 
 ***
 References:
