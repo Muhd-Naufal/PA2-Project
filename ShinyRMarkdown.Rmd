@@ -40,17 +40,17 @@ knitr::opts_chunk$set(fig.align = 'center')
 # Contents
 
 * **Headlines**
-  + Forecasting Tengah Town
-  + Is $1m HDB Becoming The Norm?
-  + Predicting HDB Resale Prices
+  + Will Tengah Property Prices See The Same Rise As Punggol?
+  + Will million dollar HDB flats be new new norm?
+  + Here's what to expect for the upcoming "Average Price per Square Meter" for different Flat   Types in the next 10 months
 
 * **Visualizations**
   + Remaking Our Heartland 
   + Relationship Between POI and Resale Price
-  + Why Prices Drastically Increase From 2007 Onwards 
+  + Singaporeans' HDB predicament: HDB dilemma for the future
   + Value Comparison Between Mature Towns And Non-Mature Towns
-  + Does Premium/Non-standard HDBs account for high resale value? 
-  + Compare HDB Median Resale Price Per Town
+  + Comparing flat type sold from 1990s to 2000s
+  + Comparing Median Resale prices against other towns
  
 ***
 ![](Images/9710488.jpg) 
@@ -270,7 +270,7 @@ p <- plot_ly(
   ),
   cells = list(
     values = rbind(
-      c("<b>2007<b>","<b>2008<b>","<b>2009<b>","<b>2010<b>","<b>2011<b>","<b>2012<b>","<b>2013<b>","<b>2014<b>","<b>2015<b>","<b>2016<b>","<b>2017<b>", '<b>2008 vs 2018</b>'),
+      c("<b>2007<b>","<b>2008<b>","<b>2009<b>","<b>2010<b>","<b>2011<b>","<b>2012<b>","<b>2013<b>","<b>2014<b>","<b>2015<b>","<b>2016<b>","<b>2017<b>", '<b>2007 vs 2017</b>'),
       c(a2007,a2008,a2009,a2010,a2011,a2012,a2013,a2014,a2015,a2016,a2017,"null"),
       c(b2007,b2008,b2009,b2010,b2011,b2012,b2013,b2014,b2015,b2016,b2017,"null"),
       c(c2007,c2008,c2009,c2010,c2011,c2012,c2013,c2014,c2015,c2016,c2017,"<b>71.4%<b>"),
@@ -407,7 +407,7 @@ leaflet() %>%
 
 ```
 
-For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is is for the purpose of a more effective graph. If it were set to $1,000,000, there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
+For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is for the purpose of a more effective graph. If it were set to $1,000,000 there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
@@ -435,7 +435,7 @@ ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], ae
   labs(fill='Flat Type') 
 ```
 
-In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that the most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the forseable future. 
+In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the foreseeable future. 
 
 ```{r H2G2 code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
@@ -807,13 +807,13 @@ As many houses are getting smaller, GlobNex has provided users to understand and
 With Shiny package, we have collated plot graphs to allow Users to visualize the Average Price per Square Meter
 
 App allows users to click on radio buttons to interact and display different plots according to selection, list of flat types.
-Still trying to make it work...
+
 
 ***
 References:
 
-*https://www.propertyguru.com.sg/property-management-news/2016/8/133966/are-million-dollar-hdb-flats-becoming-the-norm-2
-*https://blog.seedly.sg/is-tengah-bto-good/
+* https://www.propertyguru.com.sg/property-management-news/2016/8/133966/are-million-dollar-hdb-flats-becoming-the-norm-2
+* https://blog.seedly.sg/is-tengah-bto-good/
 
 ***
 

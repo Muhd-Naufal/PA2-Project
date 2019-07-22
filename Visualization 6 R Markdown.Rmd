@@ -37,7 +37,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
  
 
-## Compare HDB Median Resale Prices
+## Comparing Median Resale prices against other towns
 
 <style>
 body {
