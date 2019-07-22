@@ -1,6 +1,6 @@
 ---
 title: "Visualization 5"
-author: "Muhammad Zulfikar Bin Zainal"
+author: "Muhammad Zulfikar Bin Zainal, DFI/3A/04 , P1644573"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
@@ -50,7 +50,6 @@ text-align: justify}
 </style>
 
 ![](Images/2T2J0398.jpg)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori
 
 
 ```{r V5G1 Code, echo=FALSE, include=FALSE}
@@ -160,6 +159,6 @@ t <- plot_ly(data, x = ~x, y = ~y1, type = 'bar', name = '1990s', marker = list(
          barmode = 'group')
 t
 ```
-In this Bar chart above, it will compare both eras of the 1990s and 2000s and this indicates that over a decade, there are increases on all 4 flats that is mentioned on the chart. Moreover, for both 4 room and 5 room category, there is a significant increase with 4 room flats having difference of 87,339 flats sold during the 1990s and 2000s whereas also a significant increse with 5 room flats with a difference of 58.776 flats sold during the 1990s and 2000s
+In this Bar chart above, it can compare both eras of the 1990s and 2000s and this indicates that over a decade, there are increases on all 4 flats that is mentioned on the chart. Moreover, for both 4 room and 5 room category, there is a significant increase with 4 room flats having difference of 87,339 flats sold during the 1990s and 2000s whereas also a significant increse with 5 room flats with a difference of 58.776 flats sold during the 1990s and 2000s
 
-Ho
+So this shows that over the course of a decade, there is a significant increase of flat types being sold which also increases the resale price too that is evident as there are alot of flats being sold in the 2000s especially.
