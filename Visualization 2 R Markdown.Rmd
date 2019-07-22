@@ -1,0 +1,123 @@
+---
+title: "Visualization 2"
+author: "Naufal"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  prettydoc::html_pretty:
+    highlight: github
+    theme: cayman
+---
+
+```{r libraries, include= FALSE}
+library(prettydoc)
+library(plyr)
+library(dplyr)
+library(RColorBrewer)
+library(leaflet)
+library(geojsonio)
+library(ggplot2)
+library(gganimate)
+library(gifski)
+library(data.table)
+library(ggrepel)
+library(plotly)
+library(shiny)
+library(rgeos)
+library(zoo)
+library(htmlwidgets)
+library(htmltools)
+library(animation)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+ 
+
+## Relationship between POI and Resale Value
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
+![](Images/079e2e-PLA-COMMONWEALTH-MRT-STATION-01-BT.jpg)
+
+Singapore is a country with a thriving and exciting property landscape. It does not only apply to the private property but also public too. Over the years, we see residential prices appreciate and depreciate due to a multitude of factors. In this visualization, we will examine how Points of Interests affects the resale prices of HDB flats.
+
+The most effective way to view it is though the use of a map. To achieve this, usage of r leaflet allows us to create an interactive and intuitive map and also place markers into the map. To place markers, it uses the langtitude and longitude of various points such as MRT stations, shopping malls, schools, polyclinics, etc and combine them all together into one dataset. The full list can be found below:
+
+* Attractions
+* Community Clubs
+* Hawker Centres
+* Higher Education Institutions
+* Hospitals
+* Polyclinics
+* MRT and LRT Stations
+* Parks
+* Kindergartens
+* Primary Schools
+* Secondary Schools
+* Shopping Malls
+* SUpermarkets
+
+We then use a sample of 100 HDB flats with their latitude and longtitude from the dataset and apply it into the map. 
+
+```{r eval=FALSE}
+gBuffer(onehundredhdb, width=.005, byid = TRUE)
+```
+
+Once all 100 HDB points are placed into the map, running the code above runs through 100 HDB  flats and creates a buffer circle of 500m from each of those 100 HDB points. Thus producing the map as below. 
+
+```{r V2G1 Code, echo=FALSE, include=FALSE}
+combined <- read.csv("./Datasets/CombinedDataset.csv")
+combined <- as.data.frame(combined)
+coordinates(combined) <- ~Longitude + Latitude
+
+onehundredhdb <- read.csv("./Datasets/100HDBAddress.csv")
+coordinates(onehundredhdb) <- ~Longitude + Latitude
+
+pointsBuffer3 <- gBuffer(onehundredhdb, width=.005, byid = TRUE)
+```
+
+```{r V2G1, echo=FALSE}
+leaflet(options = leafletOptions(preferCanvas = TRUE)) %>%
+  addTiles() %>%
+  addMarkers(data=combined,clusterOptions = markerClusterOptions()) %>%
+  addMarkers(data=onehundredhdb) %>%
+  addPolygons(data=pointsBuffer3)
+```
+
+Once we got the map working, we can now analyse the relationship between Points of Interest (POI) and Resale Prices of HDB flats. From the buffer circle, it will count how many POI there are that falls within the buffer. We tabulate everything from our sample of 100 HDB flats and produce the graph below.
+
+```{r V2G2 Code, echo=FALSE, message = FALSE,include=FALSE}
+count<- over(pointsBuffer3, combined, fn=length)
+count <- as.data.frame(count)
+count <-count[,-2:-3]
+count <- as.data.frame(count)
+
+resale <- onehundredhdb$Resale.Value
+resale <- as.data.frame(resale)
+final <- cbind(count,resale)
+```
+
+```{r V2G2,message = FALSE, echo=FALSE}
+ggplot(final,aes(x=count,y=resale)) +
+  geom_smooth(fill = "pink", se=FALSE, aes(colour="Resale Price")) +
+  geom_smooth(method="lm",se=FALSE, aes(colour="Regression Line")) +
+  scale_colour_manual(name="Legend", values=c("red", "blue")) +
+  ggtitle("Relationship between Number of Points of Interest and Resale Value") +
+  labs(x = "Points of Interest", y = "Resale Price") 
+  
+```
+
+
