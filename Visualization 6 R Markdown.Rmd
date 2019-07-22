@@ -120,7 +120,7 @@ The map above was taken from the URA website. Different towns have been split in
 
 For example, if there are more "Points of Interest" in the area, the average resale price of the area will go up, which means that the median resale price will increase as well. 
 
-Where polygons that shows $0 for all three observations are those that either have no resale data or are not HDB towns.  
+Where polygons that shows $0 for all three observations are those that either have no resale data or are not HDB towns.
 
 ***
 
