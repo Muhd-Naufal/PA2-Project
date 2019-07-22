@@ -435,7 +435,7 @@ ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], ae
   labs(fill='Flat Type') 
 ```
 
-In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the forseable future. 
+In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the foreseeable future. 
 
 ```{r H2G2 code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
