@@ -1,6 +1,6 @@
 ---
 title: "Visualization 6"
-author: "Alexander Joshua Lee Yi Jun"
+author: "Alexander Joshua Lee Yi Jun, DFI/FT/3A/04, P1724312"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   prettydoc::html_pretty:
@@ -128,4 +128,3 @@ Reference:
 
 * Map: https://data.gov.sg/dataset/master-plan-2014-planning-area-boundary-no-sea
 * Data: https://data.gov.sg/dataset/resale-flat-prices
-
