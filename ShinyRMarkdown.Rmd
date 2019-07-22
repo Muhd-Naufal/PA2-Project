@@ -407,7 +407,7 @@ leaflet() %>%
 
 ```
 
-For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is is for the purpose of a more effective graph. If it were set to $1,000,000, there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
+For our graph below, we use $900,000 rather than $1,000,000 as the benchmark for high resale prices mainly for two reasons. First, sellers whose flat value is near the million dollar mark would like to set their prices at least $1,000,000 but are often negotiated down. And second, is for the purpose of a more effective graph. If it were set to $1,000,000 there wouldn't be enough data points to form a effective insight. Therefore, setting it at $900,000 is a more realistic benchmark.
 ```{r H2G1 Code, echo=FALSE, include=FALSE}
 
 hdb2 <- read.csv("./Datasets/HDB Resale Prices.csv")
@@ -435,7 +435,7 @@ ggplot(hdb7[,sum(hdb5.resale_price), by=.(hdb5.flat_type, year(hdb5.month))], ae
   labs(fill='Flat Type') 
 ```
 
-In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that the most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the forseable future. 
+In the graph, it shows the number of resale flats that are sold above $900,000 and split by type of flat between 2012 to 2017. We can see that there is a sharp increase in transaction from 2015 onwards. Also previously, it was only 5 Room, Executive and Multi-Generation flat types that were able to command those prices but since 2015, we can see that 4 Rooms are starting to set their prices above $900,000. Furthermore,we can see that most of the transaction were due to 5 Room flats which makes up about **70%** in the year 2017 and we can predict that it will continue to increase in the foreseeable future. 
 
 ```{r H2G2 code, message = FALSE, warning = FALSE, results = FALSE,echo=FALSE}
 hdb8 <- filter(hdb3, flat_type == "4 ROOM" | 
@@ -807,7 +807,7 @@ As many houses are getting smaller, GlobNex has provided users to understand and
 With Shiny package, we have collated plot graphs to allow Users to visualize the Average Price per Square Meter
 
 App allows users to click on radio buttons to interact and display different plots according to selection, list of flat types.
-Still trying to make it work...
+
 
 ***
 References:
