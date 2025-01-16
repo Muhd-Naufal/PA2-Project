@@ -132,3 +132,22 @@ In the commit window, on the top left hand side contains the box where it'll sho
 
 Don't be deceived. That dark box doesn't mean that the file is selected. You must make sure that the file has a tick before proceeding. Just click on the box again or twice then the tick should appear.
 
+# 2025 Update
+
+It has been a while. Realize that the markdown file doesn't work anymore as the rgeos package is depreceated. However it can still work, we just have to force it to install the package.
+
+1. Download the [Rtools Development Tool](https://cloud.r-project.org/bin/windows/Rtools/rtools44/rtools.html)
+2. Install it in PATH. I did it via command prompt
+- Open Command Prompt as Administrator.
+- Add the Rtools path with the following command:
+> setx PATH "%PATH%;C:\Rtools43\usr\bin"
+- Restart your Command Prompt or R session.
+4. Install rgeos - Type it in Rstudio console
+> install.packages("remotes")
+> remotes::install_version("rgeos", version = "0.6-4")
+5. Test installation
+> library(rgeos)
+rgeos::version_GEOS()
+
+It should come out with version. Then you're good to go to run the markdown files. Happy roaming!
+
